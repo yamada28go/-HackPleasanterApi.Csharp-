@@ -93,6 +93,8 @@ namespace HackPleasanterApi.Client.Api.Service
             // 検索条件を設定
             var r = GenerateRequestBase<T>();
             r.Offset = 0;
+            r.ApiKey = serviceConfig.ApiKey;
+            r.ApiVersion = serviceConfig.ApiVersion;
 
             HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{SiteId}/get", r);
             if (response.IsSuccessStatusCode)

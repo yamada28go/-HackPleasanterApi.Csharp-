@@ -1,0 +1,134 @@
+﻿{
+  "HeaderInfo": {
+    "BaseSiteId": 2,
+    "Server": "http://localhost",
+    "CreatorName": "Administrator",
+    "PackageTime": "2021-10-24T08:59:17.1913578+00:00",
+    "Convertors": [
+      {
+        "SiteId": 2,
+        "SiteTitle": "API試験用",
+        "ReferenceType": "Sites",
+        "IncludeData": false,
+        "Order": "[]"
+      },
+      {
+        "SiteId": 3,
+        "SiteTitle": "記録テーブル",
+        "ReferenceType": "Results",
+        "IncludeData": false
+      }
+    ],
+    "IncludeSitePermission": true,
+    "IncludeRecordPermission": true,
+    "IncludeColumnPermission": true
+  },
+  "Sites": [
+    {
+      "TenantId": 1,
+      "SiteId": 2,
+      "Title": "API試験用",
+      "Body": "",
+      "GridGuide": "",
+      "EditorGuide": "",
+      "ReferenceType": "Sites",
+      "ParentId": 0,
+      "InheritPermission": 2,
+      "SiteSettings": {
+        "Version": 1.017,
+        "ReferenceType": "Sites",
+        "NoDisplayIfReadOnly": false
+      },
+      "Publish": false,
+      "DisableCrossSearch": false,
+      "Comments": []
+    },
+    {
+      "TenantId": 1,
+      "SiteId": 3,
+      "Title": "記録テーブル",
+      "Body": "",
+      "GridGuide": "",
+      "EditorGuide": "",
+      "ReferenceType": "Results",
+      "ParentId": 2,
+      "InheritPermission": 2,
+      "SiteSettings": {
+        "Version": 1.017,
+        "ReferenceType": "Results",
+        "EditorColumnHash": {
+          "General": [
+            "ResultId",
+            "Ver",
+            "Title",
+            "Body",
+            "Status",
+            "Manager",
+            "Owner",
+            "Comments",
+            "ClassA",
+            "NumA",
+            "DateA",
+            "DescriptionA",
+            "CheckA"
+          ]
+        },
+        "Columns": [
+          {
+            "ColumnName": "ClassA",
+            "Description": "TypeA"
+          },
+          {
+            "ColumnName": "NumA",
+            "Description": "NumA"
+          },
+          {
+            "ColumnName": "DateA",
+            "Description": "DataA"
+          },
+          {
+            "ColumnName": "DescriptionA",
+            "Description": "StringA"
+          },
+          {
+            "ColumnName": "CheckA",
+            "Description": "CheckA"
+          }
+        ],
+        "NoDisplayIfReadOnly": false
+      },
+      "Publish": false,
+      "DisableCrossSearch": false,
+      "Comments": []
+    }
+  ],
+  "Data": [],
+  "Permissions": [
+    {
+      "SiteId": 2,
+      "Permissions": [
+        {
+          "ReferenceId": 2,
+          "DeptId": 0,
+          "GroupId": 0,
+          "UserId": 1,
+          "PermissionType": 511
+        }
+      ]
+    },
+    {
+      "SiteId": 3,
+      "Permissions": []
+    }
+  ],
+  "PermissionIdList": {
+    "DeptIdList": [],
+    "GroupIdList": [],
+    "UserIdList": [
+      {
+        "UserId": 1,
+        "LoginId": "Administrator"
+      }
+    ]
+  }
+}
