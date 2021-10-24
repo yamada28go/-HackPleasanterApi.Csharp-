@@ -28,8 +28,9 @@ namespace HackPleasanterApiTest
 
             var data = new CsharpSamples.Generated.Models.RecordingTableModel();
 
-            // data.BasicItemData.Title = "タイトル";
-            //data.BasicItemData.Body = "本文";
+             data.BasicItemData.Title = "タイトルてすと";
+            data.BasicItemData.Body = "本文";
+            data.BasicItemData.Comments  = "コメント";
 
             // 個別の試験用データを設定する
             data.ExtensionElements.CheckA = true;
