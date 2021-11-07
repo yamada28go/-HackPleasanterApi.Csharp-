@@ -29,7 +29,7 @@ namespace HackPleasanterApi.Client.Api.Response.ApiResults
     /// <summary>
     /// Item系統のAPI戻り値
     /// </summary>
-    public class ItemApiResults<ItemType> : ApiResultsBase where ItemType : ItemResponseBase
+    public class ItemApiResults<ItemType> : ChangeItemResults where ItemType : ItemResponseBase
     {
 
         /// <summary>

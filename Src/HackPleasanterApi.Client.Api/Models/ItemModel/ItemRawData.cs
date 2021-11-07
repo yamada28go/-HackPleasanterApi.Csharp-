@@ -24,10 +24,12 @@ using System.Text;
 
 namespace HackPleasanterApi.Client.Api.Models.ItemModel
 {
+
+
     /// <summary>
-    /// Item形式基本データ構造
+    /// Item形式基本データ構造(内部操作用)
     /// </summary>
-    public class ItemRawData
+    public class ItemRawDataImp
     {
         /// <summary>
         /// サイトID
@@ -125,6 +127,14 @@ namespace HackPleasanterApi.Client.Api.Models.ItemModel
         /// </summary>
         public CheckHash CheckHash { get; set; }
 
+    }
+
+
+    /// <summary>
+    /// Item形式基本データ構造
+    /// </summary>
+    public class ItemRawData : ItemRawDataImp
+    {
         /// <summary>
         /// 添付ファイルA～Z
         /// </summary>

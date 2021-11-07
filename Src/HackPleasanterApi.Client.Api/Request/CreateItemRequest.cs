@@ -19,13 +19,17 @@
 
 using HackPleasanterApi.Client.Api.Interface;
 using HackPleasanterApi.Client.Api.Models.ItemModel;
+using HackPleasanterApi.Client.Api.Models.ItemModel.Hash;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace HackPleasanterApi.Client.Api.Request
 {
-    public class CreateItemRequest : ItemRawData
+    /// <summary>
+    /// 要素生成用のリクエスト
+    /// </summary>
+    public class CreateItemRequest : ItemRawDataImp
     {
 
         /// <summary>
@@ -37,6 +41,17 @@ namespace HackPleasanterApi.Client.Api.Request
         /// アクセス用のAPIキー
         /// </summary>
         public string ApiKey;
+
+        /// <summary>
+        /// 添付ファイルA～Z
+        /// </summary>
+        //public Dictionary<string, List<string>>  AttachmentsHash { get; set; } = null;
+
+        /// <summary>
+        /// 添付ファイルA～Z
+        /// </summary>
+        public AttachmentsHash AttachmentsHash { get; set; }
+
 
     }
 }

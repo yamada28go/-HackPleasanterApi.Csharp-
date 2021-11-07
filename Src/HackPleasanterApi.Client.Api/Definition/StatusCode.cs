@@ -17,15 +17,15 @@
  * under the License.
  * */
 
+
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HackPleasanterApi.Client.Api.Request
+namespace HackPleasanterApi.Client.Api.Definition
 {
-    public class View
+    public enum StatusCode : int
     {
-
-
+        /// <summary>
+        /// 成功
+        /// </summary>
+        OK= 200
     }
 }

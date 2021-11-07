@@ -38,7 +38,8 @@ namespace HackPleasanterApi.Client.Api.Mapper
             // Mapするモデルの設定
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<ItemRawData, CreateItemRequest>();
+                cfg.CreateMap<ItemRawData, CreateItemRequest>()
+                ;
             });
             // Mapperを作成
             var mapper = config.CreateMapper();

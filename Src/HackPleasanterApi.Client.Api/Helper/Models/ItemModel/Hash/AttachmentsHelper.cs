@@ -18,34 +18,26 @@
  * */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using HackPleasanterApi.Client.Api.Models.ItemModel.Hash;
 
-namespace HackPleasanterApi.Client.Api.Models.ItemModel.Hash
+namespace HackPleasanterApi.Client.Api.Helper.Models.ItemModel.Hash
 {
-    public class Attachments
+
+    // 拡張処理の補助関数
+    public static class AttachmentsHelper
     {
 
-        /// <summary>
-        /// string 添付ファイルのGUID
-        /// </summary>
-        public string Guid { get; set; }
+        public static Attachments MakeAttachmentsFromFile(string filePath)
+        {
+            var r = new Attachments();
 
-        /// <summary>
-        /// 添付ファイル名
-        /// </summary>
-        public string Name { get; set; }
+            r.Base64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
+            r.Name = Path.GetFileName(filePath);
+            r.ContentType = MimeTypes.GetMimeType(filePath);
 
-        /// <summary>
-        /// string Content Type
-        /// </summary>
-        public string ContentType { get; set; }
-
-        /// <summary>
-        ///  string ファイルデータをBase64エンコーディングしたもの
-        /// </summary>
-        public string Base64 { get; set; }
-
+            return r;
+        }
     }
 
 }

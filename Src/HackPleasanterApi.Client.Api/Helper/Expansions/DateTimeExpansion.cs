@@ -17,34 +17,39 @@
  * under the License.
  * */
 
+
 using System;
-using System.Collections.Generic;
 using System.Text;
 
-namespace HackPleasanterApi.Client.Api.Models.ItemModel.Hash
+namespace HackPleasanterApi.Client.Api.Helper.Expansions
 {
-    public class Attachments
+    /// <summary>
+    /// DateTime用する拡張
+    /// </summary>
+    public static class DateTimeExpansion
     {
-
         /// <summary>
-        /// string 添付ファイルのGUID
+        /// API問い合わせ時に使用する文字列形式に変換する
         /// </summary>
-        public string Guid { get; set; }
+        /// <param name="sb"></param>
+        public static string ToStringForApiRequest(this DateTime dt)
+        {
+            return dt.ToString("yyyy-MM-ddTHH:mm:ss");
+        }
 
-        /// <summary>
-        /// 添付ファイル名
-        /// </summary>
-        public string Name { get; set; }
+        public static DateTime ToJst(this DateTime utc)
+        {
+            // Memo
+            // https://tech.tanaka733.net/entry/2020/02/timezone-id
 
-        /// <summary>
-        /// string Content Type
-        /// </summary>
-        public string ContentType { get; set; }
+            /*
+            var jstZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Asia/Tokyo");
+            return TimeZoneInfo.ConvertTimeFromUtc(utc, jstZoneInfo);
+            */
 
-        /// <summary>
-        ///  string ファイルデータをBase64エンコーディングしたもの
-        /// </summary>
-        public string Base64 { get; set; }
+            //タイムゾーン変換する
+            return utc.AddHours(-9);
+        }
 
     }
 

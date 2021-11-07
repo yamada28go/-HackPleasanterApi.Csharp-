@@ -3,7 +3,7 @@
     "BaseSiteId": 2,
     "Server": "http://localhost",
     "CreatorName": "Administrator",
-    "PackageTime": "2021-10-24T08:59:17.1913578+00:00",
+    "PackageTime": "2021-10-31T15:16:32.6818295+00:00",
     "Convertors": [
       {
         "SiteId": 2,
@@ -70,13 +70,21 @@
             "NumA",
             "DateA",
             "DescriptionA",
-            "CheckA"
+            "CheckA",
+            "ClassB",
+            "NumB",
+            "DateB",
+            "DescriptionB",
+            "CheckB",
+            "AttachmentsA",
+            "AttachmentsB"
           ]
         },
         "Columns": [
           {
             "ColumnName": "ClassA",
-            "Description": "TypeA"
+            "Description": "TypeA",
+            "ChoicesText": "ClassA\nClassB\nClassC"
           },
           {
             "ColumnName": "NumA",
@@ -84,7 +92,8 @@
           },
           {
             "ColumnName": "DateA",
-            "Description": "DataA"
+            "Description": "DataA",
+            "EditorFormat": "Ymdhm"
           },
           {
             "ColumnName": "DescriptionA",
@@ -93,6 +102,14 @@
           {
             "ColumnName": "CheckA",
             "Description": "CheckA"
+          },
+          {
+            "ColumnName": "AttachmentsA",
+            "Description": "AttachmentA"
+          },
+          {
+            "ColumnName": "AttachmentsB",
+            "Description": "AttachmentB"
           }
         ],
         "NoDisplayIfReadOnly": false

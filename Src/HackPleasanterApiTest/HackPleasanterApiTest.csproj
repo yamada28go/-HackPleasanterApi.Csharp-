@@ -16,4 +16,15 @@
   <ItemGroup>
     <ProjectReference Include="..\HackPleasanterApi.Client.Api\HackPleasanterApi.Client.Api.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="ItemTest\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ItemTest\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="data\attachments\sky.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

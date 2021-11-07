@@ -19,6 +19,7 @@
 
 using AutoMapper;
 using HackPleasanterApi.Client.Api.Interface;
+using HackPleasanterApi.Client.Api.Logging;
 using HackPleasanterApi.Client.Api.Mapper;
 using HackPleasanterApi.Client.Api.Request;
 using HackPleasanterApi.Client.Api.Response;
@@ -54,24 +55,33 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
                 {
-                    Console.WriteLine("Request:");
-                    Console.WriteLine(request.ToString());
-                    if (request.Content != null)
+                    //デバッグレベルの時だけログを出力する
+                    if (LoggerManager.GetInstance().LogLevel == LogLevel.Debug)
                     {
-                        Console.WriteLine(await request.Content.ReadAsStringAsync());
+                        LoggerManager.GetInstance().Logger.Debug(() => "Request:");
+                        LoggerManager.GetInstance().Logger.Debug(() => request.ToString());
+                        if (request.Content != null)
+                        {
+                            var x = await request.Content.ReadAsStringAsync();
+                            LoggerManager.GetInstance().Logger.Debug(() => x);
+                        }
+                        LoggerManager.GetInstance().Logger.Debug(() => "");
                     }
-                    Console.WriteLine();
 
                     HttpResponseMessage response = await base.SendAsync(request, cancellationToken);
 
-                    Console.WriteLine("Response:");
-                    Console.WriteLine(response.ToString());
-                    if (response.Content != null)
+                    if (LoggerManager.GetInstance().LogLevel == LogLevel.Debug)
                     {
-                        Console.WriteLine(await response.Content.ReadAsStringAsync());
-                    }
-                    Console.WriteLine();
+                        LoggerManager.GetInstance().Logger.Debug(() => "Response:");
+                        LoggerManager.GetInstance().Logger.Debug(() => response.ToString());
+                        if (response.Content != null)
+                        {
+                            var x = await response.Content.ReadAsStringAsync();
+                            LoggerManager.GetInstance().Logger.Debug(() => x);
+                        }
+                        LoggerManager.GetInstance().Logger.Debug(() => "");
 
+                    }
                     return response;
                 }
             }
@@ -88,8 +98,8 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <summary>
         /// HTTPアクセス用クライアント
         /// </summary>
-        //  protected HttpClient client = new HttpClient(new Helper.LoggingHandler(new HttpClientHandler()));
-        protected HttpClient client = new HttpClient();
+          protected HttpClient client = new HttpClient(new Helper.LoggingHandler(new HttpClientHandler()));
+
         /// <summary>
         /// 値変換用のマッパーオブジェクト
         /// </summary>

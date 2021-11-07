@@ -1,5 +1,6 @@
 using HackPleasanterApi.Client.Api.Interface;
 using HackPleasanterApi.Client.Api.Models.ItemModel;
+using HackPleasanterApi.Client.Api.Models.ItemModel.Hash;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,9 @@ namespace CsharpSamples.Generated.Models
 
 
     /// <summary>
-    /// ?L?^?e?[?u?? DTO?N???X
+    /// �L�^�e�[�u�� DTO�N���X
     /// </summary>
-    class RecordingTableModel : DTOBase<RecordingTableModel.RecordingTableModelExtensionElements>
+    public class RecordingTableModel : DTOBase<RecordingTableModel.RecordingTableModelExtensionElements>
     {
 
         public RecordingTableModel()
@@ -28,11 +29,11 @@ namespace CsharpSamples.Generated.Models
         }
 
         /// <summary>
-        /// ?????f?[?^????????????
+        /// �����f�[�^������������
         /// </summary>
         private void InternalData()
         {
-            // ???[?U?[?g???f?[?^?\???????`
+            // ���[�U�[�g���f�[�^�\���̒�`
             this.ExtensionElements = new RecordingTableModel.RecordingTableModelExtensionElements();
             this.ExtensionElements.rawData = new WeakReference<ItemRawData>(this.rawData);
 
@@ -41,246 +42,348 @@ namespace CsharpSamples.Generated.Models
         }
 
         /// <summary>
-        /// ???????g???v?f
+        /// �ʂ̊g���v�f
         /// </summary>
         public class RecordingTableModelExtensionElements : ExtensionElementsBase
         {
-            #region ????????
+            #region ��������
 
-            #region Class????
+            #region Class�敪
 
 
 
-               /// <summary>
-               /// 
-                /// </summary>
-                public string TypeA
+            /// <summary>
+            /// 
+            /// </summary>
+            public string TypeA
+            {
+                get
                 {
-                    get
+                    if (rawData.TryGetTarget(out var obj))
                     {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            return obj?.ClassHash?.ClassA;
-                        }
-                        throw new ApplicationException("?Q???G???[");
-
+                        return obj?.ClassHash?.ClassA;
                     }
-                    set
-                    {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            if (obj.ClassHash == null)
-                            {
-                                obj.ClassHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.ClassHash();
-                            }
+                    throw new ApplicationException("�Q�ƃG���[");
 
-                            obj.ClassHash.ClassA = value;
-
-                            return ;
-                        }
-
-                        throw new ApplicationException("?Q???G???[");
-
-                    }
                 }
-                
-            #endregion
-
-            #region Num????
-
-
-
-               /// <summary>
-               /// 
-               /// ?T?[?o?[?????l?????l?????????????????\?????????????A
-               /// get?n??nullable?^?????????????B
-               /// </summary>
-                public decimal? NumA_value
+                set
                 {
-                    get
+                    if (rawData.TryGetTarget(out var obj))
                     {
-                        if (rawData.TryGetTarget(out var obj))
+                        if (obj.ClassHash == null)
                         {
-                            return obj?.NumHash?.NumA;
-                        }
-                        throw new ApplicationException("?Q???G???[");
-
-                    }
-                }
-
-               /// <summary>
-               /// 
-               /// </summary>
-                public decimal NumA
-                {
-                    set
-                    {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            if (obj.NumHash == null)
-                            {
-                                obj.NumHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.NumHash();
-                            }
-
-                            obj.NumHash.NumA = value;
-
-                            return ;
+                            obj.ClassHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.ClassHash();
                         }
 
-                        throw new ApplicationException("?Q???G???[");
-
-                    }
-                }
-                
-            #endregion
-
-            #region Date????
-
-
-
-               /// <summary>
-               /// 
-               ///
-               /// ?T?[?o?[?????l?????l?????????????????\?????????????A
-               /// get?n??nullable?^?????????????B
-               /// </summary>
-                public DateTime? DataA_value
-                {
-                    get
-                    {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            return obj?.DateHash?.DateA;
-                        }
-                        throw new ApplicationException("?Q???G???[");
-
-                    }
-                }
-
-               /// <summary>
-               /// 
-               /// </summary>
-                public DateTime DataA
-                {
-                    set
-                    {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            if (obj.DateHash == null)
-                            {
-                                obj.DateHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.DateHash();
-                            }
-
-                            obj.DateHash.DateA = value;
-
-                            return ;
-                        }
-
-                        throw new ApplicationException("?Q???G???[");
-
-                    }
-                }
-                
-            #endregion
-
-            #region Description????
-
-
-
-               /// <summary>
-               /// 
-               /// </summary>
-                public string StringA
-                {
-                    get
-                    {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            return obj?.DescriptionHash?.DescriptionA;
-                        }
-                        throw new ApplicationException("?Q???G???[");
-
-                    }
-                    set
-                    {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            if (obj.DescriptionHash == null)
-                            {
-                                obj.DescriptionHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.DescriptionHash();
-                            }
-
-                            obj.DescriptionHash.DescriptionA = value;
+                        obj.ClassHash.ClassA = value;
 
                         return;
-                        }
-
-                        throw new ApplicationException("?Q???G???[");
-
                     }
+
+                    throw new ApplicationException("�Q�ƃG���[");
+
                 }
-                
-            #endregion
-
-            #region Check????
+            }
 
 
-
-               /// <summary>
-               /// 
-               ///
-               /// ?T?[?o?[?????l?????l?????????????????\?????????????A
-               /// get?n??nullable?^?????????????B
-               /// </summary>
-                public bool? CheckA_value
+            /// <summary>
+            /// 
+            /// </summary>
+            public string TypeB
+            {
+                get
                 {
-                    get
+                    if (rawData.TryGetTarget(out var obj))
                     {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            return obj?.CheckHash?.CheckA;
-                        }
-                        throw new ApplicationException("?Q???G???[");
-
+                        return obj?.ClassHash?.ClassB;
                     }
+                    throw new ApplicationException("�Q�ƃG���[");
+
                 }
-
-
-               /// <summary>
-               /// 
-               /// </summary>
-                public bool CheckA
+                set
                 {
-                    set
+                    if (rawData.TryGetTarget(out var obj))
                     {
-                        if (rawData.TryGetTarget(out var obj))
+                        if (obj.ClassHash == null)
                         {
-
-                            if (obj.CheckHash == null)
-                            {
-                                obj.CheckHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.CheckHash();
-                            }
-
-                            obj.CheckHash.CheckA = value;
-
-                            return ;
+                            obj.ClassHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.ClassHash();
                         }
 
-                        throw new ApplicationException("?Q???G???[");
+                        obj.ClassHash.ClassB = value;
 
+                        return;
                     }
+
+                    throw new ApplicationException("�Q�ƃG���[");
+
                 }
-                
-            #endregion
-
-
-            #region Attachments????
-
+            }
 
             #endregion
 
+            #region Num�敪
 
-#endregion
+
+
+            /// <summary>
+            /// 
+            /// �T�[�o�[�߂�l�ł͒l�������Ă��Ȃ��\��������̂ŁA
+            /// get�n��nullable�^�̕ʖ��ɂ���B
+            /// </summary>
+            public decimal? NumA_value
+            {
+                get
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj?.NumHash?.NumA;
+                    }
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public decimal NumA
+            {
+                set
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        if (obj.NumHash == null)
+                        {
+                            obj.NumHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.NumHash();
+                        }
+
+                        obj.NumHash.NumA = value;
+
+                        return;
+                    }
+
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+            }
+
+            #endregion
+
+            #region Date�敪
+
+
+
+            /// <summary>
+            /// 
+            ///
+            /// �T�[�o�[�߂�l�ł͒l�������Ă��Ȃ��\��������̂ŁA
+            /// get�n��nullable�^�̕ʖ��ɂ���B
+            /// </summary>
+            public DateTime? DateA_value
+            {
+                get
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj?.DateHash?.DateA;
+                    }
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+            }
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public DateTime DateA
+            {
+                set
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        if (obj.DateHash == null)
+                        {
+                            obj.DateHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.DateHash();
+                        }
+
+                        obj.DateHash.DateA = value;
+
+                        return;
+                    }
+
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+            }
+
+            #endregion
+
+            #region Description�敪
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public string StringA
+            {
+                get
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj?.DescriptionHash?.DescriptionA;
+                    }
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+                set
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        if (obj.DescriptionHash == null)
+                        {
+                            obj.DescriptionHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.DescriptionHash();
+                        }
+
+                        obj.DescriptionHash.DescriptionA = value;
+
+                        return;
+                    }
+
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+            }
+
+            #endregion
+
+            #region Check�敪
+
+
+
+            /// <summary>
+            /// 
+            ///
+            /// �T�[�o�[�߂�l�ł͒l�������Ă��Ȃ��\��������̂ŁA
+            /// get�n��nullable�^�̕ʖ��ɂ���B
+            /// </summary>
+            public bool? CheckA_value
+            {
+                get
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj?.CheckHash?.CheckA;
+                    }
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+            }
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public bool CheckA
+            {
+                set
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+
+                        if (obj.CheckHash == null)
+                        {
+                            obj.CheckHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.CheckHash();
+                        }
+
+                        obj.CheckHash.CheckA = value;
+
+                        return;
+                    }
+
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+            }
+
+            #endregion
+
+
+            #region Attachments�敪
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public List<Attachments> AttachmentA
+            {
+                get
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj?.AttachmentsHash?.AttachmentsA;
+                    }
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+                set
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        if (obj.AttachmentsHash == null)
+                        {
+                            obj.AttachmentsHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.AttachmentsHash();
+                        }
+
+                        obj.AttachmentsHash.AttachmentsA = value;
+
+                        return;
+                    }
+
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+            }
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public List<Attachments> AttachmentB
+            {
+                get
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj?.AttachmentsHash?.AttachmentsB;
+                    }
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+                set
+                {
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        if (obj.AttachmentsHash == null)
+                        {
+                            obj.AttachmentsHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.AttachmentsHash();
+                        }
+
+                        obj.AttachmentsHash.AttachmentsB = value;
+
+                        return;
+                    }
+
+                    throw new ApplicationException("�Q�ƃG���[");
+
+                }
+            }
+
+            #endregion
+
+
+            #endregion
         }
 
     }

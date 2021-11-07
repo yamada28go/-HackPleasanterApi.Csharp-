@@ -1,4 +1,7 @@
-﻿/**
+﻿using System;
+using System.Text;
+
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -17,17 +20,22 @@
  * under the License.
  * */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace HackPleasanterApi.Client.Api.Response.ResponseData.Item
+namespace HackPleasanterApi.Client.Api.Helper.Expansions
 {
-    public class DeleteAllItemsResponse
+    /// <summary>
+    /// StringBuilderを活用する拡張
+    /// </summary>
+    public static class StringBuilderExpansion
     {
-        public int Id { get; set; }
-        public int StatusCode { get; set; }
-        public string Message { get; set; }
+        /// <summary>
+        /// " を追加する
+        /// </summary>
+        /// <param name="sb"></param>
+        public static void AppendDoubleQuote(this StringBuilder sb)
+        {
+            sb.Append(@"""");
+        }
 
     }
 }

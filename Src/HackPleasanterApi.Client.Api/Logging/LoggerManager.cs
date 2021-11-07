@@ -17,35 +17,52 @@
  * under the License.
  * */
 
+
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HackPleasanterApi.Client.Api.Models.ItemModel.Hash
+namespace HackPleasanterApi.Client.Api.Logging
 {
-    public class Attachments
+    /// <summary>ログ管理クラス
+    /// 
+    /// </summary>
+    public sealed class LoggerManager
     {
+        private static LoggerManager _singleInstance = new LoggerManager();
+
+        public static LoggerManager GetInstance()
+        {
+            return _singleInstance;
+        }
+
+        private LoggerManager()
+        {
+        }
+
+        #region ログ共通設定型
 
         /// <summary>
-        /// string 添付ファイルのGUID
+        /// ログレベル
         /// </summary>
-        public string Guid { get; set; }
+        public LogLevel LogLevel = LogLevel.NoLog;
+
+        #endregion
+
+        #region ロギング関数
+
+        public Action<string> LoginInfo = null;
+        public Action<string> LoginDebug = null;
+
+        #endregion
 
         /// <summary>
-        /// 添付ファイル名
+        /// ロガーを取得する
         /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// string Content Type
-        /// </summary>
-        public string ContentType { get; set; }
-
-        /// <summary>
-        ///  string ファイルデータをBase64エンコーディングしたもの
-        /// </summary>
-        public string Base64 { get; set; }
+        public Logger Logger
+        {
+            get
+            {
+                return new Logger( this.LogLevel, this.LoginInfo , this.LoginDebug );
+            }
+        }
 
     }
-
 }

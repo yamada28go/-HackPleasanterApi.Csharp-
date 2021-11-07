@@ -33,7 +33,7 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <summary>
         /// APIバージョン
         /// </summary>
-        public string ApiVersion;
+        public string ApiVersion = "1.1";
         /// <summary>
         /// アクセス用APIキー
         /// </summary>

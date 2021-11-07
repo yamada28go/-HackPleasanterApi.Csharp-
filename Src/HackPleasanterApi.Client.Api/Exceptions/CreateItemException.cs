@@ -17,35 +17,23 @@
  * under the License.
  * */
 
+
 using System;
-using System.Collections.Generic;
-using System.Text;
+using HackPleasanterApi.Client.Api.Response.ApiResults;
+using HackPleasanterApi.Client.Api.Response.ResponseData.Item;
 
-namespace HackPleasanterApi.Client.Api.Models.ItemModel.Hash
+namespace HackPleasanterApi.Client.Api.Exceptions
 {
-    public class Attachments
+    /// <summary>
+    /// 生成失敗例外
+    /// </summary>
+    public class CreateItemException : Exception
     {
+        public CreateItemResults CreateItemResponse { get; private set; }
 
-        /// <summary>
-        /// string 添付ファイルのGUID
-        /// </summary>
-        public string Guid { get; set; }
-
-        /// <summary>
-        /// 添付ファイル名
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// string Content Type
-        /// </summary>
-        public string ContentType { get; set; }
-
-        /// <summary>
-        ///  string ファイルデータをBase64エンコーディングしたもの
-        /// </summary>
-        public string Base64 { get; set; }
-
+        public CreateItemException(CreateItemResults CreateItemResponse)
+        {
+            this.CreateItemResponse = CreateItemResponse;
+        }
     }
-
 }
