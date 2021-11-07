@@ -17,35 +17,32 @@
  * under the License.
  * */
 
+
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace HackPleasanterApi.Client.Api.Models.ItemModel.Hash
+namespace HackPleasanterApi.Client.Api.Request.View.FilterKey
 {
-    public class Attachments
+    /// <summary>
+    ///　検索条件のフィルタ条件を指定する
+    /// </summary>
+    public interface ColumnFilterHashGenerateInterfaceImp
     {
 
-        /// <summary>
-        /// string 添付ファイルのGUID
-        /// </summary>
-        public string Guid { get; set; }
+        // 検索対象配列とマージする
+        public void Merge(Dictionary<string, string> hash);
 
         /// <summary>
-        /// 添付ファイル名
+        /// 検索条件をリセットする
         /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// string Content Type
-        /// </summary>
-        public string ContentType { get; set; }
-
-        /// <summary>
-        ///  string ファイルデータをBase64エンコーディングしたもの
-        /// </summary>
-        public string Base64 { get; set; }
+        public void Reset();
 
     }
 
-}
+    /// <summary>
+    ///　検索条件のフィルタ条件を指定する
+    /// </summary>
+    public interface ColumnFilterHashGenerateInterface<DataType> : ColumnFilterHashGenerateInterfaceImp
+    {
+    }
+    }

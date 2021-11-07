@@ -17,35 +17,22 @@
  * under the License.
  * */
 
+using HackPleasanterApi.Client.Api.Models.ItemModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HackPleasanterApi.Client.Api.Models.ItemModel.Hash
+namespace HackPleasanterApi.Client.Api.Response.ApiResults
 {
-    public class Attachments
+
+    /// <summary>
+    /// API戻り値の基本データ形式
+    /// </summary>
+    public class ResponseBase : ApiResultsBase
     {
-
-        /// <summary>
-        /// string 添付ファイルのGUID
-        /// </summary>
-        public string Guid { get; set; }
-
-        /// <summary>
-        /// 添付ファイル名
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// string Content Type
-        /// </summary>
-        public string ContentType { get; set; }
-
-        /// <summary>
-        ///  string ファイルデータをBase64エンコーディングしたもの
-        /// </summary>
-        public string Base64 { get; set; }
-
+        public long Id { get; set; }
+        public int LimitPerDate { get; set; }
+        public int LimitRemaining { get; set; }
     }
 
 }

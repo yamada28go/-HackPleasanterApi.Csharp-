@@ -18,34 +18,33 @@
  * */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HackPleasanterApi.Client.Api.Models.ItemModel.Hash
+namespace HackPleasanterApi.Client.Api.Response.ApiResults
 {
-    public class Attachments
+    /// <summary>
+    /// 添付ファイル詳細データ型
+    /// </summary>
+    public class Response
     {
-
-        /// <summary>
-        /// string 添付ファイルのGUID
-        /// </summary>
-        public string Guid { get; set; }
-
-        /// <summary>
-        /// 添付ファイル名
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// string Content Type
-        /// </summary>
-        public string ContentType { get; set; }
-
-        /// <summary>
-        ///  string ファイルデータをBase64エンコーディングしたもの
-        /// </summary>
+        public long ReferenceId { get; set; }
+        public string BinaryType { get; set; }
         public string Base64 { get; set; }
-
+        public string Guid { get; set; }
+        public string FileName { get; set; }
+        public string Extension { get; set; }
+        public int Size { get; set; }
+        public string ContentType { get; set; }
+        public long Creator { get; set; }
+        public long Updator { get; set; }
+        public string CreatedTime { get; set; }
+        public string UpdatedTime { get; set; }
     }
 
+    /// <summary>
+    /// 添付ファイルを管理するデータ型
+    /// </summary>
+    public class AttachmentsResults : ChangeItemResults
+    {
+        public Response Response { get; set; }
+
+    }
 }

@@ -1,0 +1,281 @@
+﻿using CsharpSamples.Generated.Models;
+using HackPleasanterApi.Client.Api.Request.View;
+using HackPleasanterApi.Client.Api.Request.View.FilterKey;
+using HackPleasanterApi.Client.Api.Service;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+@{
+//コード生成に必要な一時変数をまとめて定義する
+
+  // クラス名
+  string TargetClassName = Model.TemplateFilesConfig.HeadPrefix + Model.SiteDefinition.SiteVariableName + Model.TemplateFilesConfig.EndPrefix;
+
+
+  // --- サービスが対象としているモデルクラス名を指定する
+
+  // クラス名
+  var ModelTemplateFilesConfig = Model.AllTemplateFilesConfig["Model"];
+
+  // モデルクラス名称
+  string ModelClassName = ModelTemplateFilesConfig.HeadPrefix + Model.SiteDefinition.SiteVariableName + ModelTemplateFilesConfig.EndPrefix;
+
+  // ユーザー拡張要素が定義されたクラス名
+  string ExtensionElementsClassName = ModelClassName + "ExtensionElements"; 
+
+}
+
+namespace CsharpSamples.Generated.Service
+{
+    /// <summary>
+    /// @Raw(Model.SiteDefinition.Title)アクセスサービス
+    /// </summary>
+    public class @(TargetClassName) : ItmeServiceBase<@(ModelClassName),@(ModelClassName).@(ExtensionElementsClassName)>
+    {
+        /// <summary>
+        /// サイトID
+        /// </summary>
+        private static readonly long SITE_ID_CONSTANT = @(Model.SiteDefinition.SiteId);
+
+
+        public @(Model.SiteDefinition.SiteVariableName+"Service")(ServiceConfig config) : base(config, SITE_ID_CONSTANT )
+        {
+        }
+
+
+        /// <summary>
+        /// サイトIdを取得する
+        /// </summary>
+        /// <returns></returns>
+        public static long GetSiteId()
+        {
+            return SITE_ID_CONSTANT ;
+        }
+
+            // -- 検索条件指定
+            /// <summary>
+        /// 検索キー条件
+        /// </summary>
+        public static class FilterKeys
+        {
+
+    @* CheckHashの出力定義 *@
+    @foreach (var item in Model.ClassifiedInterface.CheckHash) {
+
+        <text>
+            public static CheckFilterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new CheckFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+    }
+
+    @* ClassHashの出力定義 *@
+    @foreach (var item in Model.ClassifiedInterface.ClassHash) {
+
+    @if (item.HasChoicesTextInfos) {
+
+        <text>
+            public static ChoicesTextFilterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new ChoicesTextFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+        <text>
+
+            // 項目の検索選択肢
+            public class @(item.VariableName)_Choices
+            {
+            </text>
+
+            @foreach (var chItem in item?.ChoicesTextInfos) {
+                <text>
+                    public static ChoicesTextElement @(chItem.VariableName) { get { return new ChoicesTextElement("@(chItem.Value)"); } }
+                </text>
+             
+          }
+
+        <text>
+
+            }
+        </text>
+
+    }else {
+
+        <text>
+            public static ClassFilterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new ClassFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+
+
+    }
+
+    }
+
+    @* DateHashの出力定義 *@
+    @foreach (var item in Model.ClassifiedInterface.DateHash) {
+
+        <text>
+            public static DateFilterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new DateFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+    }
+
+    @* DescriptionHashの出力定義 *@
+    @foreach (var item in Model.ClassifiedInterface.DescriptionHash) {
+
+        <text>
+            public static DescriptionFilterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new DescriptionFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+    }
+
+    @* NumHashの出力定義 *@
+    @foreach (var item in Model.ClassifiedInterface.NumHash) {
+
+        <text>
+            public static NumFilterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new NumFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+    }
+
+        }
+
+    // -- ソートオーダーの指定
+
+
+        // -- ソートオーダーの指定
+        public static class ColumnSorterKeys
+        {
+
+    // AttachmentsHash は未対応
+
+
+   @* CheckHashの出力定義 *@
+    @foreach (var item in Model.ClassifiedInterface.CheckHash) {
+
+        <text>
+            // @(item.VariableName)用のソート条件
+            public static ColumnSorterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new ColumnSorterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+    }
+
+    @* ClassHashの出力定義 *@
+    @foreach (var item in Model.ClassifiedInterface.ClassHash) {
+
+        <text>
+            // @(item.VariableName)用のソート条件
+            public static ColumnSorterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new ColumnSorterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+    }
+
+    @* DateHashの出力定義 *@
+    @foreach (var item in Model.ClassifiedInterface.DateHash) {
+
+        <text>
+            // @(item.VariableName)用のソート条件
+            public static ColumnSorterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new ColumnSorterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+    }
+
+    @* DescriptionHashの出力定義 *@
+    @foreach (var item in Model.ClassifiedInterface.DescriptionHash) {
+
+        <text>
+            // @(item.VariableName)用のソート条件
+            public static ColumnSorterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new ColumnSorterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+    }
+
+    @* NumHashの出力定義 *@
+    @foreach (var item in Model.ClassifiedInterface.NumHash) {
+
+        <text>
+            // @(item.VariableName)用のソート条件
+            public static ColumnSorterKey<@(ModelClassName)> @(item.VariableName)
+            {
+                get
+                {
+                    return new ColumnSorterKey<@(ModelClassName)>("@(item.ColumnName)");
+                }
+            }
+
+        </text>
+
+    }
+
+
+        }
+    }
+}

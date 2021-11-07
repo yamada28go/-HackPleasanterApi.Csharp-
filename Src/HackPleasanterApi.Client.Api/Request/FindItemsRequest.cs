@@ -20,14 +20,24 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using HackPleasanterApi.Client.Api.Request.View;
 
 namespace HackPleasanterApi.Client.Api.Request
 {
     /// <summary>
     /// ユーザー検索用リクエスト
     /// </summary>
-    public class FindItemsRequest : RequestBase
+    ///
+    public class FindItemsRequest : RequestBase , ViewSendInterface
     {
-        public long Offset; 
+        /// <summary>
+        /// 検索時のオフセット
+        /// </summary>
+        public long Offset { get; set; }
+
+        /// <summary>
+        /// 検索条件
+        /// </summary>
+        public Request.View.ViewSend View { get; set; }
     }
 }

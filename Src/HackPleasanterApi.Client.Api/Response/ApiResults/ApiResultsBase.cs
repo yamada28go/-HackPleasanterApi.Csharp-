@@ -25,6 +25,15 @@ namespace HackPleasanterApi.Client.Api.Response.ApiResults
 {
     /// <summary>
     /// API戻り値の基底クラス
+    ///
+    /// APIの戻り値は
+    /// ApiResults型が基本の型形式となる。
+    /// 
+    /// この型に含まれる形で
+    /// ResponseData.Item名前空間の型が入ってくる
+    /// データが帰ってくることとなる。
+    /// このめた、双方は別の存在となる
+    /// 
     /// </summary>
     public class ApiResultsBase
     {

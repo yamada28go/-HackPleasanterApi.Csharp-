@@ -17,35 +17,17 @@
  * under the License.
  * */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace HackPleasanterApi.Client.Api.Models.ItemModel.Hash
+using System;
+namespace HackPleasanterApi.Client.Api.Request.View
 {
-    public class Attachments
+    public interface ViewSendInterface
     {
 
         /// <summary>
-        /// string 添付ファイルのGUID
+        /// 検索条件
         /// </summary>
-        public string Guid { get; set; }
-
-        /// <summary>
-        /// 添付ファイル名
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// string Content Type
-        /// </summary>
-        public string ContentType { get; set; }
-
-        /// <summary>
-        ///  string ファイルデータをBase64エンコーディングしたもの
-        /// </summary>
-        public string Base64 { get; set; }
+        public Request.View.ViewSend View { get; set; }
 
     }
-
 }
