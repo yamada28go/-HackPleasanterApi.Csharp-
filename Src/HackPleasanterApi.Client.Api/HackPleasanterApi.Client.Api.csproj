@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>yamada28gp</Authors>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/yamada28go/HackPleasanterApi.Csharp/</PackageProjectUrl>
+    <PackageVersion>0.0.1</PackageVersion>
+    <PackageId>HackPleasanterApi.Csharp</PackageId>
+    <PackageLicenseUrl>https://github.com/yamada28go/HackPleasanterApi.Csharp/blob/main/LICENSE</PackageLicenseUrl>
+    <Owners>yamada28go</Owners>
   </PropertyGroup>
 
   <ItemGroup>
