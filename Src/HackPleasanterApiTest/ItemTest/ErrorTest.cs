@@ -11,6 +11,7 @@ using HackPleasanterApi.Client.Api.Exceptions;
 using HackPleasanterApi.Client.Api.Response.ApiResults;
 using HackPleasanterApi.Client.Api.Response.ResponseData.Item;
 using CsharpSamples.Generated.Models;
+using HackPleasanterApi.Client.Api.Definition;
 
 namespace HackPleasanterApiTest.ItemTest
 {
@@ -117,7 +118,7 @@ namespace HackPleasanterApiTest.ItemTest
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            Assert.AreEqual(DefaultConfiguration.RetryCount, targrteExp.InnerExceptions.Count);
             var tex = targrteExp.InnerExceptions[0] as CreateItemException;
             Assert.AreEqual("認証できませんでした。", tex.CreateItemResponse.Message);
         }
@@ -169,7 +170,7 @@ namespace HackPleasanterApiTest.ItemTest
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            Assert.AreEqual(DefaultConfiguration.RetryCount, targrteExp.InnerExceptions.Count);
             var tex = targrteExp.InnerExceptions[0] as GetItemException<ItemApiResults<SingleItemResponse>>;
             Assert.AreEqual("認証できませんでした。", tex.ItemApiResults.Message);
 
@@ -222,7 +223,7 @@ namespace HackPleasanterApiTest.ItemTest
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            Assert.AreEqual(DefaultConfiguration.RetryCount, targrteExp.InnerExceptions.Count);
             var tex = targrteExp.InnerExceptions[0] as GetItemException<ItemApiResults<MultipleItemResponse>>;
             Assert.AreEqual("認証できませんでした。", tex.ItemApiResults.Message);
         }
@@ -274,7 +275,7 @@ namespace HackPleasanterApiTest.ItemTest
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            Assert.AreEqual(DefaultConfiguration.RetryCount, targrteExp.InnerExceptions.Count);
             var tex = targrteExp.InnerExceptions[0] as ChangeItemResultsException;
             Assert.AreEqual("認証できませんでした。", tex.ChangeItemResults.Message);
 
@@ -327,7 +328,7 @@ namespace HackPleasanterApiTest.ItemTest
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            Assert.AreEqual(DefaultConfiguration.RetryCount, targrteExp.InnerExceptions.Count);
             var tex = targrteExp.InnerExceptions[0] as ChangeItemResultsException;
             Assert.AreEqual("認証できませんでした。", tex.ChangeItemResults.Message);
 
@@ -380,7 +381,7 @@ namespace HackPleasanterApiTest.ItemTest
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            Assert.AreEqual(DefaultConfiguration.RetryCount, targrteExp.InnerExceptions.Count);
             var tex = targrteExp.InnerExceptions[0] as ChangeItemResultsException;
             Assert.AreEqual("認証できませんでした。", tex.ChangeItemResults.Message);
 

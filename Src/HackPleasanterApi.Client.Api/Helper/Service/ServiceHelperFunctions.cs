@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HackPleasanterApi.Client.Api.Definition;
 using HackPleasanterApi.Client.Api.Exceptions;
 using HackPleasanterApi.Client.Api.Logging;
 
@@ -14,7 +15,7 @@ namespace HackPleasanterApi.Client.Api.Helper.Service
         /// <param name="act"></param>
         /// <param name="num"></param>
         /// <returns></returns>
-        public static async Task<T> DoReyry<T>(Func<Task<T>> act, int num = 5)
+        public static async Task<T> DoReyry<T>(Func<Task<T>> act, int num = DefaultConfiguration.RetryCount)
         {
             var L = LoggerManager.GetInstance().Logger;
 
