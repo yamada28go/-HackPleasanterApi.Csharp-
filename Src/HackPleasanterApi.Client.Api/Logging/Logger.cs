@@ -33,6 +33,7 @@ namespace HackPleasanterApi.Client.Api.Logging
         #region ロギング関数
 
         private Action<string> LoginInfo = null;
+        private Action<string> LoginError = null;
         private Action<string> LoginDebug = null;
 
         #endregion
@@ -41,21 +42,60 @@ namespace HackPleasanterApi.Client.Api.Logging
         public Logger(
          LogLevel LogLevel,
          Action<string> LoginInfo,
+         Action<string> LoginError,
          Action<string> LoginDebug
             )
         {
             this.logLevel = LogLevel;
             this.LoginInfo = LoginInfo;
+            this.LoginError = LoginError;
             this.LoginDebug = LoginDebug;
+        }
+
+        public void Error(Exception exp)
+        {
+
+            if (this.logLevel != LogLevel.NoLog
+                )
+            {
+
+                try
+                {
+                    this?.LoginError($"Error! { exp.Message}");
+                }
+                catch
+                {
+                    // ログエラーは捨てる
+                }
+            }
+        }
+
+        public void Error(Func<string> makeLog)
+        {
+
+            if (this.logLevel != LogLevel.NoLog
+                )
+            {
+
+                try
+                {
+                    this?.LoginError(makeLog());
+                }
+                catch
+                {
+                    // ログエラーは捨てる
+                }
+            }
         }
 
         public void Info(Func<string> makeLog)
         {
-            if (this.logLevel == LogLevel.Info)
+            if (this.logLevel == LogLevel.Info ||
+                this.logLevel == LogLevel.Error)
             {
                 try
                 {
-                    this?.LoginDebug( makeLog() );
+                    this?.LoginInfo(makeLog());
                 }
                 catch
                 {
@@ -68,7 +108,8 @@ namespace HackPleasanterApi.Client.Api.Logging
         public void Debug(Func<string> makeLog)
         {
 
-            if (this.logLevel == LogLevel.Info ||
+            if (this.logLevel == LogLevel.Error ||
+                this.logLevel == LogLevel.Info ||
                 this.logLevel == LogLevel.Debug
                 )
             {
@@ -81,8 +122,6 @@ namespace HackPleasanterApi.Client.Api.Logging
                 {
                     // ログエラーは捨てる
                 }
-
-
             }
         }
 

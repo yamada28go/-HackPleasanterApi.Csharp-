@@ -87,6 +87,9 @@ namespace HackPleasanterApiTest.ItemTest
             data.ExtensionElements.TypeA = "TypeA";
 
             // itemを生成する
+            var x = await s.CreateItem(data);
+
+            // itemを生成する
             var dr = await s.DeleteByConditions(new DeleteAllItemsRequest<CsharpSamples.Generated.Models.RecordingTableModel>
             {
                 All = true,

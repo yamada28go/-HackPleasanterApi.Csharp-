@@ -17,8 +17,8 @@
  * under the License.
  * */
 
-
 using System;
+using System.Collections.Generic;
 using HackPleasanterApi.Client.Api.Helper.Mix;
 using HackPleasanterApi.Client.Api.Logging;
 using HackPleasanterApi.Client.Api.Response.ApiResults;
@@ -27,19 +27,23 @@ using HackPleasanterApi.Client.Api.Response.ResponseData.Item;
 namespace HackPleasanterApi.Client.Api.Exceptions
 {
     /// <summary>
-    /// アイテム状態変更例外
+    /// 発生した例外セット
     /// </summary>
-    public class ChangeItemResultsException : Exception
+    public class HackPleasanterApiExceptions : Exception
     {
-        public ChangeItemResults ChangeItemResults { get; private set; }
+        /// <summary>
+        /// 内部例外セット
+        /// </summary>
+        public List<Exception> InnerExceptions { get; }
 
-        public ChangeItemResultsException(ChangeItemResults ChangeItemResults)
+        public HackPleasanterApiExceptions(List<Exception> InnerExceptions)
         {
-            this.ChangeItemResults = ChangeItemResults;
+            this.InnerExceptions = InnerExceptions;
 
             // エラーログを残す
             var L = LoggerManager.GetInstance().Logger;
-            L.Error(() => $"Error ChangeItemResultsException Msg : {this.ChangeItemResults?.DumpAsJsonString()} ");
+            L.Error(() => $"Error HackPleasanterApiExceptions Msg : {this.InnerExceptions?.DumpAsJsonString()} ");
+
         }
     }
 }
