@@ -19,6 +19,8 @@
 
 
 using System;
+using HackPleasanterApi.Client.Api.Helper.Mix;
+using HackPleasanterApi.Client.Api.Logging;
 using HackPleasanterApi.Client.Api.Response.ApiResults;
 using HackPleasanterApi.Client.Api.Response.ResponseData.Item;
 
@@ -34,6 +36,10 @@ namespace HackPleasanterApi.Client.Api.Exceptions
         public ChangeItemResultsException(ChangeItemResults ChangeItemResults)
         {
             this.ChangeItemResults = ChangeItemResults;
+
+            // エラーログを残す
+            var L = LoggerManager.GetInstance().Logger;
+            L.Error(() => $"Error ChangeItemResultsException Msg : {this.ChangeItemResults?.DumpAsJsonString()} ");
         }
     }
 }

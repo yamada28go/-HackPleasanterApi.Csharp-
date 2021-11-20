@@ -18,9 +18,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="ItemTest\" />
+    <None Remove="Helper\" />
+    <None Remove="Helper\Service\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemTest\" />
+    <Folder Include="Helper\" />
+    <Folder Include="Helper\Service\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="data\attachments\sky.jpg">

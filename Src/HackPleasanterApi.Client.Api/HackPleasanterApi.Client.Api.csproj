@@ -33,6 +33,7 @@
     <None Remove="Definition\" />
     <None Remove="Exception\" />
     <None Remove="Helper\Service\" />
+    <None Remove="Helper\Mix\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Request\View\" />
@@ -46,5 +47,6 @@
     <Folder Include="Definition\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Helper\Service\" />
+    <Folder Include="Helper\Mix\" />
   </ItemGroup>
 </Project>
