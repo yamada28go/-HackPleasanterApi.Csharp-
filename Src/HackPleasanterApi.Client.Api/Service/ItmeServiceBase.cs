@@ -20,6 +20,7 @@
 using HackPleasanterApi.Client.Api.Definition;
 using HackPleasanterApi.Client.Api.Exceptions;
 using HackPleasanterApi.Client.Api.Helper.Expansions;
+using HackPleasanterApi.Client.Api.Helper.Service;
 using HackPleasanterApi.Client.Api.Interface;
 using HackPleasanterApi.Client.Api.Logging;
 using HackPleasanterApi.Client.Api.Models.ItemModel;
@@ -73,16 +74,20 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <returns></returns>
         public async Task<DataType> GetItem(long itemID)
         {
-            L.Info(()=> $"Start GetItem id : {itemID}");
+            return await ServiceHelperFunctions.DoReyry(async () =>
+            {
 
-            var r = GenerateRequestBase<RequestBase>();
+                L.Info(() => $"Start GetItem id : {itemID}");
 
-            HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{itemID}/get", r);
-            var targetData = await response.Content.ReadAsAsync<ItemApiResults<SingleItemResponse>>();
+                var r = GenerateRequestBase<RequestBase>();
 
-            // 実行成功判定
-            if (true == response.IsSuccessStatusCode &&
-                targetData?.StatusCode == (int)StatusCode.OK) {
+                HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{itemID}/get", r);
+                var targetData = await response.Content.ReadAsAsync<ItemApiResults<SingleItemResponse>>();
+
+                // 実行成功判定
+                if (true == response.IsSuccessStatusCode &&
+                    targetData?.StatusCode == (int)StatusCode.OK)
+                {
 
                     var ps = targetData.Response.Data.Select(e =>
                     {
@@ -93,10 +98,11 @@ namespace HackPleasanterApi.Client.Api.Service
 
                     // 取れてくるのは1個だけなので
                     return ps.FirstOrDefault();
-            }
+                }
 
-            // 実行エラー発生
-            throw new GetItemException<ItemApiResults<SingleItemResponse>>(targetData);
+                // 実行エラー発生
+                throw new GetItemException<ItemApiResults<SingleItemResponse>>(targetData);
+            });
         }
 
         /// <summary>
@@ -107,7 +113,7 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <returns></returns>
         private Request.View.ViewSend MakeSendViewData<T>(T request) where T : Request.View.View<DataType>, new()
         {
-            if( null == request)
+            if (null == request)
             {
                 return null;
             }
@@ -146,37 +152,41 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <returns></returns>
         public async Task<IEnumerable<DataType>> FindItems<T>(T request) where T : Request.View.View<DataType>, new()
         {
-            L.Info(() => $"Start FindItems id : {request.ToString()}");
-
-            // 検索条件を設定
-            var r = GenerateRequestBase<FindItemsRequest>();
-            r.Offset = 0;
-            r.ApiKey = serviceConfig.ApiKey;
-            r.ApiVersion = serviceConfig.ApiVersion;
-
-            // 検索条件を設定する
-            r.View = MakeSendViewData(request);
-
-            HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{SiteId}/get", r);
-            // API呼び出しを実行
-            var targetData = await response.Content.ReadAsAsync<ItemApiResults<MultipleItemResponse>>();
-
-            if (response.IsSuccessStatusCode &&
-                targetData?.StatusCode == (int)StatusCode.OK)
+            return await ServiceHelperFunctions.DoReyry(async () =>
             {
-                var ps = targetData.Response.Data.Select(e =>
+
+                L.Info(() => $"Start FindItems id : {request.ToString()}");
+
+                // 検索条件を設定
+                var r = GenerateRequestBase<FindItemsRequest>();
+                r.Offset = 0;
+                r.ApiKey = serviceConfig.ApiKey;
+                r.ApiVersion = serviceConfig.ApiVersion;
+
+                // 検索条件を設定する
+                r.View = MakeSendViewData(request);
+
+                HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{SiteId}/get", r);
+                // API呼び出しを実行
+                var targetData = await response.Content.ReadAsAsync<ItemApiResults<MultipleItemResponse>>();
+
+                if (response.IsSuccessStatusCode &&
+                    targetData?.StatusCode == (int)StatusCode.OK)
                 {
-                    var t = new DataType();
-                    t.rawData = e;
-                    return t;
-                });
+                    var ps = targetData.Response.Data.Select(e =>
+                    {
+                        var t = new DataType();
+                        t.rawData = e;
+                        return t;
+                    });
 
-                // 存在するデータは全部とれる
-                return ps;
-            }
+                    // 存在するデータは全部とれる
+                    return ps;
+                }
 
-            // 実行エラー発生
-            throw new GetItemException<ItemApiResults<MultipleItemResponse>>(targetData);
+                // 実行エラー発生
+                throw new GetItemException<ItemApiResults<MultipleItemResponse>>(targetData);
+            });
 
         }
 
@@ -188,19 +198,24 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <returns></returns>
         public async Task<AttachmentsResults> GetAttachments(Attachments attachments)
         {
-            L.Info(() => $"Start GetAttachments id ");
-
-            var r = GenerateRequestBase<RequestBase>();
-
-            HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/binaries/{attachments.Guid}/get", r);
-            if (response.IsSuccessStatusCode)
+            return await ServiceHelperFunctions.DoReyry(async () =>
             {
-                // API呼び出しを実行
-                var targetData = await response.Content.ReadAsAsync<AttachmentsResults>();
-                return targetData;
-            }
 
-            return null;
+                L.Info(() => $"Start GetAttachments id ");
+
+                var r = GenerateRequestBase<RequestBase>();
+
+                HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/binaries/{attachments.Guid}/get", r);
+                if (response.IsSuccessStatusCode)
+                {
+                    // API呼び出しを実行
+                    var targetData = await response.Content.ReadAsAsync<AttachmentsResults>();
+                    return targetData;
+                }
+
+                return null;
+
+            });
 
         }
 
@@ -212,22 +227,26 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <returns></returns>
         public async Task<DeleteApiResults> DeleteItem(long itemID)
         {
-            L.Info(() => $"Start DeleteItem id : {itemID}");
-
-            var r = GenerateRequestBase<RequestBase>();
-
-            HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{itemID}/delete", r);
-            // API呼び出しを実行
-            var targetData = await response.Content.ReadAsAsync<DeleteApiResults>();
-
-            if (response.IsSuccessStatusCode &&
-                targetData?.StatusCode == (int)StatusCode.OK)
+            return await ServiceHelperFunctions.DoReyry(async () =>
             {
-                return targetData;
-            }
-            // 実行エラー発生
-            throw new ChangeItemResultsException(targetData);
 
+                L.Info(() => $"Start DeleteItem id : {itemID}");
+
+                var r = GenerateRequestBase<RequestBase>();
+
+                HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{itemID}/delete", r);
+                // API呼び出しを実行
+                var targetData = await response.Content.ReadAsAsync<DeleteApiResults>();
+
+                if (response.IsSuccessStatusCode &&
+                    targetData?.StatusCode == (int)StatusCode.OK)
+                {
+                    return targetData;
+                }
+                // 実行エラー発生
+                throw new ChangeItemResultsException(targetData);
+
+            });
         }
 
         /// <summary>
@@ -237,30 +256,34 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <returns></returns>
         public async Task<DeleteAllItemsResults> DeleteByConditions(DeleteAllItemsRequest<DataType> req)
         {
-            L.Info(() => $"Start DeleteALL ");
-
-            var r = req.ToDeleteAllItemsRequestSend();
-
-            r.ApiKey = serviceConfig.ApiKey;
-            r.ApiVersion = serviceConfig.ApiVersion;
-
-            // 検索条件を設定する
-            r.View = MakeSendViewData(req?.View);
-
-            HttpResponseMessage response = await client.PostAsJsonAsync($"/api/items/{SiteId}/bulkdelete", r);
-            // API呼び出しを実行
-            var targetData = await response.Content.ReadAsAsync<DeleteAllItemsResults>();
-
-            // 実行成功判定
-            if (true == response.IsSuccessStatusCode &&
-                targetData?.StatusCode == (int)StatusCode.OK
-                )
+            return await ServiceHelperFunctions.DoReyry(async () =>
             {
-                return targetData;
-            }
 
-            // 実行エラー発生
-            throw new ChangeItemResultsException(targetData);
+                L.Info(() => $"Start DeleteALL ");
+
+                var r = req.ToDeleteAllItemsRequestSend();
+
+                r.ApiKey = serviceConfig.ApiKey;
+                r.ApiVersion = serviceConfig.ApiVersion;
+
+                // 検索条件を設定する
+                r.View = MakeSendViewData(req?.View);
+
+                HttpResponseMessage response = await client.PostAsJsonAsync($"/api/items/{SiteId}/bulkdelete", r);
+                // API呼び出しを実行
+                var targetData = await response.Content.ReadAsAsync<DeleteAllItemsResults>();
+
+                // 実行成功判定
+                if (true == response.IsSuccessStatusCode &&
+                    targetData?.StatusCode == (int)StatusCode.OK
+                    )
+                {
+                    return targetData;
+                }
+
+                // 実行エラー発生
+                throw new ChangeItemResultsException(targetData);
+            });
 
         }
 
@@ -271,11 +294,11 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <returns></returns>
         public async Task<DeleteAllItemsResults> DeleteALL(bool PhysicalDelete = false)
         {
-            var rqe = new DeleteAllItemsRequest<DataType>();
-            rqe.All = true;
-            rqe.PhysicalDelete = PhysicalDelete;
+                var rqe = new DeleteAllItemsRequest<DataType>();
+                rqe.All = true;
+                rqe.PhysicalDelete = PhysicalDelete;
 
-            return await DeleteByConditions(rqe);
+                return await DeleteByConditions(rqe);
         }
 
         /// <summary>
@@ -311,36 +334,39 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <returns></returns>
         public async Task<CreateItemResults> CreateItem(DataType data)
         {
-            L.Info(() => $"Start CreateItem ");
-
-            // 対象データを変換する
-            var r = MakeCreateItemResponse(data.rawData);
-
-            // Attachments列にNULL列をそのまま設定してもエラーとなってしまう。
-            // HttpClientのデフォルト設定だとNullは送信する事となっているので、
-            // ここでは、NULLを送信しないように調整する
-            //var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
-            //var json = JsonConvert.SerializeObject(r, settings);
-            //var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var content = MakeStringContentSendNotNUll(r);
-
-            //HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{SiteId}/create", r);
-            HttpResponseMessage response = await client.PostAsync($"pleasanter/api/items/{SiteId}/create", content);
-
-            // API呼び出しを実行
-            var targetData = await response.Content.ReadAsAsync<CreateItemResults>();
-
-            // 実行成功判定
-            if (true == response.IsSuccessStatusCode &&
-                targetData?.StatusCode == (int)StatusCode.OK
-                )
+            return await ServiceHelperFunctions.DoReyry(async () =>
             {
-                return targetData;
-            }
 
-            // 実行エラー発生
-            throw new CreateItemException(targetData);
+                L.Info(() => $"Start CreateItem ");
 
+                // 対象データを変換する
+                var r = MakeCreateItemResponse(data.rawData);
+
+                // Attachments列にNULL列をそのまま設定してもエラーとなってしまう。
+                // HttpClientのデフォルト設定だとNullは送信する事となっているので、
+                // ここでは、NULLを送信しないように調整する
+                //var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+                //var json = JsonConvert.SerializeObject(r, settings);
+                //var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var content = MakeStringContentSendNotNUll(r);
+
+                //HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{SiteId}/create", r);
+                HttpResponseMessage response = await client.PostAsync($"pleasanter/api/items/{SiteId}/create", content);
+
+                // API呼び出しを実行
+                var targetData = await response.Content.ReadAsAsync<CreateItemResults>();
+
+                // 実行成功判定
+                if (true == response.IsSuccessStatusCode &&
+                    targetData?.StatusCode == (int)StatusCode.OK
+                    )
+                {
+                    return targetData;
+                }
+
+                // 実行エラー発生
+                throw new CreateItemException(targetData);
+            });
         }
 
         /// <summary>
@@ -351,31 +377,33 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <returns></returns>
         public async Task<CreateItemResults> UpdateItem(long itemID, DataType data)
         {
-            L.Info(() => $"Start UpdateItem ");
-
-            // 対象データを変換する
-            var r = MakeCreateItemResponse(data.rawData);
-
-            var content = MakeStringContentSendNotNUll(r);
-
-            //HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{itemID}/update", r);
-            HttpResponseMessage response = await client.PostAsync($"pleasanter/api/items/{itemID}/update", content);
-
-            // API呼び出しを実行
-            var targetData = await response.Content.ReadAsAsync<CreateItemResults>();
-
-            // 実行成功判定
-            if (true == response.IsSuccessStatusCode &&
-                targetData?.StatusCode == (int)StatusCode.OK
-                )
+            return await ServiceHelperFunctions.DoReyry(async () =>
             {
-                return targetData;
-            }
 
-            // 実行エラー発生
-            throw new CreateItemException(targetData);
+                L.Info(() => $"Start UpdateItem ");
+
+                // 対象データを変換する
+                var r = MakeCreateItemResponse(data.rawData);
+
+                var content = MakeStringContentSendNotNUll(r);
+
+                //HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{itemID}/update", r);
+                HttpResponseMessage response = await client.PostAsync($"pleasanter/api/items/{itemID}/update", content);
+
+                // API呼び出しを実行
+                var targetData = await response.Content.ReadAsAsync<CreateItemResults>();
+
+                // 実行成功判定
+                if (true == response.IsSuccessStatusCode &&
+                    targetData?.StatusCode == (int)StatusCode.OK
+                    )
+                {
+                    return targetData;
+                }
+
+                // 実行エラー発生
+                throw new CreateItemException(targetData);
+            });
         }
     }
 }
-
-

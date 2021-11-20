@@ -56,17 +56,18 @@ namespace HackPleasanterApiTest.ItemTest
             data.ExtensionElements.TypeA = "TypeA";
 
             // 対象例外を発生させる
-            CreateItemException targrteExp = null;
+            HackPleasanterApiExceptions targrteExp = null;
             try
             {
                 // itemを生成する
                 var x = await s.CreateItem(data);
             }
-            catch (CreateItemException exp) {
+            catch (HackPleasanterApiExceptions exp) {
                 targrteExp = exp;
             }
 
             Assert.IsNotNull(targrteExp);
+
         }
 
 
@@ -104,19 +105,21 @@ namespace HackPleasanterApiTest.ItemTest
             cfg.ApiKey = cfg.ApiKey + "a";
 
             // 対象例外を発生させる
-            CreateItemException targrteExp = null;
+            HackPleasanterApiExceptions targrteExp = null;
             try
             {
                 // itemを生成する
                 var x2 = await s.UpdateItem(x.Id,data);
             }
-            catch (CreateItemException exp)
+            catch (HackPleasanterApiExceptions exp)
             {
                 targrteExp = exp;
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual("認証できませんでした。", targrteExp.CreateItemResponse.Message);
+            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            var tex = targrteExp.InnerExceptions[0] as CreateItemException;
+            Assert.AreEqual("認証できませんでした。", tex.CreateItemResponse.Message);
         }
 
 
@@ -154,19 +157,22 @@ namespace HackPleasanterApiTest.ItemTest
             cfg.ApiKey = cfg.ApiKey + "a";
 
             // 対象例外を発生させる
-            GetItemException<ItemApiResults<SingleItemResponse>> targrteExp = null;
+            HackPleasanterApiExceptions targrteExp = null;
             try
             {
                 // itemを生成する
                 var x2 = await s.GetItem(x.Id);
             }
-            catch (GetItemException<ItemApiResults<SingleItemResponse>> exp)
+            catch (HackPleasanterApiExceptions exp)
             {
                 targrteExp = exp;
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual("認証できませんでした。",targrteExp.ItemApiResults.Message);
+            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            var tex = targrteExp.InnerExceptions[0] as GetItemException<ItemApiResults<SingleItemResponse>>;
+            Assert.AreEqual("認証できませんでした。", tex.ItemApiResults.Message);
+
         }
 
 
@@ -204,19 +210,21 @@ namespace HackPleasanterApiTest.ItemTest
             cfg.ApiKey = cfg.ApiKey + "a";
 
             // 対象例外を発生させる
-            GetItemException<ItemApiResults<MultipleItemResponse>> targrteExp = null;
+            HackPleasanterApiExceptions targrteExp = null;
             try
             {
                 // itemを生成する
                 var x2 = await s.FindItems(new  HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>());
             }
-            catch (GetItemException<ItemApiResults<MultipleItemResponse>> exp)
+            catch (HackPleasanterApiExceptions exp)
             {
                 targrteExp = exp;
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual("認証できませんでした。", targrteExp.ItemApiResults.Message);
+            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            var tex = targrteExp.InnerExceptions[0] as GetItemException<ItemApiResults<MultipleItemResponse>>;
+            Assert.AreEqual("認証できませんでした。", tex.ItemApiResults.Message);
         }
 
 
@@ -254,19 +262,22 @@ namespace HackPleasanterApiTest.ItemTest
             cfg.ApiKey = cfg.ApiKey + "a";
 
             // 対象例外を発生させる
-            ChangeItemResultsException targrteExp = null;
+            HackPleasanterApiExceptions targrteExp = null;
             try
             {
                 // itemを生成する
                 var x2 = await s.DeleteItem(x.Id);
             }
-            catch (ChangeItemResultsException exp)
+            catch (HackPleasanterApiExceptions exp)
             {
                 targrteExp = exp;
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual("認証できませんでした。", targrteExp.ChangeItemResults.Message);
+            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            var tex = targrteExp.InnerExceptions[0] as ChangeItemResultsException;
+            Assert.AreEqual("認証できませんでした。", tex.ChangeItemResults.Message);
+
         }
 
 
@@ -304,19 +315,22 @@ namespace HackPleasanterApiTest.ItemTest
             cfg.ApiKey = cfg.ApiKey + "a";
 
             // 対象例外を発生させる
-            ChangeItemResultsException targrteExp = null;
+            HackPleasanterApiExceptions targrteExp = null;
             try
             {
                 // itemを生成する
                 var x2 = await s.DeleteALL(true);
             }
-            catch (ChangeItemResultsException exp)
+            catch (HackPleasanterApiExceptions exp)
             {
                 targrteExp = exp;
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual("認証できませんでした。", targrteExp.ChangeItemResults.Message);
+            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            var tex = targrteExp.InnerExceptions[0] as ChangeItemResultsException;
+            Assert.AreEqual("認証できませんでした。", tex.ChangeItemResults.Message);
+
         }
 
 
@@ -354,19 +368,22 @@ namespace HackPleasanterApiTest.ItemTest
             cfg.ApiKey = cfg.ApiKey + "a";
 
             // 対象例外を発生させる
-            ChangeItemResultsException targrteExp = null;
+            HackPleasanterApiExceptions targrteExp = null;
             try
             {
                 // itemを生成する
                 var x2 = await s.DeleteByConditions(new DeleteAllItemsRequest<RecordingTableModel>());
             }
-            catch (ChangeItemResultsException exp)
+            catch (HackPleasanterApiExceptions exp)
             {
                 targrteExp = exp;
             }
 
             Assert.IsNotNull(targrteExp);
-            Assert.AreEqual("認証できませんでした。", targrteExp.ChangeItemResults.Message);
+            Assert.AreEqual(5, targrteExp.InnerExceptions.Count);
+            var tex = targrteExp.InnerExceptions[0] as ChangeItemResultsException;
+            Assert.AreEqual("認証できませんでした。", tex.ChangeItemResults.Message);
+
         }
 
 

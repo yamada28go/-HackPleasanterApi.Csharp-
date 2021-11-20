@@ -17,35 +17,26 @@
  * under the License.
  * */
 
-
 using System;
-namespace HackPleasanterApi.Client.Api.Logging
-{
+using System.Collections.Generic;
+using HackPleasanterApi.Client.Api.Response.ApiResults;
+using HackPleasanterApi.Client.Api.Response.ResponseData.Item;
 
+namespace HackPleasanterApi.Client.Api.Exceptions
+{
     /// <summary>
-    /// ログレベル
+    /// 発生した例外セット
     /// </summary>
-    public enum LogLevel
+    public class HackPleasanterApiExceptions : Exception
     {
         /// <summary>
-        /// ログなし
+        /// 内部例外セット
         /// </summary>
-        NoLog,
+        public List<Exception> InnerExceptions { get; }
 
-        /// <summary>
-        /// エラー用
-        /// </summary>
-        Error,
-
-        /// <summary>
-        /// 追跡用
-        /// </summary>
-        Info,
-
-
-        /// <summary>
-        /// デバッグレベル
-        /// </summary>
-        Debug
+        public HackPleasanterApiExceptions(List<Exception> InnerExceptions)
+        {
+            this.InnerExceptions = InnerExceptions;
+        }
     }
 }
