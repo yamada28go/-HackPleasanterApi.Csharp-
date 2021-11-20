@@ -38,7 +38,7 @@ namespace HackPleasanterApiTest.ItemTest
                 var s = new RecordingTableService(cfg);
 
                 // テストデータはすべて消去する
-                await s.DeleteALL();
+                await s.DeleteALL(true);
 
                 var BaseDataTime = CONST_BaseDataTime;
 
