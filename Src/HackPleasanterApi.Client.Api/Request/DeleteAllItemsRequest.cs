@@ -86,6 +86,7 @@ namespace HackPleasanterApi.Client.Api.Request
 
             r.Selected = src.Selected;
             r.All = src.All;
+            r.PhysicalDelete = src.PhysicalDelete;
 
             return r;
 

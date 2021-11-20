@@ -265,6 +265,7 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 r.ApiKey = serviceConfig.ApiKey;
                 r.ApiVersion = serviceConfig.ApiVersion;
+                r.PhysicalDelete = req.PhysicalDelete;
 
                 // 検索条件を設定する
                 r.View = MakeSendViewData(req?.View);
