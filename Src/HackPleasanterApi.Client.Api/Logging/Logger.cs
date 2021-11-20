@@ -95,7 +95,7 @@ namespace HackPleasanterApi.Client.Api.Logging
             {
                 try
                 {
-                    this?.LoginDebug(makeLog());
+                    this?.LoginInfo(makeLog());
                 }
                 catch
                 {
