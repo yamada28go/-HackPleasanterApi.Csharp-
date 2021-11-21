@@ -30,6 +30,8 @@ namespace HackPleasanterApi.Client.Api.Logging
         /// </summary>
         private LogLevel logLevel;
 
+        private string LogPrefix;
+
         #region ロギング関数
 
         private Action<string> LoginInfo = null;
@@ -41,14 +43,16 @@ namespace HackPleasanterApi.Client.Api.Logging
 
         public Logger(
          LogLevel LogLevel,
-         Action<string> LoginInfo,
+         string LogPrefix,
          Action<string> LoginError,
+         Action<string> LoginInfo,
          Action<string> LoginDebug
             )
         {
             this.logLevel = LogLevel;
-            this.LoginInfo = LoginInfo;
+            this.LogPrefix = LogPrefix;
             this.LoginError = LoginError;
+            this.LoginInfo = LoginInfo;
             this.LoginDebug = LoginDebug;
         }
 
@@ -61,7 +65,7 @@ namespace HackPleasanterApi.Client.Api.Logging
 
                 try
                 {
-                    this?.LoginError($"Error! { exp.Message}");
+                    this?.LoginError($"{LogPrefix}Error! { exp.Message}");
                 }
                 catch
                 {
@@ -79,7 +83,7 @@ namespace HackPleasanterApi.Client.Api.Logging
 
                 try
                 {
-                    this?.LoginError(makeLog());
+                    this?.LoginError($"{LogPrefix}{makeLog()}");
                 }
                 catch
                 {
@@ -95,7 +99,7 @@ namespace HackPleasanterApi.Client.Api.Logging
             {
                 try
                 {
-                    this?.LoginInfo(makeLog());
+                    this?.LoginInfo($"{LogPrefix}{makeLog()}");
                 }
                 catch
                 {
@@ -116,7 +120,7 @@ namespace HackPleasanterApi.Client.Api.Logging
 
                 try
                 {
-                    this?.LoginDebug(makeLog());
+                    this?.LoginDebug($"{LogPrefix}{makeLog()}");
                 }
                 catch
                 {
