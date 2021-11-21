@@ -38,7 +38,7 @@ namespace HackPleasanterApiTest.ItemTest
             var s = new RecordingTableService(cfg);
 
             // テストデータはすべて消去する
-            await s.DeleteALL();
+            await s.DeleteALL(true);
 
             // ★　APIエラーを発生させる
             cfg.ApiKey = cfg.ApiKey + "a";
@@ -81,7 +81,7 @@ namespace HackPleasanterApiTest.ItemTest
             var s = new RecordingTableService(cfg);
 
             // テストデータはすべて消去する
-            await s.DeleteALL();
+            await s.DeleteALL(true);
 
             var data = new CsharpSamples.Generated.Models.RecordingTableModel();
 
@@ -133,7 +133,7 @@ namespace HackPleasanterApiTest.ItemTest
             var s = new RecordingTableService(cfg);
 
             // テストデータはすべて消去する
-            await s.DeleteALL();
+            await s.DeleteALL(true);
 
             var data = new CsharpSamples.Generated.Models.RecordingTableModel();
 
@@ -186,7 +186,7 @@ namespace HackPleasanterApiTest.ItemTest
             var s = new RecordingTableService(cfg);
 
             // テストデータはすべて消去する
-            await s.DeleteALL();
+            await s.DeleteALL(true);
 
             var data = new CsharpSamples.Generated.Models.RecordingTableModel();
 
@@ -238,7 +238,7 @@ namespace HackPleasanterApiTest.ItemTest
             var s = new RecordingTableService(cfg);
 
             // テストデータはすべて消去する
-            await s.DeleteALL();
+            await s.DeleteALL(true);
 
             var data = new CsharpSamples.Generated.Models.RecordingTableModel();
 
@@ -291,7 +291,7 @@ namespace HackPleasanterApiTest.ItemTest
             var s = new RecordingTableService(cfg);
 
             // テストデータはすべて消去する
-            await s.DeleteALL();
+            await s.DeleteALL(true);
 
             var data = new CsharpSamples.Generated.Models.RecordingTableModel();
 
@@ -344,7 +344,7 @@ namespace HackPleasanterApiTest.ItemTest
             var s = new RecordingTableService(cfg);
 
             // テストデータはすべて消去する
-            await s.DeleteALL();
+            await s.DeleteALL(true);
 
             var data = new CsharpSamples.Generated.Models.RecordingTableModel();
 

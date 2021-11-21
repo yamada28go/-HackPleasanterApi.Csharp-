@@ -55,13 +55,18 @@ namespace HackPleasanterApi.Client.Api.Logging
         #endregion
 
         /// <summary>
+        /// ログ出力時のプレフィックス
+        /// </summary>
+        public string LogPrefix = "[PleasanterApi] ";
+
+        /// <summary>
         /// ロガーを取得する
         /// </summary>
         public Logger Logger
         {
             get
             {
-                return new Logger(this.LogLevel, this.LoginError, this.LoginInfo, this.LoginDebug);
+                return new Logger(this.LogLevel,this.LogPrefix ,this.LoginError, this.LoginInfo, this.LoginDebug);
             }
         }
 

@@ -38,7 +38,7 @@ namespace HackPleasanterApiTest.ItemTest
             var s = new RecordingTableService(cfg);
 
             // テストデータはすべて消去する
-            var del = await s.DeleteALL();
+            var del = await s.DeleteALL(true);
 
             var data = new CsharpSamples.Generated.Models.RecordingTableModel();
 
@@ -71,7 +71,7 @@ namespace HackPleasanterApiTest.ItemTest
             var s = new RecordingTableService(cfg);
 
             // テストデータはすべて消去する
-            var del = await s.DeleteALL();
+            var del = await s.DeleteALL(true);
 
             var data = new CsharpSamples.Generated.Models.RecordingTableModel();
 
