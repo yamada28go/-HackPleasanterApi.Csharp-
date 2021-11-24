@@ -102,7 +102,7 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 // 実行エラー発生
                 throw new GetItemException<ItemApiResults<SingleItemResponse>>(targetData);
-            });
+            }, this.serviceConfig.RetryCount);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 // 実行エラー発生
                 throw new GetItemException<ItemApiResults<MultipleItemResponse>>(targetData);
-            });
+            }, this.serviceConfig.RetryCount);
 
         }
 
@@ -215,7 +215,7 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 return null;
 
-            });
+            }, this.serviceConfig.RetryCount);
 
         }
 
@@ -246,7 +246,7 @@ namespace HackPleasanterApi.Client.Api.Service
                 // 実行エラー発生
                 throw new ChangeItemResultsException(targetData);
 
-            });
+            }, this.serviceConfig.RetryCount);
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 // 実行エラー発生
                 throw new ChangeItemResultsException(targetData);
-            });
+            }, this.serviceConfig.RetryCount);
 
         }
 
@@ -295,11 +295,11 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <returns></returns>
         public async Task<DeleteAllItemsResults> DeleteALL(bool PhysicalDelete = false)
         {
-                var rqe = new DeleteAllItemsRequest<DataType>();
-                rqe.All = true;
-                rqe.PhysicalDelete = PhysicalDelete;
+            var rqe = new DeleteAllItemsRequest<DataType>();
+            rqe.All = true;
+            rqe.PhysicalDelete = PhysicalDelete;
 
-                return await DeleteByConditions(rqe);
+            return await DeleteByConditions(rqe);
         }
 
         /// <summary>
@@ -367,7 +367,7 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 // 実行エラー発生
                 throw new CreateItemException(targetData);
-            });
+            }, this.serviceConfig.RetryCount);
         }
 
         /// <summary>
@@ -404,7 +404,7 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 // 実行エラー発生
                 throw new CreateItemException(targetData);
-            });
+            }, this.serviceConfig.RetryCount);
         }
     }
 }
