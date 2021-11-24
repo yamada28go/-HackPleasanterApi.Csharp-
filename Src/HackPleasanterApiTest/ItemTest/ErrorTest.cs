@@ -68,6 +68,7 @@ namespace HackPleasanterApiTest.ItemTest
             }
 
             Assert.IsNotNull(targrteExp);
+            Assert.AreEqual(DefaultConfiguration.RetryCount, targrteExp.InnerExceptions.Count);
 
         }
 
