@@ -31,7 +31,7 @@ namespace CsharpSamples.Generated.Service
     /// <summary>
     /// @Raw(Model.SiteDefinition.Title)アクセスサービス
     /// </summary>
-    public class @(TargetClassName) : ItmeServiceBase<@(ModelClassName),@(ModelClassName).@(ExtensionElementsClassName)>
+    public class @(TargetClassName) : ItmeServiceBase<@Raw(ModelClassName),@Raw(ModelClassName).@(ExtensionElementsClassName)>
     {
         /// <summary>
         /// サイトID
@@ -64,11 +64,11 @@ namespace CsharpSamples.Generated.Service
     @foreach (var item in Model.ClassifiedInterface.CheckHash) {
 
         <text>
-            public static CheckFilterKey<@(ModelClassName)> @(item.VariableName)
+            public static CheckFilterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new CheckFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new CheckFilterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 
@@ -82,11 +82,11 @@ namespace CsharpSamples.Generated.Service
     @if (item.HasChoicesTextInfos) {
 
         <text>
-            public static ChoicesTextFilterKey<@(ModelClassName)> @(item.VariableName)
+            public static ChoicesTextFilterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new ChoicesTextFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new ChoicesTextFilterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 
@@ -95,13 +95,13 @@ namespace CsharpSamples.Generated.Service
         <text>
 
             // 項目の検索選択肢
-            public class @(item.VariableName)_Choices
+            public class @Raw(item.VariableName)_Choices
             {
             </text>
 
             @foreach (var chItem in item?.ChoicesTextInfos) {
                 <text>
-                    public static ChoicesTextElement @(chItem.VariableName) { get { return new ChoicesTextElement("@(chItem.Value)"); } }
+                    public static ChoicesTextElement @Raw(chItem.VariableName) { get { return new ChoicesTextElement("@Raw(chItem.Value)"); } }
                 </text>
              
           }
@@ -114,11 +114,11 @@ namespace CsharpSamples.Generated.Service
     }else {
 
         <text>
-            public static ClassFilterKey<@(ModelClassName)> @(item.VariableName)
+            public static ClassFilterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new ClassFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new ClassFilterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 
@@ -134,11 +134,11 @@ namespace CsharpSamples.Generated.Service
     @foreach (var item in Model.ClassifiedInterface.DateHash) {
 
         <text>
-            public static DateFilterKey<@(ModelClassName)> @(item.VariableName)
+            public static DateFilterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new DateFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new DateFilterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 
@@ -150,11 +150,11 @@ namespace CsharpSamples.Generated.Service
     @foreach (var item in Model.ClassifiedInterface.DescriptionHash) {
 
         <text>
-            public static DescriptionFilterKey<@(ModelClassName)> @(item.VariableName)
+            public static DescriptionFilterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new DescriptionFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new DescriptionFilterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 
@@ -166,11 +166,11 @@ namespace CsharpSamples.Generated.Service
     @foreach (var item in Model.ClassifiedInterface.NumHash) {
 
         <text>
-            public static NumFilterKey<@(ModelClassName)> @(item.VariableName)
+            public static NumFilterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new NumFilterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new NumFilterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 
@@ -194,12 +194,12 @@ namespace CsharpSamples.Generated.Service
     @foreach (var item in Model.ClassifiedInterface.CheckHash) {
 
         <text>
-            // @(item.VariableName)用のソート条件
-            public static ColumnSorterKey<@(ModelClassName)> @(item.VariableName)
+            // @Raw(item.VariableName)用のソート条件
+            public static ColumnSorterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new ColumnSorterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new ColumnSorterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 
@@ -211,12 +211,12 @@ namespace CsharpSamples.Generated.Service
     @foreach (var item in Model.ClassifiedInterface.ClassHash) {
 
         <text>
-            // @(item.VariableName)用のソート条件
-            public static ColumnSorterKey<@(ModelClassName)> @(item.VariableName)
+            // @Raw(item.VariableName)用のソート条件
+            public static ColumnSorterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new ColumnSorterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new ColumnSorterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 
@@ -228,12 +228,12 @@ namespace CsharpSamples.Generated.Service
     @foreach (var item in Model.ClassifiedInterface.DateHash) {
 
         <text>
-            // @(item.VariableName)用のソート条件
-            public static ColumnSorterKey<@(ModelClassName)> @(item.VariableName)
+            // @Raw(item.VariableName)用のソート条件
+            public static ColumnSorterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new ColumnSorterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new ColumnSorterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 
@@ -245,12 +245,12 @@ namespace CsharpSamples.Generated.Service
     @foreach (var item in Model.ClassifiedInterface.DescriptionHash) {
 
         <text>
-            // @(item.VariableName)用のソート条件
-            public static ColumnSorterKey<@(ModelClassName)> @(item.VariableName)
+            // @Raw(item.VariableName)用のソート条件
+            public static ColumnSorterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new ColumnSorterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new ColumnSorterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 
@@ -262,12 +262,12 @@ namespace CsharpSamples.Generated.Service
     @foreach (var item in Model.ClassifiedInterface.NumHash) {
 
         <text>
-            // @(item.VariableName)用のソート条件
-            public static ColumnSorterKey<@(ModelClassName)> @(item.VariableName)
+            // @Raw(item.VariableName)用のソート条件
+            public static ColumnSorterKey<@Raw(ModelClassName)> @Raw(item.VariableName)
             {
                 get
                 {
-                    return new ColumnSorterKey<@(ModelClassName)>("@(item.ColumnName)");
+                    return new ColumnSorterKey<@Raw(ModelClassName)>("@(item.ColumnName)");
                 }
             }
 

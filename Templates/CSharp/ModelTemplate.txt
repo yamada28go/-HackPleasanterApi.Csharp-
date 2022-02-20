@@ -67,7 +67,7 @@ namespace CsharpSamples.Generated.Models
                /// <summary>
                /// @Raw(item.LabelText)
                 /// </summary>
-                public string @item.VariableName
+                public string @Raw(item.VariableName)
                 {
                     get
                     {
@@ -114,7 +114,7 @@ namespace CsharpSamples.Generated.Models
                /// サーバー戻り値では値を持っていない可能性があるので、
                /// get系はnullable型の別名にする。
                /// </summary>
-                public decimal? @(item.VariableName)_value
+                public decimal? @Raw(item.VariableName)_value
                 {
                     get
                     {
@@ -130,7 +130,7 @@ namespace CsharpSamples.Generated.Models
                /// <summary>
                /// @Raw(item.LabelText)
                /// </summary>
-                public decimal @item.VariableName
+                public decimal @Raw(item.VariableName)
                 {
                     set
                     {
@@ -169,7 +169,7 @@ namespace CsharpSamples.Generated.Models
                /// サーバー戻り値では値を持っていない可能性があるので、
                /// get系はnullable型の別名にする。
                /// </summary>
-                public DateTime? @(item.VariableName)_value
+                public DateTime? @Raw(item.VariableName)_value
                 {
                     get
                     {
@@ -185,7 +185,7 @@ namespace CsharpSamples.Generated.Models
                /// <summary>
                /// @Raw(item.LabelText)
                /// </summary>
-                public DateTime @item.VariableName
+                public DateTime @Raw(item.VariableName)
                 {
                     set
                     {
@@ -221,7 +221,7 @@ namespace CsharpSamples.Generated.Models
                /// <summary>
                /// @Raw(item.LabelText)
                /// </summary>
-                public string @item.VariableName
+                public string @Raw(item.VariableName)
                 {
                     get
                     {
@@ -269,7 +269,7 @@ namespace CsharpSamples.Generated.Models
                /// サーバー戻り値では値を持っていない可能性があるので、
                /// get系はnullable型の別名にする。
                /// </summary>
-                public bool? @(item.VariableName)_value
+                public bool? @Raw(item.VariableName)_value
                 {
                     get
                     {
@@ -286,7 +286,7 @@ namespace CsharpSamples.Generated.Models
                /// <summary>
                /// @Raw(item.LabelText)
                /// </summary>
-                public bool @item.VariableName
+                public bool @Raw(item.VariableName)
                 {
                     set
                     {
@@ -324,7 +324,7 @@ namespace CsharpSamples.Generated.Models
                /// <summary>
                /// @Raw(item.LabelText)
                /// </summary>
-                public List<Attachments> @item.VariableName
+                public List<Attachments> @Raw(item.VariableName)
                 {
                     get
                     {
