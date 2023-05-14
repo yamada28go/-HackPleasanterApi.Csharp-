@@ -21,17 +21,17 @@ namespace CsharpSamples.Generated.Models
     /// <summary>
     /// @Raw(Model.SiteDefinition.Title) DTOクラス
     /// </summary>
-    public class @(TargetClassName) : DTOBase<@(TargetClassName).@(ExtensionElementsClassName)>
+    public class @Raw(TargetClassName) : DTOBase<@Raw(TargetClassName).@Raw(ExtensionElementsClassName)>
     {
 
-        public @(TargetClassName)()
+        public @Raw(TargetClassName) ()
         {
             this.rawData = new ItemRawData();
             InternalData();
         }
 
 
-        public @(TargetClassName)(ItemRawData rawData)
+        public @Raw(TargetClassName) (ItemRawData rawData)
         {
             this.rawData = rawData;
             InternalData();
@@ -43,7 +43,7 @@ namespace CsharpSamples.Generated.Models
         private void InternalData()
         {
             // ユーザー拡張データ構造の定義
-            this.ExtensionElements = new @(TargetClassName).@(ExtensionElementsClassName)();
+            this.ExtensionElements = new @Raw(TargetClassName).@Raw(ExtensionElementsClassName) ();
             this.ExtensionElements.rawData = new WeakReference<ItemRawData>(this.rawData);
 
             this.BasicItemData = new BasicItemData();
@@ -53,7 +53,7 @@ namespace CsharpSamples.Generated.Models
         /// <summary>
         /// 個別の拡張要素
         /// </summary>
-        public class @(ExtensionElementsClassName) : ExtensionElementsBase
+        public class @Raw(ExtensionElementsClassName) : ExtensionElementsBase
         {
             #region 自動生成
 

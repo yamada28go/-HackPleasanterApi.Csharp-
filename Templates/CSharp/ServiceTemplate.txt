@@ -31,7 +31,7 @@ namespace CsharpSamples.Generated.Service
     /// <summary>
     /// @Raw(Model.SiteDefinition.Title)アクセスサービス
     /// </summary>
-    public class @(TargetClassName) : ItmeServiceBase<@Raw(ModelClassName),@Raw(ModelClassName).@(ExtensionElementsClassName)>
+    public class @Raw(TargetClassName) : ItmeServiceBase<@Raw(ModelClassName),@Raw(ModelClassName).@Raw(ExtensionElementsClassName)>
     {
         /// <summary>
         /// サイトID
@@ -39,7 +39,7 @@ namespace CsharpSamples.Generated.Service
         private static readonly long SITE_ID_CONSTANT = @(Model.SiteDefinition.SiteId);
 
 
-        public @(Model.SiteDefinition.SiteVariableName+"Service")(ServiceConfig config) : base(config, SITE_ID_CONSTANT )
+        public @Raw(Model.SiteDefinition.SiteVariableName+"Service") (ServiceConfig config) : base(config, SITE_ID_CONSTANT )
         {
         }
 
