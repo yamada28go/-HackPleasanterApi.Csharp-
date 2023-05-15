@@ -3,7 +3,7 @@
   <InputFiles>
     <SiteDefinitionFile>Sites.csv</SiteDefinitionFile>
     <InterfaceDefinitionFile>Interface.csv</InterfaceDefinitionFile>
-    <Encoding>Shift_JIS</Encoding>
+    <Encoding>utf-8</Encoding>
   </InputFiles>
   <OutputConfig>
     <OutputDirectory>Generated</OutputDirectory>
@@ -15,7 +15,7 @@
       <HeadPrefix />
       <EndPrefix>Service</EndPrefix>
       <OutputExtension>cs</OutputExtension>
-      <Encoding>Shift_JIS</Encoding>
+      <Encoding>utf-8</Encoding>
     </TemplateFiles>
     <TemplateFiles>
       <TemplateFileName>../Generator/Templates/CSharp/ModelTemplate.txt</TemplateFileName>
@@ -23,7 +23,7 @@
       <HeadPrefix />
       <EndPrefix>Model</EndPrefix>
       <OutputExtension>cs</OutputExtension>
-      <Encoding>Shift_JIS</Encoding>
+      <Encoding>utf-8</Encoding>
     </TemplateFiles>
   </TemplateFiles>
   <CodeConfig>
