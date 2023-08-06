@@ -20,11 +20,15 @@
     <None Remove="ItemTest\" />
     <None Remove="Helper\" />
     <None Remove="Helper\Service\" />
+    <None Remove="Generated\Models\" />
+    <None Remove="Generated\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ItemTest\" />
     <Folder Include="Helper\" />
     <Folder Include="Helper\Service\" />
+    <Folder Include="Generated\Models\" />
+    <Folder Include="Generated\Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="data\attachments\sky.jpg">

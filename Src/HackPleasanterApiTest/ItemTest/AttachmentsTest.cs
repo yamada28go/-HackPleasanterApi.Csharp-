@@ -30,13 +30,13 @@ namespace HackPleasanterApiTest.ItemTest
 
             var cfg = MakeTestConfig();
 
-            var s = new RecordingTableService(cfg);
+            var s = new 記録テーブルService(cfg);
 
             // テストデータはすべて消去する
             await s.DeleteALL(true);
 
 
-            var data = new CsharpSamples.Generated.Models.RecordingTableModel();
+            var data = new CsharpSamples.Generated.Models.記録テーブルModel();
 
             data.BasicItemData.Title = "タイトルてすと";
             data.BasicItemData.Body = "本文";
@@ -44,7 +44,7 @@ namespace HackPleasanterApiTest.ItemTest
 
             // 個別の試験用データを設定する
             data.ExtensionElements.CheckA = true;
-            data.ExtensionElements.DateA = DateTime.Now;
+            data.ExtensionElements.DataA = DateTime.Now;
             data.ExtensionElements.NumA = Int32.MaxValue;
             data.ExtensionElements.StringA = "StringA";
             data.ExtensionElements.TypeA = "TypeA";
@@ -59,7 +59,7 @@ namespace HackPleasanterApiTest.ItemTest
 
             // 情報を更新する
             data.ExtensionElements.CheckA = false;
-            data.ExtensionElements.DateA = DateTime.Now;
+            data.ExtensionElements.DataA = DateTime.Now;
             data.ExtensionElements.NumA = Int32.MinValue;
             data.ExtensionElements.StringA = "StringA +1";
             data.ExtensionElements.TypeA = "TypeA +1";
