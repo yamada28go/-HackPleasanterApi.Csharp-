@@ -1,9 +1,28 @@
-﻿using HackPleasanterApi.Client.Api.Interface;
+﻿/**
+ *
+ * [注意]
+ *  自動生成されたコードです。
+ *  変更時には十分注意して変更してください。
+ *
+ *  [生成コマンド]
+ *  https://github.com/yamada28go/HackPleasanterApiCli
+ *
+ *  [生成元テンプレートファイル]
+ *  https://github.com/yamada28go/HackPleasanterApi.Csharp
+ *
+ *  [動作に必用なライブラリ]
+ *  https://www.nuget.org/packages/HackPleasanterApi.CsharpSamples
+ *
+ */
+
+
+using HackPleasanterApi.Client.Api.Interface;
 using HackPleasanterApi.Client.Api.Models.ItemModel;
 using HackPleasanterApi.Client.Api.Models.ItemModel.Hash;
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 
 namespace CsharpSamples.Generated.Models
 {
@@ -16,8 +35,6 @@ namespace CsharpSamples.Generated.Models
   string ExtensionElementsClassName = TargetClassName + "ExtensionElements"; 
 
 }
-
-
     /// <summary>
     /// @Raw(Model.SiteDefinition.Title) DTOクラス
     /// </summary>

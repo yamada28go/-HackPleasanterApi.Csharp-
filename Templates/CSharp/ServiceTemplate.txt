@@ -1,4 +1,22 @@
-﻿using CsharpSamples.Generated.Models;
+﻿/**
+ *
+ * [注意]
+ *  自動生成されたコードです。
+ *  変更時には十分注意して変更してください。
+ *
+ *  [生成コマンド]
+ *  https://github.com/yamada28go/HackPleasanterApiCli
+ *
+ *  [生成元テンプレートファイル]
+ *  https://github.com/yamada28go/HackPleasanterApi.Csharp
+ *
+ *  [動作に必用なライブラリ]
+ *  https://www.nuget.org/packages/HackPleasanterApi.CsharpSamples
+ *
+ */
+
+
+using CsharpSamples.Generated.Models;
 using HackPleasanterApi.Client.Api.Request.View;
 using HackPleasanterApi.Client.Api.Request.View.FilterKey;
 using HackPleasanterApi.Client.Api.Service;
@@ -28,6 +46,7 @@ using System.Text;
 
 namespace CsharpSamples.Generated.Service
 {
+
     /// <summary>
     /// @Raw(Model.SiteDefinition.Title)アクセスサービス
     /// </summary>
