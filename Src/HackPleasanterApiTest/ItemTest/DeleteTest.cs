@@ -35,12 +35,12 @@ namespace HackPleasanterApiTest.ItemTest
 
             var cfg = MakeTestConfig();
 
-            var s = new RecordingTableService(cfg);
+            var s = new 記録テーブルService(cfg);
 
             // テストデータはすべて消去する
             var del = await s.DeleteALL(true);
 
-            var data = new CsharpSamples.Generated.Models.RecordingTableModel();
+            var data = new CsharpSamples.Generated.Models.記録テーブルModel();
 
             data.BasicItemData.Title = "タイトルてすと";
             data.BasicItemData.Body = "本文";
@@ -48,7 +48,7 @@ namespace HackPleasanterApiTest.ItemTest
 
             // 個別の試験用データを設定する
             data.ExtensionElements.CheckA = true;
-            data.ExtensionElements.DateA = DateTime.Now;
+            data.ExtensionElements.DataA = DateTime.Now;
             data.ExtensionElements.NumA = Int32.MaxValue;
             data.ExtensionElements.StringA = "StringA";
             data.ExtensionElements.TypeA = "TypeA";
@@ -68,12 +68,12 @@ namespace HackPleasanterApiTest.ItemTest
         {
             var cfg = MakeTestConfig();
 
-            var s = new RecordingTableService(cfg);
+            var s = new 記録テーブルService(cfg);
 
             // テストデータはすべて消去する
             var del = await s.DeleteALL(true);
 
-            var data = new CsharpSamples.Generated.Models.RecordingTableModel();
+            var data = new CsharpSamples.Generated.Models.記録テーブルModel();
 
             data.BasicItemData.Title = "タイトルてすと";
             data.BasicItemData.Body = "本文";
@@ -81,7 +81,7 @@ namespace HackPleasanterApiTest.ItemTest
 
             // 個別の試験用データを設定する
             data.ExtensionElements.CheckA = true;
-            data.ExtensionElements.DateA = DateTime.Now;
+            data.ExtensionElements.DataA = DateTime.Now;
             data.ExtensionElements.NumA = Int32.MaxValue;
             data.ExtensionElements.StringA = "StringA";
             data.ExtensionElements.TypeA = "TypeA";
@@ -90,7 +90,7 @@ namespace HackPleasanterApiTest.ItemTest
             var x = await s.CreateItem(data);
 
             // itemを生成する
-            var dr = await s.DeleteByConditions(new DeleteAllItemsRequest<CsharpSamples.Generated.Models.RecordingTableModel>
+            var dr = await s.DeleteByConditions(new DeleteAllItemsRequest<CsharpSamples.Generated.Models.記録テーブルModel>
             {
                 All = true,
                 PhysicalDelete = true
@@ -108,13 +108,13 @@ namespace HackPleasanterApiTest.ItemTest
             var correctList = await MakeTestTargetData();
 
             var cfg = MakeTestConfig();
-            var s = new RecordingTableService(cfg);
+            var s = new 記録テーブルService(cfg);
 
             //削除対象を取得
             var delTarget = correctList.Take(2).ToList();
 
             // 指定されたIDのitemを消去する
-            var dr = await s.DeleteByConditions(new DeleteAllItemsRequest<CsharpSamples.Generated.Models.RecordingTableModel>
+            var dr = await s.DeleteByConditions(new DeleteAllItemsRequest<CsharpSamples.Generated.Models.記録テーブルModel>
             {
                 All = false,
                 PhysicalDelete = false,
@@ -123,7 +123,7 @@ namespace HackPleasanterApiTest.ItemTest
             Assert.IsNotNull(dr);
 
             // 指定したデータだけが削除されているか確認する
-            var read = await s.FindItems(new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>());
+            var read = await s.FindItems(new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>());
             Assert.AreEqual(8, read.Count());
 
             Assert.IsFalse(read.Select(x => x.BasicItemData.ResultId).ToList().Contains(delTarget[0].BasicItemData.ResultId));
@@ -139,20 +139,20 @@ namespace HackPleasanterApiTest.ItemTest
 
             var cfg = MakeTestConfig();
 
-            var s = new RecordingTableService(cfg);
+            var s = new 記録テーブルService(cfg);
 
             // 検索条件を設定
             // Like検索
             var findString = "test10";
 
-            var fa = RecordingTableService.FilterKeys.StringA;
+            var fa = 記録テーブルService.FilterKeys.StringA;
             fa.SearchCondition = findString;
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // 指定条件で削除する
-            var dr = await s.DeleteByConditions(new DeleteAllItemsRequest<CsharpSamples.Generated.Models.RecordingTableModel>
+            var dr = await s.DeleteByConditions(new DeleteAllItemsRequest<CsharpSamples.Generated.Models.記録テーブルModel>
             {
                 All = false,
                 PhysicalDelete = false,
@@ -162,7 +162,7 @@ namespace HackPleasanterApiTest.ItemTest
             Assert.IsNotNull(dr);
 
             // 指定したデータだけが削除されているか確認する
-            var read = await s.FindItems(new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>());
+            var read = await s.FindItems(new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>());
             Assert.AreEqual(9, read.Count());
 
 

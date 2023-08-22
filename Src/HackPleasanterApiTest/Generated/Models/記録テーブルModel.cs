@@ -1,54 +1,28 @@
-﻿/**
- *
- * [注意]
- *  自動生成されたコードです。
- *  変更時には十分注意して変更してください。
- *
- *  [生成コマンド]
- *  https://github.com/yamada28go/HackPleasanterApiCli
- *
- *  [生成元テンプレートファイル]
- *  https://github.com/yamada28go/HackPleasanterApi.Csharp
- *
- *  [動作に必用なライブラリ]
- *  https://www.nuget.org/packages/HackPleasanterApi.CsharpSamples
- *
- */
-
-
-using HackPleasanterApi.Client.Api.Interface;
+﻿using HackPleasanterApi.Client.Api.Interface;
 using HackPleasanterApi.Client.Api.Models.ItemModel;
 using HackPleasanterApi.Client.Api.Models.ItemModel.Hash;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-
 namespace CsharpSamples.Generated.Models
 {
-@{
-//コード生成に必要な一時変数をまとめて定義する
 
-  // クラス名
-  string TargetClassName = Model.TemplateFilesConfig.HeadPrefix + Model.SiteDefinition.SiteVariableName + Model.TemplateFilesConfig.EndPrefix;
-  // ユーザー拡張要素が定義されたクラス名
-  string ExtensionElementsClassName = TargetClassName + "ExtensionElements"; 
 
-}
     /// <summary>
-    /// @Raw(Model.SiteDefinition.Title) DTOクラス
+    /// 記録テーブル DTOクラス
     /// </summary>
-    public class @Raw(TargetClassName) : DTOBase<@Raw(TargetClassName).@Raw(ExtensionElementsClassName)>
+    public class 記録テーブルModel : DTOBase<記録テーブルModel.記録テーブルModelExtensionElements>
     {
 
-        public @Raw(TargetClassName) ()
+        public 記録テーブルModel ()
         {
             this.rawData = new ItemRawData();
             InternalData();
         }
 
 
-        public @Raw(TargetClassName) (ItemRawData rawData)
+        public 記録テーブルModel (ItemRawData rawData)
         {
             this.rawData = rawData;
             InternalData();
@@ -60,7 +34,7 @@ namespace CsharpSamples.Generated.Models
         private void InternalData()
         {
             // ユーザー拡張データ構造の定義
-            this.ExtensionElements = new @Raw(TargetClassName).@Raw(ExtensionElementsClassName) ();
+            this.ExtensionElements = new 記録テーブルModel.記録テーブルModelExtensionElements ();
             this.ExtensionElements.rawData = new WeakReference<ItemRawData>(this.rawData);
 
             this.BasicItemData = new BasicItemData();
@@ -70,27 +44,24 @@ namespace CsharpSamples.Generated.Models
         /// <summary>
         /// 個別の拡張要素
         /// </summary>
-        public class @Raw(ExtensionElementsClassName) : ExtensionElementsBase
+        public class 記録テーブルModelExtensionElements : ExtensionElementsBase
         {
             #region 自動生成
 
             #region Class区分
 
-            @* ClassHashの出力定義 *@
-            @foreach (var item in Model.ClassifiedInterface.ClassHash) {
 
-                <text>
 
                /// <summary>
-               /// @Raw(item.LabelText)
+               /// 
                 /// </summary>
-                public string @Raw(item.VariableName)
+                public string TypeA
                 {
                     get
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            return obj?.ClassHash?.@(item.ColumnName);
+                            return obj?.ClassHash?.ClassA;
                         }
                         throw new ApplicationException("参照エラー");
 
@@ -104,7 +75,7 @@ namespace CsharpSamples.Generated.Models
                                 obj.ClassHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.ClassHash();
                             }
 
-                            obj.ClassHash.@(item.ColumnName) = value;
+                            obj.ClassHash.ClassA = value;
 
                             return ;
                         }
@@ -113,31 +84,25 @@ namespace CsharpSamples.Generated.Models
 
                     }
                 }
-                </text>
-
-            }
-
+                
             #endregion
 
             #region Num区分
 
-            @* NumHashの出力定義 *@
-            @foreach (var item in Model.ClassifiedInterface.NumHash) {
 
-                <text>
 
                /// <summary>
-               /// @Raw(item.LabelText)
+               /// 
                /// サーバー戻り値では値を持っていない可能性があるので、
                /// get系はnullable型の別名にする。
                /// </summary>
-                public decimal? @Raw(item.VariableName)_value
+                public decimal? NumA_value
                 {
                     get
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            return obj?.NumHash?.@(item.ColumnName);
+                            return obj?.NumHash?.NumA;
                         }
                         throw new ApplicationException("参照エラー");
 
@@ -145,9 +110,9 @@ namespace CsharpSamples.Generated.Models
                 }
 
                /// <summary>
-               /// @Raw(item.LabelText)
+               /// 
                /// </summary>
-                public decimal @Raw(item.VariableName)
+                public decimal NumA
                 {
                     set
                     {
@@ -158,7 +123,7 @@ namespace CsharpSamples.Generated.Models
                                 obj.NumHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.NumHash();
                             }
 
-                            obj.NumHash.@(item.ColumnName) = value;
+                            obj.NumHash.NumA = value;
 
                             return ;
                         }
@@ -167,32 +132,26 @@ namespace CsharpSamples.Generated.Models
 
                     }
                 }
-                </text>
-
-            }
-
+                
             #endregion
 
             #region Date区分
 
-            @* NumHashの出力定義 *@
-            @foreach (var item in Model.ClassifiedInterface.DateHash) {
 
-                <text>
 
                /// <summary>
-               /// @Raw(item.LabelText)
+               /// 
                ///
                /// サーバー戻り値では値を持っていない可能性があるので、
                /// get系はnullable型の別名にする。
                /// </summary>
-                public DateTime? @Raw(item.VariableName)_value
+                public DateTime? DataA_value
                 {
                     get
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            return obj?.DateHash?.@(item.ColumnName);
+                            return obj?.DateHash?.DateA;
                         }
                         throw new ApplicationException("参照エラー");
 
@@ -200,9 +159,9 @@ namespace CsharpSamples.Generated.Models
                 }
 
                /// <summary>
-               /// @Raw(item.LabelText)
+               /// 
                /// </summary>
-                public DateTime @Raw(item.VariableName)
+                public DateTime DataA
                 {
                     set
                     {
@@ -213,7 +172,7 @@ namespace CsharpSamples.Generated.Models
                                 obj.DateHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.DateHash();
                             }
 
-                            obj.DateHash.@(item.ColumnName) = value;
+                            obj.DateHash.DateA = value;
 
                             return ;
                         }
@@ -222,29 +181,23 @@ namespace CsharpSamples.Generated.Models
 
                     }
                 }
-                </text>
-
-            }
-
+                
             #endregion
 
             #region Description区分
 
-            @* DescriptionHashの出力定義 *@
-            @foreach (var item in Model.ClassifiedInterface.DescriptionHash) {
 
-                <text>
 
                /// <summary>
-               /// @Raw(item.LabelText)
+               /// 
                /// </summary>
-                public string @Raw(item.VariableName)
+                public string StringA
                 {
                     get
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            return obj?.DescriptionHash?.@(item.ColumnName);
+                            return obj?.DescriptionHash?.DescriptionA;
                         }
                         throw new ApplicationException("参照エラー");
 
@@ -258,7 +211,7 @@ namespace CsharpSamples.Generated.Models
                                 obj.DescriptionHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.DescriptionHash();
                             }
 
-                            obj.DescriptionHash.@(item.ColumnName) = value;
+                            obj.DescriptionHash.DescriptionA = value;
 
                             return ;
                         }
@@ -267,32 +220,26 @@ namespace CsharpSamples.Generated.Models
 
                     }
                 }
-                </text>
-
-            }
-
+                
             #endregion
 
             #region Check区分
 
-            @* CheckHashの出力定義 *@
-            @foreach (var item in Model.ClassifiedInterface.CheckHash) {
 
-                <text>
 
                /// <summary>
-               /// @Raw(item.LabelText)
+               /// 
                ///
                /// サーバー戻り値では値を持っていない可能性があるので、
                /// get系はnullable型の別名にする。
                /// </summary>
-                public bool? @Raw(item.VariableName)_value
+                public bool? CheckA_value
                 {
                     get
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            return obj?.CheckHash?.@(item.ColumnName);
+                            return obj?.CheckHash?.CheckA;
                         }
                         throw new ApplicationException("参照エラー");
 
@@ -301,9 +248,9 @@ namespace CsharpSamples.Generated.Models
 
 
                /// <summary>
-               /// @Raw(item.LabelText)
+               /// 
                /// </summary>
-                public bool @Raw(item.VariableName)
+                public bool CheckA
                 {
                     set
                     {
@@ -315,7 +262,7 @@ namespace CsharpSamples.Generated.Models
                                 obj.CheckHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.CheckHash();
                             }
 
-                            obj.CheckHash.@(item.ColumnName) = value;
+                            obj.CheckHash.CheckA = value;
 
                             return ;
                         }
@@ -324,30 +271,24 @@ namespace CsharpSamples.Generated.Models
 
                     }
                 }
-                </text>
-
-            }
-
+                
             #endregion
 
 
             #region Attachments区分
 
-            @* AttachmentsHashの出力定義 *@
-            @foreach (var item in Model.ClassifiedInterface.AttachmentsHash) {
 
-                <text>
 
                /// <summary>
-               /// @Raw(item.LabelText)
+               /// 
                /// </summary>
-                public List<Attachments> @Raw(item.VariableName)
+                public List<Attachments> AttachmentA
                 {
                     get
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            return obj?.AttachmentsHash?.@(item.ColumnName);
+                            return obj?.AttachmentsHash?.AttachmentsA;
                         }
                         throw new ApplicationException("参照エラー");
 
@@ -361,7 +302,7 @@ namespace CsharpSamples.Generated.Models
                                 obj.AttachmentsHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.AttachmentsHash();
                             }
 
-                            obj.AttachmentsHash.@(item.ColumnName) = value;
+                            obj.AttachmentsHash.AttachmentsA = value;
 
                             return ;
                         }
@@ -370,10 +311,41 @@ namespace CsharpSamples.Generated.Models
 
                     }
                 }
-                </text>
+                
 
-            }
+               /// <summary>
+               /// 
+               /// </summary>
+                public List<Attachments> AttachmentB
+                {
+                    get
+                    {
+                        if (rawData.TryGetTarget(out var obj))
+                        {
+                            return obj?.AttachmentsHash?.AttachmentsB;
+                        }
+                        throw new ApplicationException("参照エラー");
 
+                    }
+                    set
+                    {
+                        if (rawData.TryGetTarget(out var obj))
+                        {
+                            if (obj.AttachmentsHash == null)
+                            {
+                                obj.AttachmentsHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.AttachmentsHash();
+                            }
+
+                            obj.AttachmentsHash.AttachmentsB = value;
+
+                            return ;
+                        }
+
+                        throw new ApplicationException("参照エラー");
+
+                    }
+                }
+                
             #endregion
 
 
@@ -382,3 +354,4 @@ namespace CsharpSamples.Generated.Models
 
     }
 }
+

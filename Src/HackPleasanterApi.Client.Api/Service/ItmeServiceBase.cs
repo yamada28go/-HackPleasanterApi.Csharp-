@@ -81,7 +81,7 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 var r = GenerateRequestBase<RequestBase>();
 
-                HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{itemID}/get", r);
+                HttpResponseMessage response = await client.PostAsJsonAsync($"{this.serviceConfig.URLPathPrefixSetting.Prefix}api/items/{itemID}/get", r);
                 var targetData = await response.Content.ReadAsAsync<ItemApiResults<SingleItemResponse>>();
 
                 // 実行成功判定
@@ -166,7 +166,7 @@ namespace HackPleasanterApi.Client.Api.Service
                 // 検索条件を設定する
                 r.View = MakeSendViewData(request);
 
-                HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{SiteId}/get", r);
+                HttpResponseMessage response = await client.PostAsJsonAsync($"{this.serviceConfig.URLPathPrefixSetting.Prefix}api/items/{SiteId}/get", r);
                 // API呼び出しを実行
                 var targetData = await response.Content.ReadAsAsync<ItemApiResults<MultipleItemResponse>>();
 
@@ -205,7 +205,7 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 var r = GenerateRequestBase<RequestBase>();
 
-                HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/binaries/{attachments.Guid}/get", r);
+                HttpResponseMessage response = await client.PostAsJsonAsync($"{this.serviceConfig.URLPathPrefixSetting.Prefix}api/binaries/{attachments.Guid}/get", r);
                 if (response.IsSuccessStatusCode)
                 {
                     // API呼び出しを実行
@@ -234,7 +234,7 @@ namespace HackPleasanterApi.Client.Api.Service
 
                 var r = GenerateRequestBase<RequestBase>();
 
-                HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{itemID}/delete", r);
+                HttpResponseMessage response = await client.PostAsJsonAsync($"{this.serviceConfig.URLPathPrefixSetting.Prefix}api/items/{itemID}/delete", r);
                 // API呼び出しを実行
                 var targetData = await response.Content.ReadAsAsync<DeleteApiResults>();
 
@@ -351,8 +351,10 @@ namespace HackPleasanterApi.Client.Api.Service
                 //var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var content = MakeStringContentSendNotNUll(r);
 
+
+
                 //HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{SiteId}/create", r);
-                HttpResponseMessage response = await client.PostAsync($"pleasanter/api/items/{SiteId}/create", content);
+                HttpResponseMessage response = await client.PostAsync($"{this.serviceConfig.URLPathPrefixSetting.Prefix}api/items/{SiteId}/create", content);
 
                 // API呼び出しを実行
                 var targetData = await response.Content.ReadAsAsync<CreateItemResults>();
@@ -389,7 +391,7 @@ namespace HackPleasanterApi.Client.Api.Service
                 var content = MakeStringContentSendNotNUll(r);
 
                 //HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/items/{itemID}/update", r);
-                HttpResponseMessage response = await client.PostAsync($"pleasanter/api/items/{itemID}/update", content);
+                HttpResponseMessage response = await client.PostAsync($"{this.serviceConfig.URLPathPrefixSetting.Prefix}api/items/{itemID}/update", content);
 
                 // API呼び出しを実行
                 var targetData = await response.Content.ReadAsAsync<CreateItemResults>();
