@@ -56,10 +56,11 @@ namespace HackPleasanterApiTest.ItemTest
             // itemを生成する
             var x = await s.CreateItem(data);
 
-            // 削除を実行する
-            var dr = await s.DeleteItem(x.Id);
-            Assert.IsNotNull(dr);
+            Assert.IsTrue(x.Id.HasValue);
 
+            // 削除を実行する
+            var dr = await s.DeleteItem(x?.Id ?? -1);
+            Assert.IsNotNull(dr);
         }
 
 
@@ -118,8 +119,8 @@ namespace HackPleasanterApiTest.ItemTest
             {
                 All = false,
                 PhysicalDelete = false,
-                 Selected = delTarget.Select(x=>x.BasicItemData.ResultId).ToList()
-            }); 
+                Selected = delTarget.Select(x => x.BasicItemData.ResultId).Where(x => x.HasValue).Select(x => x.Value).ToList()
+            });
             Assert.IsNotNull(dr);
 
             // 指定したデータだけが削除されているか確認する

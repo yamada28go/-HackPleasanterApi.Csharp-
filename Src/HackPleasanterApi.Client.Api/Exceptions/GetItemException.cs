@@ -28,9 +28,9 @@ namespace HackPleasanterApi.Client.Api.Exceptions
     /// </summary>
     public class GetItemException<ItemType> : Exception
     {
-        public ItemType ItemApiResults {  get;private set; }
+        public ItemType? ItemApiResults { get; private set; }
 
-        public GetItemException(ItemType ItemApiResults)
+        public GetItemException(ItemType? ItemApiResults)
         {
             this.ItemApiResults = ItemApiResults;
 

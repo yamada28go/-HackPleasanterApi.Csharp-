@@ -31,7 +31,7 @@ namespace HackPleasanterApi.Client.Api.Helper.Service
                 {
                     // 該当処理を実行する
                     L.Debug(() => $"start API Call retry count  : {i}");
-                    var r =  await act();
+                    var r = await act();
                     L.Debug(() => $"end API Call retry count  : {i}");
                     return r;
                 }

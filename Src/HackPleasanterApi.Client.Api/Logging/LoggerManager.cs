@@ -48,9 +48,9 @@ namespace HackPleasanterApi.Client.Api.Logging
 
         #region ロギング関数
 
-        public Action<string> LoginInfo = null;
-        public Action<string> LoginError = null;
-        public Action<string> LoginDebug = null;
+        public Action<string>? LoginInfo = null;
+        public Action<string>? LoginError = null;
+        public Action<string>? LoginDebug = null;
 
         #endregion
 
@@ -66,7 +66,7 @@ namespace HackPleasanterApi.Client.Api.Logging
         {
             get
             {
-                return new Logger(this.LogLevel,this.LogPrefix ,this.LoginError, this.LoginInfo, this.LoginDebug);
+                return new Logger(this.LogLevel, this.LogPrefix, this.LoginError, this.LoginInfo, this.LoginDebug);
             }
         }
 

@@ -43,12 +43,18 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <summary>
         /// API実行時のリトライカウント
         /// </summary>
-        public  int RetryCount = DefaultConfiguration.RetryCount;
+        public int RetryCount = DefaultConfiguration.RetryCount;
 
         /// <summary>
         /// URLのパスを修飾する場合
         /// </summary>
         public URLPathPrefixSetting URLPathPrefixSetting = new URLPathPrefixSetting();
+
+        public ServiceConfig(Uri _uri, string _ApiKey)
+        {
+            this.uri = _uri;
+            this.ApiKey = _ApiKey;
+        }
 
     }
 }

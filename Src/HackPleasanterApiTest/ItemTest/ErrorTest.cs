@@ -25,7 +25,7 @@ namespace HackPleasanterApiTest.ItemTest
             //ロガー関数の設定を行う
             LoggerManager.GetInstance().LogLevel = LogLevel.Debug;
 
-            LoggerManager.GetInstance().LoginDebug = (x)=> Console.WriteLine(x);
+            LoggerManager.GetInstance().LoginDebug = (x) => Console.WriteLine(x);
             LoggerManager.GetInstance().LoginInfo = (x) => Console.WriteLine(x);
         }
 
@@ -63,7 +63,8 @@ namespace HackPleasanterApiTest.ItemTest
                 // itemを生成する
                 var x = await s.CreateItem(data);
             }
-            catch (HackPleasanterApiExceptions exp) {
+            catch (HackPleasanterApiExceptions exp)
+            {
                 targrteExp = exp;
             }
 
@@ -111,7 +112,8 @@ namespace HackPleasanterApiTest.ItemTest
             try
             {
                 // itemを生成する
-                var x2 = await s.UpdateItem(x.Id,data);
+                Assert.IsTrue(x.Id.HasValue);
+                var x2 = await s.UpdateItem(x?.Id ?? -1, data);
             }
             catch (HackPleasanterApiExceptions exp)
             {
@@ -163,7 +165,8 @@ namespace HackPleasanterApiTest.ItemTest
             try
             {
                 // itemを生成する
-                var x2 = await s.GetItem(x.Id);
+                Assert.IsTrue(x.Id.HasValue);
+                var x2 = await s.GetItem(x?.Id ?? -1);
             }
             catch (HackPleasanterApiExceptions exp)
             {
@@ -216,7 +219,7 @@ namespace HackPleasanterApiTest.ItemTest
             try
             {
                 // itemを生成する
-                var x2 = await s.FindItems(new  HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>());
+                var x2 = await s.FindItems(new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>());
             }
             catch (HackPleasanterApiExceptions exp)
             {
@@ -268,7 +271,8 @@ namespace HackPleasanterApiTest.ItemTest
             try
             {
                 // itemを生成する
-                var x2 = await s.DeleteItem(x.Id);
+                Assert.IsTrue(x.Id.HasValue);
+                var x2 = await s.DeleteItem(x?.Id ?? -1);
             }
             catch (HackPleasanterApiExceptions exp)
             {

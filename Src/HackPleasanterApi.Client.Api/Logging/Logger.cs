@@ -34,9 +34,9 @@ namespace HackPleasanterApi.Client.Api.Logging
 
         #region ロギング関数
 
-        private Action<string> LoginInfo = null;
-        private Action<string> LoginError = null;
-        private Action<string> LoginDebug = null;
+        private Action<string>? LoginInfo = null;
+        private Action<string>? LoginError = null;
+        private Action<string>? LoginDebug = null;
 
         #endregion
 
@@ -44,9 +44,9 @@ namespace HackPleasanterApi.Client.Api.Logging
         public Logger(
          LogLevel LogLevel,
          string LogPrefix,
-         Action<string> LoginError,
-         Action<string> LoginInfo,
-         Action<string> LoginDebug
+         Action<string>? LoginError,
+         Action<string>? LoginInfo,
+         Action<string>? LoginDebug
             )
         {
             this.logLevel = LogLevel;
@@ -65,7 +65,10 @@ namespace HackPleasanterApi.Client.Api.Logging
 
                 try
                 {
-                    this?.LoginError($"{LogPrefix}Error! { exp.Message}");
+                    if (LoginError is not null)
+                    {
+                        this.LoginError($"{LogPrefix}Error! {exp.Message}");
+                    }
                 }
                 catch
                 {
@@ -83,7 +86,10 @@ namespace HackPleasanterApi.Client.Api.Logging
 
                 try
                 {
-                    this?.LoginError($"{LogPrefix}{makeLog()}");
+                    if (LoginError is not null)
+                    {
+                        this?.LoginError($"{LogPrefix}{makeLog()}");
+                    }
                 }
                 catch
                 {
@@ -99,7 +105,10 @@ namespace HackPleasanterApi.Client.Api.Logging
             {
                 try
                 {
-                    this?.LoginInfo($"{LogPrefix}{makeLog()}");
+                    if (LoginInfo is not null)
+                    {
+                        this?.LoginInfo($"{LogPrefix}{makeLog()}");
+                    }
                 }
                 catch
                 {
@@ -120,7 +129,10 @@ namespace HackPleasanterApi.Client.Api.Logging
 
                 try
                 {
-                    this?.LoginDebug($"{LogPrefix}{makeLog()}");
+                    if (LoginDebug is not null)
+                    {
+                        this?.LoginDebug($"{LogPrefix}{makeLog()}");
+                    }
                 }
                 catch
                 {

@@ -30,6 +30,6 @@ namespace HackPleasanterApi.Client.Api.Response.ResponseData.Item
     public class ItemResponseBase
 
     {
-        public List<ItemRawData> Data { get; set; }
+        public List<ItemRawData>? Data { get; set; }
     }
 }

@@ -72,9 +72,13 @@ namespace HackPleasanterApi.Client.Api.Request.View.FilterKey
         /// <param name="hash"></param>
         public void Merge(Dictionary<string, string> hash)
         {
-            if (true == this.Check.HasValue)
+            var val = this.Check?.ToString();
+            if (val is not null)
             {
-                hash[DescriptionName] = this.Check.ToString();
+                if (true == this.Check.HasValue)
+                {
+                    hash[DescriptionName] = val;
+                }
             }
         }
     }

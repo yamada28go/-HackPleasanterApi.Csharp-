@@ -1,20 +1,21 @@
 ﻿using System;
 namespace HackPleasanterApi.Client.Api.Definition
 {
-	/// <summary>
-	/// URLのパスにプレフィックスを追加すための修飾オブジェクト
-	/// </summary>
-	public class URLPathPrefixSetting
+    /// <summary>
+    /// URLのパスにプレフィックスを追加すための修飾オブジェクト
+    /// </summary>
+    public class URLPathPrefixSetting
     {
-		//修飾用のプレフィックスを指定する
-		public  string Prefix {
-			get
-			{
-				return this._prefix;
-			}
-		}
+        //修飾用のプレフィックスを指定する
+        public string Prefix
+        {
+            get
+            {
+                return this._prefix;
+            }
+        }
 
-		private String _prefix;
+        private String _prefix;
 
 
         /// <summary>
@@ -27,10 +28,10 @@ namespace HackPleasanterApi.Client.Api.Definition
         /// 
         /// </summary>
         /// <param name="prefix"></param>
-        public URLPathPrefixSetting(String prefix = "" )
-		{
-			this._prefix = prefix;
-		}
-	}
+        public URLPathPrefixSetting(String prefix = "")
+        {
+            this._prefix = prefix;
+        }
+    }
 }
 

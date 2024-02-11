@@ -27,7 +27,7 @@ namespace HackPleasanterApi.Client.Api.Request.View
         /// <summary>
         /// 検索条件
         /// </summary>
-        public Request.View.ViewSend View { get; set; }
+        public Request.View.ViewSend? View { get; set; }
 
     }
 }

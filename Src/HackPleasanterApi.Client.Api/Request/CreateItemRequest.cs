@@ -40,7 +40,7 @@ namespace HackPleasanterApi.Client.Api.Request
         /// <summary>
         /// アクセス用のAPIキー
         /// </summary>
-        public string ApiKey;
+        public string? ApiKey { get; set; }
 
         /// <summary>
         /// 添付ファイルA～Z
@@ -50,7 +50,7 @@ namespace HackPleasanterApi.Client.Api.Request
         /// <summary>
         /// 添付ファイルA～Z
         /// </summary>
-        public AttachmentsHash AttachmentsHash { get; set; }
+        public AttachmentsHash? AttachmentsHash { get; set; }
 
 
     }

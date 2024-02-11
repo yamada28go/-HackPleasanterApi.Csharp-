@@ -30,9 +30,9 @@ namespace HackPleasanterApi.Client.Api.Response.ApiResults
     /// </summary>
     public class ResponseBase : ApiResultsBase
     {
-        public long Id { get; set; }
-        public int LimitPerDate { get; set; }
-        public int LimitRemaining { get; set; }
+        public long? Id { get; set; }
+        public int? LimitPerDate { get; set; }
+        public int? LimitRemaining { get; set; }
     }
 
 }

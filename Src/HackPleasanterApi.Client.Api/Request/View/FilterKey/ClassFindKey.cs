@@ -38,9 +38,14 @@ namespace HackPleasanterApi.Client.Api.Request.View.FilterKey
 
         /// <summary>
         /// 検索対象文字列
-        /// 指定された文字列に対してlike検索となる
+        /// ChoicesTextではない場合、指定できる文字列は1個だけとなる。
+        /// 
+        // [引用]
+        // https://pleasanter.org/manual/api-view
+        // ColumnFilterHashの値は、選択肢有りの分類、数値、日付は、配列で複数指定可能です。複数の値を指定した場合はOR検索となります。
+        //  
         /// </summary>
-        public List<string> SearchConditions;
+        public string? SearchConditions = null;
 
         public ClassFilterKey(string DescriptionName)
         {
@@ -61,13 +66,10 @@ namespace HackPleasanterApi.Client.Api.Request.View.FilterKey
         /// <param name="hash"></param>
         public void Merge(Dictionary<string, string> hash)
         {
-            // 分類Aが "みかん" or "ブドウ"
-            // "ClassA":"[\"みかん\",\"ブドウ\"]"
-            if (0 != SearchConditions?.Count)
+            // 何か入っていたら設定する
+            if (false == String.IsNullOrWhiteSpace(SearchConditions))
             {
-                var v = JsonSerializer.Serialize(SearchConditions);
-                hash[DescriptionName] = v;
-
+                hash[DescriptionName] = SearchConditions;
             }
         }
     }

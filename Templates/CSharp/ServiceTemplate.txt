@@ -11,7 +11,7 @@
  *  https://github.com/yamada28go/HackPleasanterApi.Csharp
  *
  *  [動作に必用なライブラリ]
- *  https://www.nuget.org/packages/HackPleasanterApi.CsharpSamples
+ *  https://www.nuget.org/packages/HackPleasanterApi.Csharp
  *
  */
 
@@ -56,6 +56,11 @@ namespace CsharpSamples.Generated.Service
         /// サイトID
         /// </summary>
         private static readonly long SITE_ID_CONSTANT = @(Model.SiteDefinition.SiteId);
+
+        /// <summary>
+        /// ライブラリがサポートする最小のバージョン
+        /// </summary>
+        public override double MINIMUM_SUPPORTED_LIB_VERSION { get; } = 0.3;
 
 
         public @Raw(Model.SiteDefinition.SiteVariableName+"Service") (ServiceConfig config) : base(config, SITE_ID_CONSTANT )

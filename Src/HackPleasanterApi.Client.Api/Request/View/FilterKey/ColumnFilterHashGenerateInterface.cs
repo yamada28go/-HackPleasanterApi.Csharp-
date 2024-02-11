@@ -45,4 +45,4 @@ namespace HackPleasanterApi.Client.Api.Request.View.FilterKey
     public interface ColumnFilterHashGenerateInterface<DataType> : ColumnFilterHashGenerateInterfaceImp
     {
     }
-    }
+}

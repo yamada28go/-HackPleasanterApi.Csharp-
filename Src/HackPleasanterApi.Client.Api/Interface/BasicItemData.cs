@@ -33,28 +33,39 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// </summary>
         public WeakReference<ItemRawData> rawData { get; set; }
 
+        public BasicItemData(ItemRawData _rawData)
+        {
+            this.rawData = new WeakReference<ItemRawData>(_rawData);
+        }
+
 
         #region アクセスインターフェース定義
 
         /// <summary>
         /// サイトID
         /// </summary>
-        public int SiteId
+        public int? SiteId
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.SiteId;
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.SiteId;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.SiteId = value;
-                    return;
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.SiteId = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -62,22 +73,28 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// 更新日時
         /// </summary>
-        public DateTime UpdatedTime
+        public DateTime? UpdatedTime
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.UpdatedTime;
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.UpdatedTime;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.UpdatedTime = value;
-                    return;
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.UpdatedTime = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -85,22 +102,28 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// レコード ID 記録テーブルのみ
         /// </summary>
-        public long ResultId
+        public long? ResultId
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.ResultId;
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.ResultId;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.ResultId = value;
-                    return;
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.ResultId = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -109,22 +132,28 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// レコード ID 期限付きテーブルのみ
         /// </summary>
-        public long IssueId
+        public long? IssueId
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.IssueId;
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.IssueId;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.IssueId = value;
-                    return;
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.IssueId = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -134,22 +163,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// バージョン
         /// </summary>
-        public int Ver
+        public int? Ver
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.Ver;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.Ver;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.Ver = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.Ver = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -158,22 +195,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// タイトル
         /// </summary>
-        public string Title
+        public string? Title
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.Title;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.Title;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.Title = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.Title = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -182,22 +227,29 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// 内容
         /// </summary>
-        public string Body
+        public string? Body
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.Body;
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.Body;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.Body = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.Body = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -206,22 +258,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// 状況
         /// </summary>
-        public int Status
+        public int? Status
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.Status;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.Status;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.Status = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.Status = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -230,22 +290,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// 管理者
         /// </summary>
-        public int Manager
+        public int? Manager
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.Manager;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.Manager;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.Manager = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.Manager = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -253,22 +321,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// 担当者
         /// </summary>
-        public int Owner
+        public int? Owner
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.Owner;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.Owner;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.Owner = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.Owner = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -276,22 +352,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// ロックされているか
         /// </summary>
-        public bool Locked
+        public bool? Locked
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.Locked;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.Locked;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.Locked = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.Locked = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -299,22 +383,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// コメント
         /// </summary>
-        public string Comments
+        public string? Comments
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.Comments;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.Comments;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.Comments = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.Comments = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -322,22 +414,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// 作成者
         /// </summary>
-        public int Creator
+        public int? Creator
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.Creator;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.Creator;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.Creator = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.Creator = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -345,22 +445,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// 更新者
         /// </summary>
-        public int Updator
+        public int? Updator
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.Updator;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.Updator;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.Updator = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.Updator = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -368,22 +476,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// 作成日時
         /// </summary>
-        public DateTime CreatedTime
+        public DateTime? CreatedTime
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.CreatedTime;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.CreatedTime;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.CreatedTime = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.CreatedTime = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -392,22 +508,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// タイトル(表示用)
         /// </summary>
-        public string ItemTitle
+        public string? ItemTitle
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.ItemTitle;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.ItemTitle;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.ItemTitle = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.ItemTitle = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
@@ -415,22 +539,30 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// <summary>
         /// APIバージョン
         /// </summary>
-        public double ApiVersion
+        public double? ApiVersion
         {
             get
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    return obj.ApiVersion;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        return obj.ApiVersion;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }
             set
             {
-                if (rawData.TryGetTarget(out var obj))
+                if (rawData is not null)
                 {
-                    obj.ApiVersion = value;
-                    return;
+
+                    if (rawData.TryGetTarget(out var obj))
+                    {
+                        obj.ApiVersion = value;
+                        return;
+                    }
                 }
                 throw new ApplicationException("参照エラー");
             }

@@ -51,8 +51,8 @@ namespace HackPleasanterApiTest.ItemTest
 
             // テストデータを読み取る
             var a = AttachmentsHelper.MakeAttachmentsFromFile(Path.Combine(GetCurrentPass(), @"sky.jpg"));
-            data.ExtensionElements.AttachmentA = new System.Collections.Generic.List<HackPleasanterApi.Client.Api.Models.ItemModel.Hash.Attachments>();
-            data.ExtensionElements.AttachmentA.Add(a);
+            data.ExtensionElements.テストデータ_添付ファイルA = new System.Collections.Generic.List<HackPleasanterApi.Client.Api.Models.ItemModel.Hash.Attachments>();
+            data.ExtensionElements.テストデータ_添付ファイルA.Add(a);
 
             // itemを生成する
             var x = await s.CreateItem(data);
@@ -64,25 +64,26 @@ namespace HackPleasanterApiTest.ItemTest
             data.ExtensionElements.StringA = "StringA +1";
             data.ExtensionElements.TypeA = "TypeA +1";
 
-            var ts = await s.UpdateItem(x.Id, data);
+            Assert.IsTrue(x.Id.HasValue);
+            var ts = await s.UpdateItem(x?.Id ?? -1, data);
 
             // 比較用に取得する
-            var r = await s.GetItem(x.Id);
+            var r = await s.GetItem(x?.Id ?? -1);
 
             // そのまま更新するとitemは2個に複製される
-            Assert.AreEqual(2, r.ExtensionElements.AttachmentA.Count);
+            Assert.AreEqual(2, r.ExtensionElements.テストデータ_添付ファイルA.Count);
 
             // 対象のデータを取得する
-            var rData = await s.GetAttachments(r.ExtensionElements.AttachmentA[0]);
+            var rData = await s.GetAttachments(r.ExtensionElements.テストデータ_添付ファイルA[0]);
 
             Assert.AreEqual(rData.Response.Base64, a.Base64);
 
-            Assert.AreEqual(r.ExtensionElements.CheckA_value, data.ExtensionElements.CheckA_value);
+            Assert.AreEqual(r.ExtensionElements.CheckA, data.ExtensionElements.CheckA);
 
             //ToDo : タイムフオセットは調整が必要
             // Assert.AreEqual(r.ExtensionElements.DateA_value, data.ExtensionElements.DateA_value);
 
-            Assert.AreEqual(r.ExtensionElements.NumA_value, data.ExtensionElements.NumA_value);
+            Assert.AreEqual(r.ExtensionElements.NumA, data.ExtensionElements.NumA);
             Assert.AreEqual(r.ExtensionElements.StringA, data.ExtensionElements.StringA);
             Assert.AreEqual(r.ExtensionElements.TypeA, data.ExtensionElements.TypeA);
 

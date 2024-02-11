@@ -31,9 +31,9 @@ namespace HackPleasanterApi.Client.Api.Exceptions
     /// </summary>
     public class ChangeItemResultsException : Exception
     {
-        public ChangeItemResults ChangeItemResults { get; private set; }
+        public ChangeItemResults? ChangeItemResults { get; private set; }
 
-        public ChangeItemResultsException(ChangeItemResults ChangeItemResults)
+        public ChangeItemResultsException(ChangeItemResults? ChangeItemResults)
         {
             this.ChangeItemResults = ChangeItemResults;
 

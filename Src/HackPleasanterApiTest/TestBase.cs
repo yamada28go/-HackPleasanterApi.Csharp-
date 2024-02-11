@@ -19,12 +19,9 @@ namespace HackPleasanterApiTest
         protected ServiceConfig MakeTestConfig()
         {
 
-            var cfg = new ServiceConfig
-            {
-                uri = new Uri("http://localhost:8081"),
-                ApiKey = "285f6bfc13564d4f44ae3245559fdf049833e9bb83fd295234e295ac01f4eca2ee1833593645a3b508155d1712b1edcd09d12b8f4cfe3f357d8d15560a1b63b2",
-                ApiVersion = "1.1"
-            };
+            var cfg = new ServiceConfig(
+                new Uri("http://localhost:8081"),
+                "285f6bfc13564d4f44ae3245559fdf049833e9bb83fd295234e295ac01f4eca2ee1833593645a3b508155d1712b1edcd09d12b8f4cfe3f357d8d15560a1b63b2");
 
             return cfg;
 

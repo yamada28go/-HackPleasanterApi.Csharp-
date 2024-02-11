@@ -34,5 +34,10 @@ namespace HackPleasanterApi.Client.Api.Interface
         /// </summary>
         public WeakReference<ItemRawData> rawData { get; set; }
 
+        public ExtensionElementsBase(ItemRawData _rawData)
+        {
+            this.rawData = new WeakReference<ItemRawData>(_rawData);
+        }
+
     }
 }

@@ -17,7 +17,6 @@
  * under the License.
  * */
 
-using AutoMapper;
 using HackPleasanterApi.Client.Api.Models.ItemModel;
 using HackPleasanterApi.Client.Api.Request;
 using System;
@@ -26,25 +25,48 @@ using System.Text;
 
 namespace HackPleasanterApi.Client.Api.Mapper
 {
-    class MapperUtility
+    internal static class MapperUtility
     {
-
         /// <summary>
-        /// データ変換用のマッパーを生成する
+        /// Itemの定義をコピーする
         /// </summary>
+        /// <param name="rawData"></param>
         /// <returns></returns>
-        public static IMapper GetMapper()
+        internal static CreateItemRequest CreateItemFromRawData(this ItemRawData rawData)
         {
-            // Mapするモデルの設定
-            var config = new MapperConfiguration(cfg =>
+            var createRequest = new CreateItemRequest
             {
-                cfg.CreateMap<ItemRawData, CreateItemRequest>()
-                ;
-            });
-            // Mapperを作成
-            var mapper = config.CreateMapper();
-            return mapper;
+                // Copy all inheritable properties from ItemRawDataImp
+                SiteId = rawData.SiteId,
+                UpdatedTime = rawData.UpdatedTime,
+                ResultId = rawData.ResultId,
+                IssueId = rawData.IssueId,
+                Ver = rawData.Ver,
+                Title = rawData.Title,
+                Body = rawData.Body,
+                Status = rawData.Status,
+                Manager = rawData.Manager,
+                Owner = rawData.Owner,
+                Locked = rawData.Locked,
+                Comments = rawData.Comments,
+                Creator = rawData.Creator,
+                Updator = rawData.Updator,
+                CreatedTime = rawData.CreatedTime,
+                ItemTitle = rawData.ItemTitle,
+                ApiVersion = rawData.ApiVersion,
+                ClassHash = rawData.ClassHash,
+                NumHash = rawData.NumHash,
+                DateHash = rawData.DateHash,
+                DescriptionHash = rawData.DescriptionHash,
+                CheckHash = rawData.CheckHash,
+
+                // Copy properties specific to ItemRawData
+                AttachmentsHash = rawData.AttachmentsHash
+            };
+
+            return createRequest;
         }
+
 
     }
 }

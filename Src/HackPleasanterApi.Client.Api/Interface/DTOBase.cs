@@ -28,6 +28,10 @@ namespace HackPleasanterApi.Client.Api.Interface
     /// </summary>
     public abstract class DTOBase<T> where T : ExtensionElementsBase
     {
+        public DTOBase(ItemRawData rawData)
+        {
+            this._rawData = rawData;
+        }
 
         private ItemRawData _rawData;
 
@@ -44,12 +48,12 @@ namespace HackPleasanterApi.Client.Api.Interface
             {
                 this._rawData = value;
 
-                if (null != ExtensionElements)
+                if (_ExtensionElements?.rawData is not null && value is not null)
                 {
                     _ExtensionElements.rawData = new WeakReference<ItemRawData>(value);
                 }
 
-                if (null != BasicItemData)
+                if (_BasicItemData is not null && value is not null)
                 {
                     _BasicItemData.rawData = new WeakReference<ItemRawData>(value);
                 }
@@ -58,12 +62,12 @@ namespace HackPleasanterApi.Client.Api.Interface
             }
         }
 
-        private T _ExtensionElements;
+        private T? _ExtensionElements;
 
         /// <summary>
         /// ユーザーが独自に定義した拡張要素一覧
         /// </summary>
-        public T ExtensionElements
+        public T? ExtensionElements
         {
             get
             {
@@ -72,14 +76,18 @@ namespace HackPleasanterApi.Client.Api.Interface
             set
             {
                 this._ExtensionElements = value;
-                this._ExtensionElements.rawData = new WeakReference<ItemRawData>(this.rawData);
+                if (_ExtensionElements?.rawData is not null && this.rawData is not null)
+                {
+                    this._ExtensionElements.rawData = new WeakReference<ItemRawData>(this.rawData);
+                }
             }
         }
 
 
-        private BasicItemData _BasicItemData;
+        private BasicItemData? _BasicItemData;
 
-        public BasicItemData BasicItemData {
+        public BasicItemData? BasicItemData
+        {
 
             get
             {
@@ -88,7 +96,10 @@ namespace HackPleasanterApi.Client.Api.Interface
             set
             {
                 this._BasicItemData = value;
-                this._BasicItemData.rawData = new WeakReference<ItemRawData>(this.rawData);
+                if (_BasicItemData?.rawData is not null && this.rawData is not null)
+                {
+                    this._BasicItemData.rawData = new WeakReference<ItemRawData>(this.rawData);
+                }
             }
 
 

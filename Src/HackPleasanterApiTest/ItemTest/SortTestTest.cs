@@ -18,7 +18,7 @@ namespace HackPleasanterApiTest.ItemTest
     [TestClass]
     public class SortTestTest : TestBase
     {
-        private readonly DateTime CONST_BaseDataTime = new DateTime(2020, 1, 1, 6, 30, 0);
+        private new readonly DateTime CONST_BaseDataTime = new DateTime(2020, 1, 1, 6, 30, 0);
 
         #region テスト用のデータを生成する
 
@@ -174,7 +174,7 @@ namespace HackPleasanterApiTest.ItemTest
             for (int i = 0; i < correctList.Count; i++)
             {
                 var tr = r[i];
-                Assert.AreEqual(tr.ExtensionElements.NumA_value, correctList.Count - i);
+                Assert.AreEqual(tr.ExtensionElements.NumA, correctList.Count - i);
             }
         }
 
@@ -202,7 +202,7 @@ namespace HackPleasanterApiTest.ItemTest
             for (int i = 1; i <= 10; i++)
             {
                 var tr = r[i - 1];
-                Assert.AreEqual(tr.ExtensionElements.NumA_value, i);
+                Assert.AreEqual(tr.ExtensionElements.NumA, i);
             }
         }
 
@@ -239,18 +239,18 @@ namespace HackPleasanterApiTest.ItemTest
 
             // 二重の条件でソートされてくる
             // 検索結果の上部にはtrueが集まっている
-            Assert.AreEqual(r[0].ExtensionElements.NumA_value, 10);
-            Assert.AreEqual(r[1].ExtensionElements.NumA_value, 8);
-            Assert.AreEqual(r[2].ExtensionElements.NumA_value, 6);
-            Assert.AreEqual(r[3].ExtensionElements.NumA_value, 4);
-            Assert.AreEqual(r[4].ExtensionElements.NumA_value, 2);
+            Assert.AreEqual(r[0].ExtensionElements.NumA, 10);
+            Assert.AreEqual(r[1].ExtensionElements.NumA, 8);
+            Assert.AreEqual(r[2].ExtensionElements.NumA, 6);
+            Assert.AreEqual(r[3].ExtensionElements.NumA, 4);
+            Assert.AreEqual(r[4].ExtensionElements.NumA, 2);
 
             // trueの後にfalseが集まっている
-            Assert.AreEqual(r[5].ExtensionElements.NumA_value, 9);
-            Assert.AreEqual(r[6].ExtensionElements.NumA_value, 7);
-            Assert.AreEqual(r[7].ExtensionElements.NumA_value, 5);
-            Assert.AreEqual(r[8].ExtensionElements.NumA_value, 3);
-            Assert.AreEqual(r[9].ExtensionElements.NumA_value, 1);
+            Assert.AreEqual(r[5].ExtensionElements.NumA, 9);
+            Assert.AreEqual(r[6].ExtensionElements.NumA, 7);
+            Assert.AreEqual(r[7].ExtensionElements.NumA, 5);
+            Assert.AreEqual(r[8].ExtensionElements.NumA, 3);
+            Assert.AreEqual(r[9].ExtensionElements.NumA, 1);
 
         }
 
@@ -282,18 +282,18 @@ namespace HackPleasanterApiTest.ItemTest
 
             // 二重の条件でソートされてくる
             // 検索結果の上部にはtrueが集まっている
-            Assert.AreEqual(r[5].ExtensionElements.NumA_value, 10);
-            Assert.AreEqual(r[6].ExtensionElements.NumA_value, 8);
-            Assert.AreEqual(r[7].ExtensionElements.NumA_value, 6);
-            Assert.AreEqual(r[8].ExtensionElements.NumA_value, 4);
-            Assert.AreEqual(r[9].ExtensionElements.NumA_value, 2);
+            Assert.AreEqual(r[5].ExtensionElements.NumA, 10);
+            Assert.AreEqual(r[6].ExtensionElements.NumA, 8);
+            Assert.AreEqual(r[7].ExtensionElements.NumA, 6);
+            Assert.AreEqual(r[8].ExtensionElements.NumA, 4);
+            Assert.AreEqual(r[9].ExtensionElements.NumA, 2);
 
             // trueの後にfalseが集まっている
-            Assert.AreEqual(r[0].ExtensionElements.NumA_value, 9);
-            Assert.AreEqual(r[1].ExtensionElements.NumA_value, 7);
-            Assert.AreEqual(r[2].ExtensionElements.NumA_value, 5);
-            Assert.AreEqual(r[3].ExtensionElements.NumA_value, 3);
-            Assert.AreEqual(r[4].ExtensionElements.NumA_value, 1);
+            Assert.AreEqual(r[0].ExtensionElements.NumA, 9);
+            Assert.AreEqual(r[1].ExtensionElements.NumA, 7);
+            Assert.AreEqual(r[2].ExtensionElements.NumA, 5);
+            Assert.AreEqual(r[3].ExtensionElements.NumA, 3);
+            Assert.AreEqual(r[4].ExtensionElements.NumA, 1);
         }
 
         #endregion
@@ -325,7 +325,7 @@ namespace HackPleasanterApiTest.ItemTest
             for (int i = 0; i < correctList.Count; i++)
             {
                 var tr = r[i];
-                Assert.AreEqual(tr.ExtensionElements.NumA_value, correctList.Count - i);
+                Assert.AreEqual(tr.ExtensionElements.NumA, correctList.Count - i);
             }
         }
 
@@ -353,7 +353,7 @@ namespace HackPleasanterApiTest.ItemTest
             for (int i = 1; i <= 10; i++)
             {
                 var tr = r[i - 1];
-                Assert.AreEqual(tr.ExtensionElements.NumA_value, i);
+                Assert.AreEqual(tr.ExtensionElements.NumA, i);
             }
         }
 

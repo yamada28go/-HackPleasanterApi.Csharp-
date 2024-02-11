@@ -42,7 +42,7 @@ namespace HackPleasanterApi.Client.Api.Request.View
         public bool? Overdue;
 
         // 検索
-        public string Search;
+        public string? Search;
     }
 
     /// <summary>
@@ -58,13 +58,13 @@ namespace HackPleasanterApi.Client.Api.Request.View
         /// <summary>
         /// 指定検索条件文字列
         /// </summary>
-        internal List<ColumnFilterHashGenerateInterfaceImp> ColumnFilter;
+        internal List<ColumnFilterHashGenerateInterfaceImp>? ColumnFilter;
 
 
         /// <summary>
         /// ソート条件
         /// </summary>
-        internal List<ColumnSorterKeyImp> ColumnSorter;
+        internal List<ColumnSorterKeyImp>? ColumnSorter;
 
     }
 
@@ -108,13 +108,13 @@ namespace HackPleasanterApi.Client.Api.Request.View
         /// <summary>
         /// 検索条件
         /// </summary>
-        public Dictionary<string, string> ColumnFilterHash { get; set; }
+        public Dictionary<string, string>? ColumnFilterHash { get; set; }
 
 
         /// <summary>
         /// ソート順序
         /// </summary>
-        public Dictionary<string, string> ColumnSorterHash { get; set; }
+        public Dictionary<string, string>? ColumnSorterHash { get; set; }
 
     }
 }

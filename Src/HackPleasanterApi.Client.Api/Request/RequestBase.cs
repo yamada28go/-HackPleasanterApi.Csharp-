@@ -23,15 +23,37 @@ using System.Text;
 
 namespace HackPleasanterApi.Client.Api.Request
 {
-    public class RequestBase
+    public interface IRequestBase
     {
         /// <summary>
         /// 対象とするAPIバージョン
         /// </summary>
-        public string ApiVersion;
+        string ApiVersion { get; set; }
         /// <summary>
         /// アクセス用のAPIキー
         /// </summary>
-        public string ApiKey;
+        string ApiKey { get; set; }
+
+    }
+
+
+    public class RequestBase : IRequestBase
+    {
+        /// <summary>
+        /// 対象とするAPIバージョン
+        /// </summary>
+        public string ApiVersion { get; set; }
+        /// <summary>
+        /// アクセス用のAPIキー
+        /// </summary>
+        public string ApiKey { get; set; }
+
+        public RequestBase(string _ApiVersion, string _ApiKey)
+        {
+
+            this.ApiVersion = _ApiVersion;
+            this.ApiKey = _ApiKey;
+
+        }
     }
 }

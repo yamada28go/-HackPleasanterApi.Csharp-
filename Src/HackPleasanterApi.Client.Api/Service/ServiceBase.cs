@@ -17,20 +17,10 @@
  * under the License.
  * */
 
-using AutoMapper;
-using HackPleasanterApi.Client.Api.Interface;
 using HackPleasanterApi.Client.Api.Logging;
-using HackPleasanterApi.Client.Api.Mapper;
 using HackPleasanterApi.Client.Api.Request;
-using HackPleasanterApi.Client.Api.Response;
-using HackPleasanterApi.Client.Api.Response.ApiResults;
-using HackPleasanterApi.Client.Api.Response.ResponseData.Item;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -98,12 +88,7 @@ namespace HackPleasanterApi.Client.Api.Service
         /// <summary>
         /// HTTPアクセス用クライアント
         /// </summary>
-          protected HttpClient client = new HttpClient(new Helper.LoggingHandler(new HttpClientHandler()));
-
-        /// <summary>
-        /// 値変換用のマッパーオブジェクト
-        /// </summary>
-        protected IMapper Mapper { get; private set; } = MapperUtility.GetMapper();
+        protected HttpClient client = new HttpClient(new Helper.LoggingHandler(new HttpClientHandler()));
 
 
         /// <summary>
@@ -129,15 +114,11 @@ namespace HackPleasanterApi.Client.Api.Service
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        protected T GenerateRequestBase<T>() where T : RequestBase, new()
+        protected RequestBase GenerateRequestBase()
         {
-            var p = new T
-            {
-                ApiVersion = this.serviceConfig.ApiVersion,
-                ApiKey = this.serviceConfig.ApiKey
-            };
+            return new RequestBase(this.serviceConfig.ApiVersion, this.serviceConfig.ApiKey);
 
-            return p;
+
         }
 
     }

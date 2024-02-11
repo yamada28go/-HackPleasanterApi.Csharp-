@@ -14,14 +14,16 @@ namespace HackPleasanterApi.Client.Api.Helper.Mix
         /// <typeparam name="T"></typeparam>
         /// <param name="src"></param>
         /// <returns></returns>
-        public static string  DumpAsJsonString<T>(this T src  ) {
+        public static string DumpAsJsonString<T>(this T src)
+        {
 
             try
             {
                 string jsonString = JsonSerializer.Serialize(src);
                 return jsonString;
             }
-            catch (Exception exp) {
+            catch
+            {
 
             }
             return "Dump Faild!";

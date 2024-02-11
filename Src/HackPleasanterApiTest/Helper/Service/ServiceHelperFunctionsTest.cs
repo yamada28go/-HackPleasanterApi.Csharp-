@@ -48,7 +48,8 @@ namespace HackPleasanterApiTest.ItemTest
         [TestMethod]
         public async Task 正常系_関数の値が帰ってくることを確認()
         {
-            var r = await ServiceHelperFunctions.DoReyry( async () => {
+            var r = await ServiceHelperFunctions.DoReyry(async () =>
+            {
                 await Task.CompletedTask;
                 return 1;
             });
@@ -65,7 +66,8 @@ namespace HackPleasanterApiTest.ItemTest
             HackPleasanterApiExceptions targrteExp = null;
             try
             {
-                var r = await ServiceHelperFunctions.DoReyry<int>(async () => {
+                var r = await ServiceHelperFunctions.DoReyry<int>(async () =>
+                {
                     await Task.CompletedTask;
                     throw new ApplicationException("Error");
                 });

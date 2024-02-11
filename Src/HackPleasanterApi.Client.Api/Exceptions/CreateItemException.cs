@@ -31,9 +31,9 @@ namespace HackPleasanterApi.Client.Api.Exceptions
     /// </summary>
     public class CreateItemException : Exception
     {
-        public CreateItemResults CreateItemResponse { get; private set; }
+        public CreateItemResults? CreateItemResponse { get; private set; }
 
-        public CreateItemException(CreateItemResults CreateItemResponse)
+        public CreateItemException(CreateItemResults? CreateItemResponse)
         {
             this.CreateItemResponse = CreateItemResponse;
 

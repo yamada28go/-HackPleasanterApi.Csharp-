@@ -29,22 +29,22 @@ namespace HackPleasanterApi.Client.Api.Models.ItemModel.Hash
         /// <summary>
         /// string 添付ファイルのGUID
         /// </summary>
-        public string Guid { get; set; }
+        public string? Guid { get; set; }
 
         /// <summary>
         /// 添付ファイル名
         /// </summary>
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// string Content Type
         /// </summary>
-        public string ContentType { get; set; }
+        public string? ContentType { get; set; }
 
         /// <summary>
         ///  string ファイルデータをBase64エンコーディングしたもの
         /// </summary>
-        public string Base64 { get; set; }
+        public string? Base64 { get; set; }
 
     }
 
