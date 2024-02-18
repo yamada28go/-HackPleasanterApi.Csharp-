@@ -18,7 +18,7 @@ namespace HackPleasanterApiTest.ItemTest
     [TestClass]
     public class SortTestTest : TestBase
     {
-        private readonly DateTime CONST_BaseDataTime = new DateTime(2020, 1, 1, 6, 30, 0);
+        private new readonly DateTime CONST_BaseDataTime = new DateTime(2020, 1, 1, 6, 30, 0);
 
         #region テスト用のデータを生成する
 
@@ -26,26 +26,26 @@ namespace HackPleasanterApiTest.ItemTest
         /// テストにおいて、検索対象となる情報を生成する
         /// </summary>
         /// <returns></returns>
-        private async Task<List<CsharpSamples.Generated.Models.RecordingTableModel>> MakeTestTargetData()
+        private async Task<List<CsharpSamples.Generated.Models.記録テーブルModel>> MakeTestTargetData()
         {
 
             var cfg = MakeTestConfig();
 
-            var rl = new List<CsharpSamples.Generated.Models.RecordingTableModel>();
+            var rl = new List<CsharpSamples.Generated.Models.記録テーブルModel>();
 
             // テストデータを作る
             {
-                var s = new RecordingTableService(cfg);
+                var s = new 記録テーブルService(cfg);
 
                 // テストデータはすべて消去する
-                await s.DeleteALL();
+                await s.DeleteALL(true);
 
                 var BaseDataTime = CONST_BaseDataTime;
 
                 for (int i = 1; i <= 10; i++)
                 {
 
-                    var data = new CsharpSamples.Generated.Models.RecordingTableModel();
+                    var data = new CsharpSamples.Generated.Models.記録テーブルModel();
                     data.BasicItemData.Title = "タイトルてすと";
                     data.BasicItemData.Body = "本文";
                     data.BasicItemData.Comments = "コメント";
@@ -58,7 +58,7 @@ namespace HackPleasanterApiTest.ItemTest
                     data.ExtensionElements.NumA = i;
 
                     data.ExtensionElements.CheckA = i % 2 == 0;
-                    data.ExtensionElements.DateA = BaseDataTime;
+                    data.ExtensionElements.DataA = BaseDataTime;
                     BaseDataTime = BaseDataTime.AddDays(1);
 
                     await s.CreateItem(data);
@@ -156,11 +156,11 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
 
-            var sortKey = RecordingTableService.ColumnSorterKeys.NumA;
+            var sortKey = 記録テーブルService.ColumnSorterKeys.NumA;
             sortKey.ColumnSorterType = HackPleasanterApi.Client.Api.Request.View.ColumnSorterType.Desc;
             v.Add(sortKey);
 
@@ -174,7 +174,7 @@ namespace HackPleasanterApiTest.ItemTest
             for (int i = 0; i < correctList.Count; i++)
             {
                 var tr = r[i];
-                Assert.AreEqual(tr.ExtensionElements.NumA_value, correctList.Count - i);
+                Assert.AreEqual(tr.ExtensionElements.NumA, correctList.Count - i);
             }
         }
 
@@ -184,11 +184,11 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
 
-            var sortKey = RecordingTableService.ColumnSorterKeys.NumA;
+            var sortKey = 記録テーブルService.ColumnSorterKeys.NumA;
             sortKey.ColumnSorterType = HackPleasanterApi.Client.Api.Request.View.ColumnSorterType.Asc;
             v.Add(sortKey);
 
@@ -202,7 +202,7 @@ namespace HackPleasanterApiTest.ItemTest
             for (int i = 1; i <= 10; i++)
             {
                 var tr = r[i - 1];
-                Assert.AreEqual(tr.ExtensionElements.NumA_value, i);
+                Assert.AreEqual(tr.ExtensionElements.NumA, i);
             }
         }
 
@@ -217,17 +217,17 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
 
             // チェックを第一要素に
-            var chSortKey = RecordingTableService.ColumnSorterKeys.CheckA;
+            var chSortKey = 記録テーブルService.ColumnSorterKeys.CheckA;
             chSortKey.ColumnSorterType = HackPleasanterApi.Client.Api.Request.View.ColumnSorterType.Desc;
             v.Add(chSortKey);
 
             // Numを第２要素にする
-            var numSortKey = RecordingTableService.ColumnSorterKeys.NumA;
+            var numSortKey = 記録テーブルService.ColumnSorterKeys.NumA;
             numSortKey.ColumnSorterType = HackPleasanterApi.Client.Api.Request.View.ColumnSorterType.Desc;
             v.Add(numSortKey);
 
@@ -239,18 +239,18 @@ namespace HackPleasanterApiTest.ItemTest
 
             // 二重の条件でソートされてくる
             // 検索結果の上部にはtrueが集まっている
-            Assert.AreEqual(r[0].ExtensionElements.NumA_value, 10);
-            Assert.AreEqual(r[1].ExtensionElements.NumA_value, 8);
-            Assert.AreEqual(r[2].ExtensionElements.NumA_value, 6);
-            Assert.AreEqual(r[3].ExtensionElements.NumA_value, 4);
-            Assert.AreEqual(r[4].ExtensionElements.NumA_value, 2);
+            Assert.AreEqual(r[0].ExtensionElements.NumA, 10);
+            Assert.AreEqual(r[1].ExtensionElements.NumA, 8);
+            Assert.AreEqual(r[2].ExtensionElements.NumA, 6);
+            Assert.AreEqual(r[3].ExtensionElements.NumA, 4);
+            Assert.AreEqual(r[4].ExtensionElements.NumA, 2);
 
             // trueの後にfalseが集まっている
-            Assert.AreEqual(r[5].ExtensionElements.NumA_value, 9);
-            Assert.AreEqual(r[6].ExtensionElements.NumA_value, 7);
-            Assert.AreEqual(r[7].ExtensionElements.NumA_value, 5);
-            Assert.AreEqual(r[8].ExtensionElements.NumA_value, 3);
-            Assert.AreEqual(r[9].ExtensionElements.NumA_value, 1);
+            Assert.AreEqual(r[5].ExtensionElements.NumA, 9);
+            Assert.AreEqual(r[6].ExtensionElements.NumA, 7);
+            Assert.AreEqual(r[7].ExtensionElements.NumA, 5);
+            Assert.AreEqual(r[8].ExtensionElements.NumA, 3);
+            Assert.AreEqual(r[9].ExtensionElements.NumA, 1);
 
         }
 
@@ -260,17 +260,17 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
 
             // チェックを第一要素に
-            var chSortKey = RecordingTableService.ColumnSorterKeys.CheckA;
+            var chSortKey = 記録テーブルService.ColumnSorterKeys.CheckA;
             chSortKey.ColumnSorterType = HackPleasanterApi.Client.Api.Request.View.ColumnSorterType.Asc;
             v.Add(chSortKey);
 
             // Numを第２要素にする
-            var numSortKey = RecordingTableService.ColumnSorterKeys.NumA;
+            var numSortKey = 記録テーブルService.ColumnSorterKeys.NumA;
             numSortKey.ColumnSorterType = HackPleasanterApi.Client.Api.Request.View.ColumnSorterType.Desc;
             v.Add(numSortKey);
 
@@ -282,18 +282,18 @@ namespace HackPleasanterApiTest.ItemTest
 
             // 二重の条件でソートされてくる
             // 検索結果の上部にはtrueが集まっている
-            Assert.AreEqual(r[5].ExtensionElements.NumA_value, 10);
-            Assert.AreEqual(r[6].ExtensionElements.NumA_value, 8);
-            Assert.AreEqual(r[7].ExtensionElements.NumA_value, 6);
-            Assert.AreEqual(r[8].ExtensionElements.NumA_value, 4);
-            Assert.AreEqual(r[9].ExtensionElements.NumA_value, 2);
+            Assert.AreEqual(r[5].ExtensionElements.NumA, 10);
+            Assert.AreEqual(r[6].ExtensionElements.NumA, 8);
+            Assert.AreEqual(r[7].ExtensionElements.NumA, 6);
+            Assert.AreEqual(r[8].ExtensionElements.NumA, 4);
+            Assert.AreEqual(r[9].ExtensionElements.NumA, 2);
 
             // trueの後にfalseが集まっている
-            Assert.AreEqual(r[0].ExtensionElements.NumA_value, 9);
-            Assert.AreEqual(r[1].ExtensionElements.NumA_value, 7);
-            Assert.AreEqual(r[2].ExtensionElements.NumA_value, 5);
-            Assert.AreEqual(r[3].ExtensionElements.NumA_value, 3);
-            Assert.AreEqual(r[4].ExtensionElements.NumA_value, 1);
+            Assert.AreEqual(r[0].ExtensionElements.NumA, 9);
+            Assert.AreEqual(r[1].ExtensionElements.NumA, 7);
+            Assert.AreEqual(r[2].ExtensionElements.NumA, 5);
+            Assert.AreEqual(r[3].ExtensionElements.NumA, 3);
+            Assert.AreEqual(r[4].ExtensionElements.NumA, 1);
         }
 
         #endregion
@@ -307,11 +307,11 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
 
-            var sortKey = RecordingTableService.ColumnSorterKeys.DateA;
+            var sortKey = 記録テーブルService.ColumnSorterKeys.DataA;
             sortKey.ColumnSorterType = HackPleasanterApi.Client.Api.Request.View.ColumnSorterType.Desc;
             v.Add(sortKey);
 
@@ -325,7 +325,7 @@ namespace HackPleasanterApiTest.ItemTest
             for (int i = 0; i < correctList.Count; i++)
             {
                 var tr = r[i];
-                Assert.AreEqual(tr.ExtensionElements.NumA_value, correctList.Count - i);
+                Assert.AreEqual(tr.ExtensionElements.NumA, correctList.Count - i);
             }
         }
 
@@ -335,11 +335,11 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
 
-            var sortKey = RecordingTableService.ColumnSorterKeys.DateA;
+            var sortKey = 記録テーブルService.ColumnSorterKeys.DataA;
             sortKey.ColumnSorterType = HackPleasanterApi.Client.Api.Request.View.ColumnSorterType.Asc;
             v.Add(sortKey);
 
@@ -353,7 +353,7 @@ namespace HackPleasanterApiTest.ItemTest
             for (int i = 1; i <= 10; i++)
             {
                 var tr = r[i - 1];
-                Assert.AreEqual(tr.ExtensionElements.NumA_value, i);
+                Assert.AreEqual(tr.ExtensionElements.NumA, i);
             }
         }
 

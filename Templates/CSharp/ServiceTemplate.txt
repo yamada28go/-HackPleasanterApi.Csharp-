@@ -1,4 +1,22 @@
-﻿using CsharpSamples.Generated.Models;
+﻿/**
+ *
+ * [注意]
+ *  自動生成されたコードです。
+ *  変更時には十分注意して変更してください。
+ *
+ *  [生成コマンド]
+ *  https://github.com/yamada28go/HackPleasanterApiCli
+ *
+ *  [生成元テンプレートファイル]
+ *  https://github.com/yamada28go/HackPleasanterApi.Csharp
+ *
+ *  [動作に必用なライブラリ]
+ *  https://www.nuget.org/packages/HackPleasanterApi.Csharp
+ *
+ */
+
+
+using CsharpSamples.Generated.Models;
 using HackPleasanterApi.Client.Api.Request.View;
 using HackPleasanterApi.Client.Api.Request.View.FilterKey;
 using HackPleasanterApi.Client.Api.Service;
@@ -28,18 +46,24 @@ using System.Text;
 
 namespace CsharpSamples.Generated.Service
 {
+
     /// <summary>
     /// @Raw(Model.SiteDefinition.Title)アクセスサービス
     /// </summary>
-    public class @(TargetClassName) : ItmeServiceBase<@Raw(ModelClassName),@Raw(ModelClassName).@(ExtensionElementsClassName)>
+    public class @Raw(TargetClassName) : ItmeServiceBase<@Raw(ModelClassName),@Raw(ModelClassName).@Raw(ExtensionElementsClassName)>
     {
         /// <summary>
         /// サイトID
         /// </summary>
         private static readonly long SITE_ID_CONSTANT = @(Model.SiteDefinition.SiteId);
 
+        /// <summary>
+        /// ライブラリがサポートする最小のバージョン
+        /// </summary>
+        public override double MINIMUM_SUPPORTED_LIB_VERSION { get; } = 0.3;
 
-        public @(Model.SiteDefinition.SiteVariableName+"Service")(ServiceConfig config) : base(config, SITE_ID_CONSTANT )
+
+        public @Raw(Model.SiteDefinition.SiteVariableName+"Service") (ServiceConfig config) : base(config, SITE_ID_CONSTANT )
         {
         }
 

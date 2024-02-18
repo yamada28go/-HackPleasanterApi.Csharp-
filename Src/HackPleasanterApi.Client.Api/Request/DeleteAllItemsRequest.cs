@@ -27,22 +27,22 @@ namespace HackPleasanterApi.Client.Api.Request
     /// <summary>
     /// 全データ削除リクエスト
     /// </summary>
-    public class DeleteAllItemsRequestBase<TableType> : RequestBase
+    public class DeleteAllItemsRequestBase<TableType>
     {
         /// <summary>
         /// 物理消去する
         /// </summary>
-        public bool PhysicalDelete = false;
+        public bool PhysicalDelete { get; set; } = false;
 
         /// <summary>
         /// 削除対象のitemを指定
         /// </summary>
-        public List<long> Selected;
+        public List<long>? Selected { get; set; }
 
         /// <summary>
         /// 全アイテム削除
         /// </summary>
-        public bool All;
+        public bool All { get; set; }
 
     }
 
@@ -55,19 +55,38 @@ namespace HackPleasanterApi.Client.Api.Request
         /// <summary>
         /// 検索条件
         /// </summary>
-        public View.View<TableType> View;
+        public View.View<TableType>? View { get; set; }
+
     }
 
     /// <summary>
     /// 全データ削除リクエスト
     /// </summary>
-    public class DeleteAllItemsRequestSend<TableType> : DeleteAllItemsRequestBase<TableType>
+    public class DeleteAllItemsRequestSend<TableType> : DeleteAllItemsRequestBase<TableType>, IRequestBase
     {
+
+        /// <summary>
+        /// 対象とするAPIバージョン
+        /// </summary>
+        public string ApiVersion { get; set; } = String.Empty;
+
+        /// <summary>
+        /// アクセス用のAPIキー
+        /// </summary>
+        public string ApiKey { get; set; } = String.Empty;
 
         /// <summary>
         /// 検索条件
         /// </summary>
-        public Request.View.ViewSend View { get; set; }
+        public Request.View.ViewSend? View { get; set; }
+
+        // デフォルトコンストラクタ
+        public DeleteAllItemsRequestSend(Request.View.ViewSend? _View)
+        {
+            this.View = _View;
+
+
+        }
 
     }
 
@@ -79,13 +98,14 @@ namespace HackPleasanterApi.Client.Api.Request
             where TableType : new()
         {
 
-            var r = new DeleteAllItemsRequestSend<TableType>();
+            var r = new DeleteAllItemsRequestSend<TableType>(
+                null
+                );
 
-            r.ApiKey = src.ApiKey;
-            r.ApiVersion = src.ApiVersion;
 
             r.Selected = src.Selected;
             r.All = src.All;
+            r.PhysicalDelete = src.PhysicalDelete;
 
             return r;
 

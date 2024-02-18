@@ -35,7 +35,7 @@ namespace HackPleasanterApi.Client.Api.Response.ApiResults
         /// <summary>
         /// 戻り値データ
         /// </summary>
-        public ItemType Response { get; set; }
+        public ItemType? Response { get; set; }
     }
 
 

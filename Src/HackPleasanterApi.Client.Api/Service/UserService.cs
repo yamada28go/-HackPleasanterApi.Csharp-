@@ -28,6 +28,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,18 +49,18 @@ namespace HackPleasanterApi.Client.Api.Service
         /// </summary>
         /// <param name="itemID"></param>
         /// <returns></returns>
-        public async Task<UserResponse> GetAllUser()
+        public async Task<UserResponse?> GetAllUser()
         {
             // 検索条件を設定
-            var r = GenerateRequestBase<RequestBase>();
+            var r = GenerateRequestBase();
 
             HttpResponseMessage response = await client.PostAsJsonAsync($"pleasanter/api/users/get", r);
             if (response.IsSuccessStatusCode)
             {
                 // API呼び出しを実行
-                var targetData = await response.Content.ReadAsAsync<UserApiResults>();
+                var targetData = await response.Content.ReadFromJsonAsync<UserApiResults>();
 
-                return targetData.Response;
+                return targetData?.Response;
             }
 
             return null;
@@ -72,17 +73,17 @@ namespace HackPleasanterApi.Client.Api.Service
         /// </summary>
         /// <param name="itemID"></param>
         /// <returns></returns>
-        public async Task<DeleteApiResults> DeleteItem(long itemID)
+        public async Task<DeleteApiResults?> DeleteItem(long itemID)
         {
-            var r = GenerateRequestBase<RequestBase>();
+            var r = GenerateRequestBase();
 
             HttpResponseMessage response = await client.PostAsJsonAsync($"fs/api/users/{itemID}/delete", r);
             if (response.IsSuccessStatusCode)
             {
                 // API呼び出しを実行
-                var targetData = await response.Content.ReadAsAsync<DeleteApiResults>();
+                var targetData = await response.Content.ReadFromJsonAsync<DeleteApiResults>();
 
-                if (targetData.StatusCode == 200)
+                if (targetData?.StatusCode == 200)
                 {
 
                     return targetData;

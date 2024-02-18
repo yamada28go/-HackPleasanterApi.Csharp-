@@ -61,7 +61,7 @@ namespace HackPleasanterApi.Client.Api.Request.View.FilterKey
         /// <summary>
         /// Num列に対する検索条件
         /// </summary>
-        public List<Range> SearchConditions;
+        public List<Range>? SearchConditions = null;
 
 
         public DateFilterKey(string DescriptionName)
@@ -176,7 +176,7 @@ namespace HackPleasanterApi.Client.Api.Request.View.FilterKey
                 var sb = new StringBuilder();
                 sb.Append("[");
 
-                foreach (var ele in SearchConditions)
+                foreach (var ele in SearchConditions ?? new List<Range>())
                 {
 
                     if (true == ele.Value.HasValue)

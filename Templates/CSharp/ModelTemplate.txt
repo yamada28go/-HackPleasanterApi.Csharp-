@@ -1,9 +1,28 @@
-﻿using HackPleasanterApi.Client.Api.Interface;
+﻿/**
+ *
+ * [注意]
+ *  自動生成されたコードです。
+ *  変更時には十分注意して変更してください。
+ *
+ *  [生成コマンド]
+ *  https://github.com/yamada28go/HackPleasanterApiCli
+ *
+ *  [生成元テンプレートファイル]
+ *  https://github.com/yamada28go/HackPleasanterApi.Csharp
+ *
+ *  [動作に必用なライブラリ]
+ *  https://www.nuget.org/packages/HackPleasanterApi.Csharp
+ *
+ */
+
+
+using HackPleasanterApi.Client.Api.Interface;
 using HackPleasanterApi.Client.Api.Models.ItemModel;
 using HackPleasanterApi.Client.Api.Models.ItemModel.Hash;
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 
 namespace CsharpSamples.Generated.Models
 {
@@ -16,45 +35,34 @@ namespace CsharpSamples.Generated.Models
   string ExtensionElementsClassName = TargetClassName + "ExtensionElements"; 
 
 }
-
-
     /// <summary>
     /// @Raw(Model.SiteDefinition.Title) DTOクラス
     /// </summary>
-    public class @(TargetClassName) : DTOBase<@(TargetClassName).@(ExtensionElementsClassName)>
+    public class @Raw(TargetClassName) : DTOBase<@Raw(TargetClassName).@Raw(ExtensionElementsClassName)>
     {
 
-        public @(TargetClassName)()
+        public @Raw(TargetClassName) ():base(new ItemRawData())
         {
-            this.rawData = new ItemRawData();
-            InternalData();
+            this.ExtensionElements = new @Raw(ExtensionElementsClassName) (this.rawData);
+            this.BasicItemData = new BasicItemData(this.rawData);
         }
 
 
-        public @(TargetClassName)(ItemRawData rawData)
+        public @Raw(TargetClassName) (ItemRawData rawData):base(rawData)
         {
-            this.rawData = rawData;
-            InternalData();
-        }
-
-        /// <summary>
-        /// 内部データを初期化する
-        /// </summary>
-        private void InternalData()
-        {
-            // ユーザー拡張データ構造の定義
-            this.ExtensionElements = new @(TargetClassName).@(ExtensionElementsClassName)();
-            this.ExtensionElements.rawData = new WeakReference<ItemRawData>(this.rawData);
-
-            this.BasicItemData = new BasicItemData();
-            this.BasicItemData.rawData = new WeakReference<ItemRawData>(this.rawData);
+            this.ExtensionElements = new @Raw(ExtensionElementsClassName) (this.rawData);
+            this.BasicItemData = new BasicItemData(this.rawData);
         }
 
         /// <summary>
         /// 個別の拡張要素
         /// </summary>
-        public class @(ExtensionElementsClassName) : ExtensionElementsBase
+        public class @Raw(ExtensionElementsClassName) : ExtensionElementsBase
         {
+            public @Raw(ExtensionElementsClassName) (ItemRawData _rawData)  : base(_rawData) {
+            }
+
+
             #region 自動生成
 
             #region Class区分
@@ -67,7 +75,7 @@ namespace CsharpSamples.Generated.Models
                /// <summary>
                /// @Raw(item.LabelText)
                 /// </summary>
-                public string @Raw(item.VariableName)
+                public string? @Raw(item.VariableName)
                 {
                     get
                     {
@@ -82,7 +90,8 @@ namespace CsharpSamples.Generated.Models
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            if (obj.ClassHash == null)
+
+                            if (obj.ClassHash is null)
                             {
                                 obj.ClassHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.ClassHash();
                             }
@@ -90,6 +99,7 @@ namespace CsharpSamples.Generated.Models
                             obj.ClassHash.@(item.ColumnName) = value;
 
                             return ;
+                        
                         }
 
                         throw new ApplicationException("参照エラー");
@@ -109,34 +119,17 @@ namespace CsharpSamples.Generated.Models
 
                 <text>
 
-               /// <summary>
-               /// @Raw(item.LabelText)
-               /// サーバー戻り値では値を持っていない可能性があるので、
-               /// get系はnullable型の別名にする。
-               /// </summary>
-                public decimal? @Raw(item.VariableName)_value
-                {
-                    get
-                    {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            return obj?.NumHash?.@(item.ColumnName);
-                        }
-                        throw new ApplicationException("参照エラー");
-
-                    }
-                }
 
                /// <summary>
                /// @Raw(item.LabelText)
                /// </summary>
-                public decimal @Raw(item.VariableName)
+                public decimal? @Raw(item.VariableName)
                 {
                     set
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            if (obj.NumHash == null)
+                            if (obj.NumHash is null)
                             {
                                 obj.NumHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.NumHash();
                             }
@@ -149,6 +142,17 @@ namespace CsharpSamples.Generated.Models
                         throw new ApplicationException("参照エラー");
 
                     }
+
+                    get
+                    {
+                        if (rawData.TryGetTarget(out var obj))
+                        {
+                            return obj?.NumHash?.@(item.ColumnName);
+                        }
+                        throw new ApplicationException("参照エラー");
+
+                    }
+
                 }
                 </text>
 
@@ -165,33 +169,14 @@ namespace CsharpSamples.Generated.Models
 
                /// <summary>
                /// @Raw(item.LabelText)
-               ///
-               /// サーバー戻り値では値を持っていない可能性があるので、
-               /// get系はnullable型の別名にする。
                /// </summary>
-                public DateTime? @Raw(item.VariableName)_value
-                {
-                    get
-                    {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            return obj?.DateHash?.@(item.ColumnName);
-                        }
-                        throw new ApplicationException("参照エラー");
-
-                    }
-                }
-
-               /// <summary>
-               /// @Raw(item.LabelText)
-               /// </summary>
-                public DateTime @Raw(item.VariableName)
+                public DateTime? @Raw(item.VariableName)
                 {
                     set
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            if (obj.DateHash == null)
+                            if (obj.DateHash is null)
                             {
                                 obj.DateHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.DateHash();
                             }
@@ -204,6 +189,17 @@ namespace CsharpSamples.Generated.Models
                         throw new ApplicationException("参照エラー");
 
                     }
+
+                    get
+                    {
+                        if (rawData.TryGetTarget(out var obj))
+                        {
+                            return obj?.DateHash?.@(item.ColumnName);
+                        }
+                        throw new ApplicationException("参照エラー");
+
+                    }
+
                 }
                 </text>
 
@@ -221,7 +217,7 @@ namespace CsharpSamples.Generated.Models
                /// <summary>
                /// @Raw(item.LabelText)
                /// </summary>
-                public string @Raw(item.VariableName)
+                public string? @Raw(item.VariableName)
                 {
                     get
                     {
@@ -236,7 +232,7 @@ namespace CsharpSamples.Generated.Models
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            if (obj.DescriptionHash == null)
+                            if (obj.DescriptionHash is null)
                             {
                                 obj.DescriptionHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.DescriptionHash();
                             }
@@ -265,35 +261,15 @@ namespace CsharpSamples.Generated.Models
 
                /// <summary>
                /// @Raw(item.LabelText)
-               ///
-               /// サーバー戻り値では値を持っていない可能性があるので、
-               /// get系はnullable型の別名にする。
                /// </summary>
-                public bool? @Raw(item.VariableName)_value
-                {
-                    get
-                    {
-                        if (rawData.TryGetTarget(out var obj))
-                        {
-                            return obj?.CheckHash?.@(item.ColumnName);
-                        }
-                        throw new ApplicationException("参照エラー");
-
-                    }
-                }
-
-
-               /// <summary>
-               /// @Raw(item.LabelText)
-               /// </summary>
-                public bool @Raw(item.VariableName)
+                public bool? @Raw(item.VariableName)
                 {
                     set
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
 
-                            if (obj.CheckHash == null)
+                            if (obj.CheckHash is null)
                             {
                                 obj.CheckHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.CheckHash();
                             }
@@ -306,6 +282,17 @@ namespace CsharpSamples.Generated.Models
                         throw new ApplicationException("参照エラー");
 
                     }
+
+                    get
+                    {
+                        if (rawData.TryGetTarget(out var obj))
+                        {
+                            return obj?.CheckHash?.@(item.ColumnName);
+                        }
+                        throw new ApplicationException("参照エラー");
+
+                    }
+
                 }
                 </text>
 
@@ -324,7 +311,7 @@ namespace CsharpSamples.Generated.Models
                /// <summary>
                /// @Raw(item.LabelText)
                /// </summary>
-                public List<Attachments> @Raw(item.VariableName)
+                public List<Attachments>? @Raw(item.VariableName)
                 {
                     get
                     {
@@ -339,7 +326,7 @@ namespace CsharpSamples.Generated.Models
                     {
                         if (rawData.TryGetTarget(out var obj))
                         {
-                            if (obj.AttachmentsHash == null)
+                            if (obj.AttachmentsHash is null)
                             {
                                 obj.AttachmentsHash = new HackPleasanterApi.Client.Api.Models.ItemModel.Hash.AttachmentsHash();
                             }

@@ -31,10 +31,17 @@ namespace HackPleasanterApi.Client.Api.Logging
         /// ログなし
         /// </summary>
         NoLog,
+
+        /// <summary>
+        /// エラー用
+        /// </summary>
+        Error,
+
         /// <summary>
         /// 追跡用
         /// </summary>
         Info,
+
 
         /// <summary>
         /// デバッグレベル

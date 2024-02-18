@@ -30,13 +30,13 @@ namespace HackPleasanterApi.Client.Api.Response.ApiResults
     /// <summary>
     /// Item系統のAPI戻り値
     /// </summary>
-    public class UserApiResults : ApiResultsBase 
+    public class UserApiResults : ApiResultsBase
     {
 
         /// <summary>
         /// 戻り値データ
         /// </summary>
-        public UserResponse Response { get; set; }
+        public UserResponse? Response { get; set; }
     }
 
 

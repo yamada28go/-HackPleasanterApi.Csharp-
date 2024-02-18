@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using HackPleasanterApi.Client.Api.Definition;
 
 namespace HackPleasanterApi.Client.Api.Service
 {
@@ -38,5 +39,22 @@ namespace HackPleasanterApi.Client.Api.Service
         /// アクセス用APIキー
         /// </summary>
         public string ApiKey;
+
+        /// <summary>
+        /// API実行時のリトライカウント
+        /// </summary>
+        public int RetryCount = DefaultConfiguration.RetryCount;
+
+        /// <summary>
+        /// URLのパスを修飾する場合
+        /// </summary>
+        public URLPathPrefixSetting URLPathPrefixSetting = new URLPathPrefixSetting();
+
+        public ServiceConfig(Uri _uri, string _ApiKey)
+        {
+            this.uri = _uri;
+            this.ApiKey = _ApiKey;
+        }
+
     }
 }

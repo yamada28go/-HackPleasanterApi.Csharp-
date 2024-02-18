@@ -18,8 +18,8 @@
  * */
 
 using System;
-using HackPleasanterApi.Client.Api.Response.ApiResults;
-using HackPleasanterApi.Client.Api.Response.ResponseData.Item;
+using HackPleasanterApi.Client.Api.Helper.Mix;
+using HackPleasanterApi.Client.Api.Logging;
 
 namespace HackPleasanterApi.Client.Api.Exceptions
 {
@@ -28,11 +28,16 @@ namespace HackPleasanterApi.Client.Api.Exceptions
     /// </summary>
     public class GetItemException<ItemType> : Exception
     {
-        public ItemType ItemApiResults {  get;private set; }
+        public ItemType? ItemApiResults { get; private set; }
 
-        public GetItemException(ItemType ItemApiResults)
+        public GetItemException(ItemType? ItemApiResults)
         {
             this.ItemApiResults = ItemApiResults;
+
+            // エラーログを残す
+            var L = LoggerManager.GetInstance().Logger;
+            L.Error(() => $"Error GetItemException Msg : {this.ItemApiResults?.DumpAsJsonString()} ");
+
         }
     }
 }

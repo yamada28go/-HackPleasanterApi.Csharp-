@@ -38,7 +38,7 @@ namespace HackPleasanterApi.Client.Api.Request.View.FilterKey
         /// 検索対象文字列
         /// 指定された文字列に対してlike検索となる
         /// </summary>
-        public string SearchCondition;
+        public string? SearchCondition = null;
 
         public DescriptionFilterKey(string DescriptionName)
         {

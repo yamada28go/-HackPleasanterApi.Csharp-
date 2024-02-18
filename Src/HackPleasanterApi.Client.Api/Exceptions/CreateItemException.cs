@@ -19,6 +19,8 @@
 
 
 using System;
+using HackPleasanterApi.Client.Api.Helper.Mix;
+using HackPleasanterApi.Client.Api.Logging;
 using HackPleasanterApi.Client.Api.Response.ApiResults;
 using HackPleasanterApi.Client.Api.Response.ResponseData.Item;
 
@@ -29,11 +31,16 @@ namespace HackPleasanterApi.Client.Api.Exceptions
     /// </summary>
     public class CreateItemException : Exception
     {
-        public CreateItemResults CreateItemResponse { get; private set; }
+        public CreateItemResults? CreateItemResponse { get; private set; }
 
-        public CreateItemException(CreateItemResults CreateItemResponse)
+        public CreateItemException(CreateItemResults? CreateItemResponse)
         {
             this.CreateItemResponse = CreateItemResponse;
+
+            // エラーログを残す
+            var L = LoggerManager.GetInstance().Logger;
+            L.Error(() => $"Error CreateItemException Msg : {this.CreateItemResponse?.DumpAsJsonString()} ");
+
         }
     }
 }

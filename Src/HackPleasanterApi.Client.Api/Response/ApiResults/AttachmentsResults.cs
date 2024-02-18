@@ -25,18 +25,18 @@ namespace HackPleasanterApi.Client.Api.Response.ApiResults
     /// </summary>
     public class Response
     {
-        public long ReferenceId { get; set; }
-        public string BinaryType { get; set; }
-        public string Base64 { get; set; }
-        public string Guid { get; set; }
-        public string FileName { get; set; }
-        public string Extension { get; set; }
-        public int Size { get; set; }
-        public string ContentType { get; set; }
-        public long Creator { get; set; }
-        public long Updator { get; set; }
-        public string CreatedTime { get; set; }
-        public string UpdatedTime { get; set; }
+        public long? ReferenceId { get; set; }
+        public string? BinaryType { get; set; }
+        public string? Base64 { get; set; }
+        public string? Guid { get; set; }
+        public string? FileName { get; set; }
+        public string? Extension { get; set; }
+        public int? Size { get; set; }
+        public string? ContentType { get; set; }
+        public long? Creator { get; set; }
+        public long? Updator { get; set; }
+        public string? CreatedTime { get; set; }
+        public string? UpdatedTime { get; set; }
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ namespace HackPleasanterApi.Client.Api.Response.ApiResults
     /// </summary>
     public class AttachmentsResults : ChangeItemResults
     {
-        public Response Response { get; set; }
+        public Response? Response { get; set; }
 
     }
 }

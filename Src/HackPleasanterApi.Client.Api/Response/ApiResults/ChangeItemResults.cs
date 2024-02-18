@@ -30,7 +30,7 @@ namespace HackPleasanterApi.Client.Api.Response.ApiResults
     /// </summary>
     public class ChangeItemResults : ResponseBase
     {
-        public string Message { get; set; }
+        public string? Message { get; set; }
     }
 
 }

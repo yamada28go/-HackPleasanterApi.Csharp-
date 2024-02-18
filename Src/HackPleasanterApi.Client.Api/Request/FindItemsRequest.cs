@@ -28,7 +28,7 @@ namespace HackPleasanterApi.Client.Api.Request
     /// ユーザー検索用リクエスト
     /// </summary>
     ///
-    public class FindItemsRequest : RequestBase , ViewSendInterface
+    public class FindItemsRequest : RequestBase, ViewSendInterface
     {
         /// <summary>
         /// 検索時のオフセット
@@ -38,6 +38,14 @@ namespace HackPleasanterApi.Client.Api.Request
         /// <summary>
         /// 検索条件
         /// </summary>
-        public Request.View.ViewSend View { get; set; }
+        public Request.View.ViewSend? View { get; set; }
+
+
+        public FindItemsRequest(string _ApiVersion, string _ApiKey, long _Offset, Request.View.ViewSend? _View)
+            : base(_ApiVersion, _ApiKey)
+        {
+            this.Offset = _Offset;
+            this.View = _View;
+        }
     }
 }

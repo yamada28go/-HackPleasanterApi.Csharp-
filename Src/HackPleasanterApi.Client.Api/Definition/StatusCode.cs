@@ -26,6 +26,6 @@ namespace HackPleasanterApi.Client.Api.Definition
         /// <summary>
         /// 成功
         /// </summary>
-        OK= 200
+        OK = 200
     }
 }

@@ -31,10 +31,10 @@ namespace HackPleasanterApi.Client.Api.Response.ResponseData.Item
     public class UserResponse
 
     {
-        public long Offset { get; set; }
-        public long PageSize { get; set; }
-        public long TotalCount { get; set; }
+        public long? Offset { get; set; }
+        public long? PageSize { get; set; }
+        public long? TotalCount { get; set; }
 
-        public List<UserData> Data { get; set; }
+        public List<UserData>? Data { get; set; }
     }
 }

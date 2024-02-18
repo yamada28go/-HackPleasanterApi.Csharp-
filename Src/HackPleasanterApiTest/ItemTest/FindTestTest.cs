@@ -28,16 +28,16 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 検索条件を設定
             // Like検索
             var findString = "test10";
 
-            var fa = RecordingTableService.FilterKeys.StringA;
+            var fa = 記録テーブルService.FilterKeys.StringA;
             fa.SearchCondition = findString;
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -63,17 +63,17 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 検索条件を設定
             // Like検索
-            var findString = RecordingTableService.FilterKeys.TypeA_Choices.ClassA.ChoicesText;
+            var findString = 記録テーブルService.FilterKeys.TypeA_Choices.ClassA.ChoicesText;
 
-            var fa = RecordingTableService.FilterKeys.TypeA;
+            var fa = 記録テーブルService.FilterKeys.TypeA;
             fa.SearchConditions = new List<ChoicesTextElement>();
-            fa.SearchConditions.Add(RecordingTableService.FilterKeys.TypeA_Choices.ClassA);
+            fa.SearchConditions.Add(記録テーブルService.FilterKeys.TypeA_Choices.ClassA);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -91,6 +91,74 @@ namespace HackPleasanterApiTest.ItemTest
 
         #endregion
 
+        #region ClassFilterKey
+
+        [TestMethod]
+        public async Task 正常系_種別_ClassFilterKey2_検索試験()
+        {
+            //テスト対象データを作る
+            var correctList = await MakeTestTargetData();
+
+            // 追加データを作成
+            var 正解タイトル = "タイトルてすと 分類Bデータ試験";
+            var データ件数 = 3;
+            {
+                var cfg = MakeTestConfig();
+                var ts = new 記録テーブルService(cfg);
+
+                for (int i = 1; i <= データ件数; i++)
+                {
+                    var data = new CsharpSamples.Generated.Models.記録テーブルModel();
+                    data.BasicItemData.Title = 正解タイトル;
+                    data.BasicItemData.Body = "本文";
+                    data.BasicItemData.Comments = "コメント";
+
+                    // テストで検索対象となるデータを作っていく
+
+                    //data.ExtensionElements.StringA = "test" + i.ToString();
+
+                    data.ExtensionElements.テストデータ_分類B = "ClassB";
+
+                    var tr = await ts.CreateItem(data);
+                    Assert.IsNotNull(tr);
+
+                    // 取得できたIDで更新
+                    data.BasicItemData.ResultId = tr.Id;
+
+                    correctList.Add(data);
+                }
+            }
+
+            var s = new 記録テーブルService(MakeTestConfig());
+
+            // 検索条件を設定
+            // Like検索
+            var findString = 記録テーブルService.FilterKeys.TypeA_Choices.ClassA.ChoicesText;
+
+            var fa = 記録テーブルService.FilterKeys.テストデータ_分類B;
+            fa.SearchConditions = "ClassB";
+
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
+            v.Add(fa);
+
+            // ★　検索実行
+            var r = await s.FindItems(v);
+
+            // 結果を確認
+            Assert.AreEqual(データ件数, r.ToList().Count());
+
+            {
+                var correct = correctList.Where(x => x.ExtensionElements.TypeA == findString).First();
+                Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
+            }
+
+            Assert.AreEqual(データ件数, r.Where(x => x.BasicItemData.Title == 正解タイトル).ToList().Count());
+
+        }
+
+        #endregion
+
+
 
         #region NumFilterKey
 
@@ -100,16 +168,16 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 検索条件を設定
             // Like検索
             var findString = 5;
 
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKey(findString);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -120,7 +188,7 @@ namespace HackPleasanterApiTest.ItemTest
 
 
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == findString).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == findString).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
@@ -133,18 +201,18 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 検索条件を設定
             // Like検索
             var findString1 = 5;
             var findString2 = 7;
 
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKey(findString1);
             fa.AddKey(findString2);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -154,12 +222,12 @@ namespace HackPleasanterApiTest.ItemTest
             Assert.AreEqual(2, r.ToList().Count());
 
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == findString1).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == findString1).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == findString2).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == findString2).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
@@ -172,17 +240,17 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 検索条件を設定
             // Like検索
             var findString1 = 5;
 
             // 算出条件として5以下を指定している
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKeyUnder(findString1);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -195,7 +263,7 @@ namespace HackPleasanterApiTest.ItemTest
             // 1〜5までのデータが取得されている想定
             for (int i = 1; i <= 5; i++)
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == i).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == i).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
         }
@@ -207,16 +275,16 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 検索条件を設定
             var findString1 = 6;
 
             // 算出条件として指定
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKeyOver(findString1);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -229,7 +297,7 @@ namespace HackPleasanterApiTest.ItemTest
             // 5〜10までのデータが取得されている想定
             for (int i = 5; i <= 10; i++)
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == i).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == i).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
         }
@@ -240,13 +308,13 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 算出条件として指定
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKeyRange(3, 6);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -259,7 +327,7 @@ namespace HackPleasanterApiTest.ItemTest
             // 3〜6までのデータが取得されている想定
             for (int i = 3; i <= 6; i++)
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == i).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == i).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
         }
@@ -270,14 +338,14 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 算出条件として指定
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKeyRange(3, 6);
             fa.AddKey(8);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -290,13 +358,13 @@ namespace HackPleasanterApiTest.ItemTest
             // 3〜6までのデータが取得されている想定
             for (int i = 3; i <= 6; i++)
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == i).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == i).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
             // 個別に8番が取れているはず
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == 8).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == 8).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
@@ -310,15 +378,15 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // ★順番を入れ替えてみる
             // 算出条件として指定
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKey(8);
             fa.AddKeyRange(3, 6);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -331,13 +399,13 @@ namespace HackPleasanterApiTest.ItemTest
             // 3〜6までのデータが取得されている想定
             for (int i = 3; i <= 6; i++)
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == i).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == i).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
             // 個別に8番が取れているはず
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == 8).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == 8).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
@@ -350,15 +418,15 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // ★順番を入れ替えてみる
             // 算出条件として指定
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKeyUnder(4);
             fa.AddKey(8);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -371,13 +439,13 @@ namespace HackPleasanterApiTest.ItemTest
             // 3〜6までのデータが取得されている想定
             for (int i = 1; i <= 4; i++)
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == i).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == i).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
             // 個別に8番が取れているはず
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == 8).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == 8).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
@@ -391,15 +459,15 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // ★順番を入れ替えてみる
             // 算出条件として指定
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKey(8);
             fa.AddKeyUnder(4);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -412,13 +480,13 @@ namespace HackPleasanterApiTest.ItemTest
             // 3〜6までのデータが取得されている想定
             for (int i = 1; i <= 4; i++)
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == i).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == i).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
             // 個別に8番が取れているはず
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == 8).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == 8).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
         }
@@ -429,15 +497,15 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // ★順番を入れ替えてみる
             // 算出条件として指定
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKeyOver(9);
             fa.AddKey(8);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -450,13 +518,13 @@ namespace HackPleasanterApiTest.ItemTest
             // 9〜10までのデータが取得されている想定
             for (int i = 9; i <= 10; i++)
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == i).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == i).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
             // 個別に8番が取れているはず
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == 8).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == 8).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
         }
@@ -467,15 +535,15 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // ★順番を入れ替えてみる
             // 算出条件として指定
-            var fa = RecordingTableService.FilterKeys.NumA;
+            var fa = 記録テーブルService.FilterKeys.NumA;
             fa.AddKey(8);
             fa.AddKeyOver(9);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -488,13 +556,13 @@ namespace HackPleasanterApiTest.ItemTest
             // 9〜10までのデータが取得されている想定
             for (int i = 9; i <= 10; i++)
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == i).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == i).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
             // 個別に8番が取れているはず
             {
-                var correct = correctList.Where(x => x.ExtensionElements.NumA_value == 8).First();
+                var correct = correctList.Where(x => x.ExtensionElements.NumA == 8).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
         }
@@ -512,12 +580,12 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
-            var fa = RecordingTableService.FilterKeys.CheckA;
+            var fa = 記録テーブルService.FilterKeys.CheckA;
             fa.AddKey(true);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -527,12 +595,12 @@ namespace HackPleasanterApiTest.ItemTest
             Assert.AreEqual(5, r.ToList().Count());
 
             // trueとなっている条件を取得
-            var trueList = correctList.Where(x => x.ExtensionElements.CheckA_value == true).ToList();
+            var trueList = correctList.Where(x => x.ExtensionElements.CheckA == true).ToList();
             foreach (var ele in trueList)
             {
                 var x = r.Where(x => x.BasicItemData.IssueId == ele.BasicItemData.IssueId).FirstOrDefault();
                 Assert.IsNotNull(x);
-                Assert.AreEqual(x.ExtensionElements.CheckA_value, true);
+                Assert.AreEqual(x.ExtensionElements.CheckA, true);
             }
         }
 
@@ -542,12 +610,12 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
-            var fa = RecordingTableService.FilterKeys.CheckA;
+            var fa = 記録テーブルService.FilterKeys.CheckA;
             fa.AddKey(false);
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -557,12 +625,12 @@ namespace HackPleasanterApiTest.ItemTest
             Assert.AreEqual(5, r.ToList().Count());
 
             // trueとなっている条件を取得
-            var trueList = correctList.Where(x => x.ExtensionElements.CheckA_value == false).ToList();
+            var trueList = correctList.Where(x => x.ExtensionElements.CheckA == false).ToList();
             foreach (var ele in trueList)
             {
                 var x = r.Where(x => x.BasicItemData.ResultId == ele.BasicItemData.ResultId).FirstOrDefault();
                 Assert.IsNotNull(x);
-                Assert.AreEqual(x.ExtensionElements.CheckA_value, false);
+                Assert.AreEqual(x.ExtensionElements.CheckA, false);
             }
         }
 
@@ -578,15 +646,15 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 時刻は期間で指定する。
             // 期間の指定は指定された値を含むので、
             // ギリギリ値が含みきらない範囲で指定を行う
-            var fa = RecordingTableService.FilterKeys.DateA;            
+            var fa = 記録テーブルService.FilterKeys.DataA;
             fa.AddKeyRange(CONST_BaseDataTime, CONST_BaseDataTime.AddDays(1).AddSeconds(-1));
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -596,7 +664,7 @@ namespace HackPleasanterApiTest.ItemTest
             Assert.AreEqual(1, r.ToList().Count());
 
             {
-                var correct = correctList.Where(x => x.ExtensionElements.DateA_value == CONST_BaseDataTime).First();
+                var correct = correctList.Where(x => x.ExtensionElements.DataA == CONST_BaseDataTime).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
@@ -608,14 +676,14 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 時刻は期間で指定する
             // 検索には指定時間も含まれるため、2件取得される
-            var fa = RecordingTableService.FilterKeys.DateA;
+            var fa = 記録テーブルService.FilterKeys.DataA;
             fa.AddKeyRange(CONST_BaseDataTime, CONST_BaseDataTime.AddDays(1));
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -625,12 +693,12 @@ namespace HackPleasanterApiTest.ItemTest
             Assert.AreEqual(2, r.ToList().Count());
 
             {
-                var correct = correctList.Where(x => x.ExtensionElements.DateA_value == CONST_BaseDataTime).First();
+                var correct = correctList.Where(x => x.ExtensionElements.DataA == CONST_BaseDataTime).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
             {
-                var correct = correctList.Where(x => x.ExtensionElements.DateA_value == CONST_BaseDataTime.AddDays(1)).First();
+                var correct = correctList.Where(x => x.ExtensionElements.DataA == CONST_BaseDataTime.AddDays(1)).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.Skip(1).First().BasicItemData.IssueId);
             }
 
@@ -643,14 +711,14 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 時刻は期間で指定する
             // 検索には指定時間も含まれるため、2件取得される
-            var fa = RecordingTableService.FilterKeys.DateA;
-            fa.AddKeyUnder( CONST_BaseDataTime.AddDays(1));
+            var fa = 記録テーブルService.FilterKeys.DataA;
+            fa.AddKeyUnder(CONST_BaseDataTime.AddDays(1));
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -660,12 +728,12 @@ namespace HackPleasanterApiTest.ItemTest
             Assert.AreEqual(2, r.ToList().Count());
 
             {
-                var correct = correctList.Where(x => x.ExtensionElements.DateA_value == CONST_BaseDataTime).First();
+                var correct = correctList.Where(x => x.ExtensionElements.DataA == CONST_BaseDataTime).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
             {
-                var correct = correctList.Where(x => x.ExtensionElements.DateA_value == CONST_BaseDataTime.AddDays(1)).First();
+                var correct = correctList.Where(x => x.ExtensionElements.DataA == CONST_BaseDataTime.AddDays(1)).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.Skip(1).First().BasicItemData.IssueId);
             }
 
@@ -679,14 +747,14 @@ namespace HackPleasanterApiTest.ItemTest
             //テスト対象データを作る
             var correctList = await MakeTestTargetData();
 
-            var s = new RecordingTableService(MakeTestConfig());
+            var s = new 記録テーブルService(MakeTestConfig());
 
             // 時刻は期間で指定する
             // 検索には指定時間も含まれるため、2件取得される
-            var fa = RecordingTableService.FilterKeys.DateA;
+            var fa = 記録テーブルService.FilterKeys.DataA;
             fa.AddKeyOver(CONST_BaseDataTime.AddDays(8));
 
-            var v = new HackPleasanterApi.Client.Api.Request.View.View<RecordingTableModel>();
+            var v = new HackPleasanterApi.Client.Api.Request.View.View<記録テーブルModel>();
             v.Add(fa);
 
             // ★　検索実行
@@ -696,12 +764,12 @@ namespace HackPleasanterApiTest.ItemTest
             Assert.AreEqual(2, r.ToList().Count());
 
             {
-                var correct = correctList.Where(x => x.ExtensionElements.DateA_value == CONST_BaseDataTime.AddDays(8)).First();
+                var correct = correctList.Where(x => x.ExtensionElements.DataA == CONST_BaseDataTime.AddDays(8)).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.First().BasicItemData.IssueId);
             }
 
             {
-                var correct = correctList.Where(x => x.ExtensionElements.DateA_value == CONST_BaseDataTime.AddDays(9)).First();
+                var correct = correctList.Where(x => x.ExtensionElements.DataA == CONST_BaseDataTime.AddDays(9)).First();
                 Assert.AreEqual(correct.BasicItemData.IssueId, r.Skip(1).First().BasicItemData.IssueId);
             }
 

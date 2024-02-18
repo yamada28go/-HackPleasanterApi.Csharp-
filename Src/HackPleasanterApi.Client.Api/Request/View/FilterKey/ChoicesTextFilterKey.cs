@@ -57,7 +57,7 @@ namespace HackPleasanterApi.Client.Api.Request.View.FilterKey
         /// 検索対象文字列
         /// 指定された文字列に対してlike検索となる
         /// </summary>
-        public List<ChoicesTextElement> SearchConditions;
+        public List<ChoicesTextElement>? SearchConditions = null;
 
         public ChoicesTextFilterKey(string DescriptionName)
         {
@@ -86,7 +86,7 @@ namespace HackPleasanterApi.Client.Api.Request.View.FilterKey
             var sb = new StringBuilder();
             sb.Append("[");
 
-            foreach (var ele in SearchConditions)
+            foreach (var ele in SearchConditions ?? new List<ChoicesTextElement>())
             {
                 // 値だけ指定されてた場合
                 sb.AppendDoubleQuote();

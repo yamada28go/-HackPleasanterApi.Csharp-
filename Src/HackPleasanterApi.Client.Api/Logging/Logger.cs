@@ -30,32 +30,85 @@ namespace HackPleasanterApi.Client.Api.Logging
         /// </summary>
         private LogLevel logLevel;
 
+        private string LogPrefix;
+
         #region ロギング関数
 
-        private Action<string> LoginInfo = null;
-        private Action<string> LoginDebug = null;
+        private Action<string>? LoginInfo = null;
+        private Action<string>? LoginError = null;
+        private Action<string>? LoginDebug = null;
 
         #endregion
 
 
         public Logger(
          LogLevel LogLevel,
-         Action<string> LoginInfo,
-         Action<string> LoginDebug
+         string LogPrefix,
+         Action<string>? LoginError,
+         Action<string>? LoginInfo,
+         Action<string>? LoginDebug
             )
         {
             this.logLevel = LogLevel;
+            this.LogPrefix = LogPrefix;
+            this.LoginError = LoginError;
             this.LoginInfo = LoginInfo;
             this.LoginDebug = LoginDebug;
         }
 
+        public void Error(Exception exp)
+        {
+
+            if (this.logLevel != LogLevel.NoLog
+                )
+            {
+
+                try
+                {
+                    if (LoginError is not null)
+                    {
+                        this.LoginError($"{LogPrefix}Error! {exp.Message}");
+                    }
+                }
+                catch
+                {
+                    // ログエラーは捨てる
+                }
+            }
+        }
+
+        public void Error(Func<string> makeLog)
+        {
+
+            if (this.logLevel != LogLevel.NoLog
+                )
+            {
+
+                try
+                {
+                    if (LoginError is not null)
+                    {
+                        this?.LoginError($"{LogPrefix}{makeLog()}");
+                    }
+                }
+                catch
+                {
+                    // ログエラーは捨てる
+                }
+            }
+        }
+
         public void Info(Func<string> makeLog)
         {
-            if (this.logLevel == LogLevel.Info)
+            if (this.logLevel == LogLevel.Info ||
+                this.logLevel == LogLevel.Error)
             {
                 try
                 {
-                    this?.LoginDebug( makeLog() );
+                    if (LoginInfo is not null)
+                    {
+                        this?.LoginInfo($"{LogPrefix}{makeLog()}");
+                    }
                 }
                 catch
                 {
@@ -68,21 +121,23 @@ namespace HackPleasanterApi.Client.Api.Logging
         public void Debug(Func<string> makeLog)
         {
 
-            if (this.logLevel == LogLevel.Info ||
+            if (this.logLevel == LogLevel.Error ||
+                this.logLevel == LogLevel.Info ||
                 this.logLevel == LogLevel.Debug
                 )
             {
 
                 try
                 {
-                    this?.LoginDebug(makeLog());
+                    if (LoginDebug is not null)
+                    {
+                        this?.LoginDebug($"{LogPrefix}{makeLog()}");
+                    }
                 }
                 catch
                 {
                     // ログエラーは捨てる
                 }
-
-
             }
         }
 
